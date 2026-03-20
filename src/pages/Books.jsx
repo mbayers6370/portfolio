@@ -39,7 +39,7 @@ export default function Books() {
             The Shape<br /><em>Sequence.</em>
           </h1>
           <p className="page-header-sub">
-            A series about memory, reset, and the cities that outlive their people.
+            A series about the architecture of a world meant to make you forget.
           </p>
         </div>
       </div>
@@ -90,7 +90,7 @@ export default function Books() {
           <p>
             Matthew Bayers is a self-published author, full-stack developer, and painter.
             His fiction explores queer identity, memory, and the architecture of worlds
-            that feel just slightly out of reach — built for anyone who has ever felt
+            that feel just slightly out of reach, built for anyone who has ever felt
             like they didn't quite fit.
           </p>
           <Link to="/" className="books-back">← Back to portfolio</Link>

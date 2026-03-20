@@ -32,10 +32,11 @@ export default function Art() {
       <div className="container">
         <div className="art-statement">
           <p>
-            The same instinct that drives the code drives the paint — an obsession
-            with structure, negative space, and what happens when you strip everything
-            back to what matters. The canvas is where the logic ends and something
-            else takes over.
+            The same instinct runs through both the code and the 
+            painting. I’m drawn to structure, negative space, and 
+            the moment when stripping something back reveals what 
+            matters. The canvas is where that discipline becomes 
+            something more intuitive.
           </p>
         </div>
 

@@ -954,6 +954,17 @@ body {
     left: var(--gutter);
   }
 
+  /* Work cards — give the ghost number room */
+  .project-feature {
+    padding-top: 5rem;
+  }
+
+  .project-number-bg {
+    top: 1rem;
+    right: 1.25rem;
+    font-size: 4rem;
+  }
+
   .beyond-cards {
     flex-wrap: wrap;
   }
