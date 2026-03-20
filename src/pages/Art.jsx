@@ -22,9 +22,6 @@ export default function Art() {
           <h1 className="page-header-title">
             Oil &amp; Acrylic<br /><em>Paintings.</em>
           </h1>
-          <p className="page-header-sub">
-            Works on canvas — available on request.
-          </p>
         </div>
       </div>
 
@@ -57,10 +54,6 @@ export default function Art() {
 
         {/* ── Enquire ── */}
         <div className="art-enquire">
-          <p>Interested in a piece or a commission?</p>
-          <a href="mailto:matthew.bayers@gmail.com" className="art-enquire-link">
-            matthew.bayers@gmail.com →
-          </a>
           <Link to="/" className="books-back">← Back to portfolio</Link>
         </div>
       </div>
