@@ -17,11 +17,10 @@ export default function Contact() {
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">Contact</h2>
-          <span className="section-counter">(04)</span>
         </div>
 
         <h3 className="contact-heading">
-          Let's Work<br /><span>Together.</span>
+          Let's Work Together
         </h3>
 
         <div className="contact-inner">

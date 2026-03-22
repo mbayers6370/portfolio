@@ -20,7 +20,7 @@ export default function BooksArt() {
               <div className="beyond-card-label">Visual</div>
               <div className="beyond-card-title">Art</div>
               <div className="beyond-card-desc">
-                Oil &amp; acrylic paintings — the creative practice behind the work.
+                Oil &amp; acrylic paintings, the creative practice behind the work.
               </div>
             </Link>
           </div>

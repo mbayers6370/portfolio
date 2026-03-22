@@ -36,9 +36,6 @@ export default function About() {
               focus on the same things: clarity, intention, and removing what does 
               not need to be there.
             </p>
-            <p>
-              I’m currently open to full-time roles and select freelance projects.
-            </p>
 
             <div className="skills-header">Technical Skills</div>
             <div className="skills-grid">
