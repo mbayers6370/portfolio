@@ -1,15 +1,5 @@
 import { Link } from 'react-router-dom'
-import rose from '../assets/Rose_BW.jpeg'
-import lemons from '../assets/Lemons.jpeg'
-import bathtub from '../assets/Bathtub_Benjamin.jpeg'
-import copperFlowers from '../assets/Copper_Flowers.jpeg'
-
-const paintings = [
-  { src: lemons,        title: 'Lemons',           medium: 'Oil on canvas' },
-  { src: copperFlowers, title: 'Copper Flowers',   medium: 'Oil on canvas' },
-  { src: bathtub,       title: 'Bathtub Benjamin', medium: 'Oil on canvas' },
-  { src: rose,          title: 'Rose',             medium: 'Acrylic on canvas', pos: '65% center' },
-]
+import artworks from '../data/artworks'
 
 export default function Art() {
   return (
@@ -29,17 +19,16 @@ export default function Art() {
       <div className="container">
         <div className="art-statement">
           <p>
-            The same instinct runs through both the code and the 
-            painting. I’m drawn to structure, negative space, and 
-            the moment when stripping something back reveals what 
-            matters. The canvas is where that discipline becomes 
-            something more intuitive.
+            I’m drawn to structure and negative space. I constantly
+            ask myself, “What is necessary here? What can be removed?” I find that tension
+            between presence and absence to be the most interesting place to work, 
+            whether I’m writing, designing, or coding. The discipline of that process is something I enjoy in itself.
           </p>
         </div>
 
         {/* ── Grid ── */}
         <div className="art-grid">
-          {paintings.map((p, i) => (
+          {artworks.map((p, i) => (
             <div className="art-tile" key={i}>
               <div className="art-tile-img">
                 <img src={p.src} alt={p.title} style={p.pos ? { objectPosition: p.pos } : undefined} />
