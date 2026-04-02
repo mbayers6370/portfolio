@@ -21,7 +21,7 @@ export default function Hero() {
         </p>
 
         <div className="hero-meta">
-          matthewbayers.com&nbsp;//&nbsp;2025
+          matthewbayers.com&nbsp;//&nbsp;2026
         </div>
 
         <div className="hero-scroll">
