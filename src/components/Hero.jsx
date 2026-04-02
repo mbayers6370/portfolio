@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="hero" id="home">
       <div className="hero-inner">
 
-        {/* Photo floats right, screen blend knocks out black background */}
+        {/* Photo stays flush left as a full-height panel */}
         <div className="hero-photo">
           <img src={headshot} alt="Matthew Bayers" />
         </div>

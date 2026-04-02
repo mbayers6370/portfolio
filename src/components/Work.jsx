@@ -6,7 +6,7 @@ export default function Work() {
     <section className="work" id="work">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Selected Work</h2>
+          <h2 className="section-title">Websites</h2>
         </div>
 
         {projects.map((p) => (
@@ -29,18 +29,13 @@ export default function Work() {
                 Case Study <span>→</span>
               </Link>
               <a href={p.link} target="_blank" rel="noopener noreferrer" className="project-link project-link--ghost">
-                Live Site <span>↗</span>
+                {p.linkLabel || 'Live Site'} <span>↗</span>
               </a>
             </div>
           </div>
         ))}
 
         <div className="project-grid">
-          <div className="project-card">
-            <span className="project-card-number">02</span>
-            <span className="project-card-label">Coming Soon</span>
-            <h3 className="project-card-title">Next Project</h3>
-          </div>
           <div className="project-card">
             <span className="project-card-number">03</span>
             <span className="project-card-label">Coming Soon</span>

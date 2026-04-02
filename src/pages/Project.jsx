@@ -82,7 +82,7 @@ export default function Project() {
               rel="noopener noreferrer"
               className="project-page-live"
             >
-              View Live Site →
+              {project.linkLabel ? `View ${project.linkLabel} →` : 'View Live Site →'}
             </a>
           )}
         </div>

@@ -245,10 +245,10 @@ body {
 /* Photo: full-height LEFT panel, screen blend knocks out black bg */
 .hero-photo {
   position: absolute;
-  left: 0;
+  left: calc(-1 * var(--gutter));
   top: 0;
   bottom: 0;
-  width: clamp(200px, 34vw, 460px);
+  width: clamp(320px, 46vw, 700px);
   z-index: 2;
   pointer-events: none;
 }
@@ -257,10 +257,10 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 10%;
+  object-position: left 10%;
   display: block;
   filter: grayscale(100%) contrast(1.35) brightness(1.05);
-  mix-blend-mode: screen;
+  mix-blend-mode: normal;
 }
 
 /* Name stack — offset right of photo */
@@ -318,7 +318,7 @@ body {
   font-family: var(--font-mono);
   font-size: 0.56rem;
   letter-spacing: 0.14em;
-  color: var(--mid);
+  color: rgba(215, 237, 48, 0.4);
   text-transform: uppercase;
   z-index: 3;
 }
@@ -932,6 +932,9 @@ body {
     width: 100%;
     height: auto;
     object-fit: initial;
+    object-position: left top;
+    margin-left: 0;
+    mix-blend-mode: screen;
   }
 
   .hero-name {
