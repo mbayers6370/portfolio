@@ -1,35 +1,30 @@
+import '../styles/art.css'
 import { Link } from 'react-router-dom'
-import artworks from '../data/artworks'
+import { artPageContent } from '../content/art'
+import artworks from '../content/artworks'
 
 export default function Art() {
   return (
     <div className="page-art">
-
-      {/* ── Hero header ── */}
       <div className="page-header">
         <div className="container">
-          <span className="page-header-label">Visual Practice</span>
+          <span className="page-header-label">{artPageContent.pageLabel}</span>
           <h1 className="page-header-title">
-            Oil &amp; Acrylic<br /><em>Paintings.</em>
+            {artPageContent.title[0]}
+            <br />
+            <em>{artPageContent.title[1]}</em>
           </h1>
         </div>
       </div>
 
-      {/* ── Statement ── */}
       <div className="container">
         <div className="art-statement">
-          <p>
-            I’m drawn to structure and negative space. I constantly
-            ask myself, “What is necessary here? What can be removed?” I find that tension
-            between presence and absence to be the most interesting place to work, 
-            whether I’m writing, designing, or coding. The discipline of that process is something I enjoy in itself.
-          </p>
+          <p>{artPageContent.statement}</p>
         </div>
 
-        {/* ── Grid ── */}
         <div className="art-grid">
-          {artworks.map((p, i) => (
-            <div className="art-tile" key={i}>
+          {artworks.map((p) => (
+            <div className="art-tile" key={p.title}>
               <div className="art-tile-img">
                 <img src={p.src} alt={p.title} style={p.pos ? { objectPosition: p.pos } : undefined} />
               </div>
@@ -41,12 +36,10 @@ export default function Art() {
           ))}
         </div>
 
-        {/* ── Enquire ── */}
         <div className="art-enquire">
-          <Link to="/" className="books-back">← Back to portfolio</Link>
+          <Link to="/" className="books-back">{artPageContent.backLabel}</Link>
         </div>
       </div>
-
     </div>
   )
 }

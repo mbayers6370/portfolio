@@ -1,3 +1,4 @@
+import '../styles/home.css'
 import Hero from '../components/Hero'
 import Work from '../components/Work'
 import About from '../components/About'

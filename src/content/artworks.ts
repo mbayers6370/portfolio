@@ -2,18 +2,19 @@ import rose from '../assets/Rose_BW.jpeg'
 import lemons from '../assets/Lemons.jpeg'
 import bathtub from '../assets/Bathtub_Benjamin.jpeg'
 import copperFlowers from '../assets/Copper_Flowers.jpeg'
+import type { Artwork } from '../types/content'
 
-const toTitleFromFilename = (path) =>
+const toTitleFromFilename = (path: string) =>
   path
     .split('/')
     .pop()
-    .replace(/\.[^/.]+$/, '')
+    ?.replace(/\.[^/.]+$/, '')
     .replace(/[_-]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
-    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .replace(/\b\w/g, (c) => c.toUpperCase()) ?? ''
 
-const artworks = [
+const artworks: Artwork[] = [
   { src: lemons, title: 'Jenny\'s Flowers', medium: 'Oil on canvas' },
   { src: copperFlowers, title: 'Copper & Shadow', medium: 'Oil on canvas' },
   { src: bathtub, title: 'A Pivot', medium: 'Oil on canvas' },

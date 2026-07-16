@@ -1,4 +1,12 @@
-const projects = [
+import type { Project } from '../types/content'
+import nelaRideComponents from '../assets/Components.png'
+import nelaRideIconography from '../assets/Iconography.png'
+import nelaRideLayoutOne from '../assets/Layout&Design.png'
+import nelaRideLayoutTwo from '../assets/Layout&Design(2).png'
+import nelaRideTypographyOne from '../assets/Typography.png'
+import nelaRideTypographyTwo from '../assets/Typography_2.png'
+
+const projects: Project[] = [
   {
     slug: 'sonus',
     num: '01',
@@ -48,6 +56,65 @@ const projects = [
     ],
     year: '2026',
     role: 'Full-Stack Developer',
+  },
+  {
+    slug: 'nelaride',
+    num: '03',
+    title: 'NelaRide',
+    type: 'Product Design / Website Redesign',
+    desc: 'NelaRide is a community rideshare startup building connected Rider and Driver apps. I began by spearheading the website redesign, then expanded into product design work across the platform, helping shape branding, UI guidelines, and a more cohesive visual system across both apps.',
+    tags: ['Branding', 'Product Design', 'UI Design', 'Design Systems', 'UX Audit', 'Website Redesign'],
+    link: 'https://nelaride.com',
+    linkLabel: 'Live Site',
+    details: [
+      {
+        heading: 'The Problem',
+        body: 'NelaRide needed a clearer and more cohesive design presence across its public website and its two-sided product ecosystem. With separate Rider and Driver experiences, the challenge was not only making each surface feel polished, but making the brand and interface system feel consistent across the company as a whole.',
+      },
+      {
+        heading: 'Design Scope',
+        body: 'My work started with the website redesign, where I focused on clarifying the visual direction and strengthening how the company presented itself publicly. From there, I moved into broader product design efforts, helping define branding and UI guidelines and auditing the Rider and Driver apps to identify inconsistencies, improve cohesion, and support a more unified system.',
+      },
+      {
+        heading: 'Impact',
+        body: 'This work centered on system-building rather than a single screen or flow. I contributed to a more consistent design language across web and product, established guidelines that could support future design decisions, and helped move the platform toward a more intentional, scalable identity for both riders and drivers.',
+      },
+    ],
+    galleryLabel: 'Design System',
+    gallery: [
+      {
+        src: nelaRideComponents,
+        alt: 'NelaRide UI guideline page for components',
+        label: 'Components',
+      },
+      {
+        src: nelaRideIconography,
+        alt: 'NelaRide UI guideline page for iconography',
+        label: 'Iconography',
+      },
+      {
+        src: nelaRideLayoutOne,
+        alt: 'NelaRide UI guideline page for layout and design one',
+        label: 'Layout & Design I',
+      },
+      {
+        src: nelaRideLayoutTwo,
+        alt: 'NelaRide UI guideline page for layout and design two',
+        label: 'Layout & Design II',
+      },
+      {
+        src: nelaRideTypographyOne,
+        alt: 'NelaRide UI guideline page for typography one',
+        label: 'Typography I',
+      },
+      {
+        src: nelaRideTypographyTwo,
+        alt: 'NelaRide UI guideline page for typography two',
+        label: 'Typography II',
+      },
+    ],
+    year: '2026',
+    role: 'Product Design Intern',
   },
 ]
 

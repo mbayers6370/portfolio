@@ -1,36 +1,30 @@
 import headshot from '../assets/headshot.jpg'
+import { heroContent } from '../content/hero'
 
 export default function Hero() {
   return (
     <section className="hero" id="home">
       <div className="hero-inner">
-
-        {/* Photo stays flush left as a full-height panel */}
         <div className="hero-photo">
-          <img src={headshot} alt="Matthew Bayers" />
+          <img src={headshot} alt={heroContent.alt} />
         </div>
 
         <div className="hero-name">
-          <span className="hero-name-first">Matthew</span>
+          <span className="hero-name-first">{heroContent.firstName}</span>
           <span className="hero-name-divider" aria-hidden="true" />
-          <span className="hero-name-last">Bayers.</span>
+          <span className="hero-name-last">{heroContent.lastName}</span>
         </div>
 
-        <p className="hero-tagline">
-          Full-Stack Developer
-        </p>
+        <p className="hero-tagline">{heroContent.tagline}</p>
 
-        <div className="hero-meta">
-          matthewbayers.com&nbsp;//&nbsp;2026
-        </div>
+        <div className="hero-meta">{heroContent.meta}</div>
 
         <div className="hero-scroll">
-          <span>Scroll</span>
+          <span>{heroContent.scrollLabel}</span>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 5v14M5 12l7 7 7-7"/>
+            <path d="M12 5v14M5 12l7 7 7-7" />
           </svg>
         </div>
-
       </div>
     </section>
   )
