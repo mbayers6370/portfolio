@@ -257,6 +257,14 @@ body {
   color: var(--forest);
 }
 
+.project-title-wordmark .project-title-accent {
+  font-weight: 900;
+}
+
+.project-title-wordmark .project-title-rest {
+  font-weight: 500;
+}
+
 .page-header-sub {
   font-family: var(--font-body);
   font-size: 1rem;

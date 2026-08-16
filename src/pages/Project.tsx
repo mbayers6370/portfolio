@@ -1,7 +1,60 @@
 import '../styles/project.css'
+import { useEffect, useRef, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import ProjectTitle from '../components/ProjectTitle'
 import { projectPageContent } from '../content/project-page'
 import projects from '../content/projects'
+
+type ProjectDetailProps = {
+  body: string
+  heading: string
+  index: number
+}
+
+function ProjectDetail({ body, heading, index }: ProjectDetailProps) {
+  const rowRef = useRef<HTMLDivElement | null>(null)
+  const [hasRevealed, setHasRevealed] = useState(false)
+
+  useEffect(() => {
+    const row = rowRef.current
+
+    if (!row || hasRevealed) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasRevealed(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      {
+        rootMargin: '0px 0px -18% 0px',
+        threshold: 0.25,
+      },
+    )
+
+    observer.observe(row)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [hasRevealed])
+
+  return (
+    <div
+      className={`project-page-detail${hasRevealed ? ' is-visible' : ''}`}
+      ref={rowRef}
+    >
+      <div className="project-page-detail-num">0{index + 1}</div>
+      <div className="project-page-detail-body">
+        <h2 className="project-page-detail-heading">{heading}</h2>
+        <p className="project-page-detail-text">{body}</p>
+      </div>
+    </div>
+  )
+}
 
 export default function Project() {
   const { slug } = useParams<{ slug: string }>()
@@ -26,7 +79,9 @@ export default function Project() {
             <span className="page-header-label">No. {project.num}</span>
             <span className="page-header-label">{project.type}</span>
           </div>
-          <h1 className="page-header-title">{project.title}.</h1>
+          <h1 className="page-header-title">
+            <ProjectTitle title={project.title} />.
+          </h1>
           <div className="project-page-info">
             <div className="project-page-info-item">
               <span className="project-page-info-label">{projectPageContent.labels.role}</span>
@@ -80,13 +135,12 @@ export default function Project() {
 
         <div className="project-page-details">
           {project.details.map((d, i) => (
-            <div className="project-page-detail" key={d.heading}>
-              <div className="project-page-detail-num">0{i + 1}</div>
-              <div className="project-page-detail-body">
-                <h2 className="project-page-detail-heading">{d.heading}</h2>
-                <p className="project-page-detail-text">{d.body}</p>
-              </div>
-            </div>
+            <ProjectDetail
+              body={d.body}
+              heading={d.heading}
+              index={i}
+              key={`${project.slug}-${d.heading}`}
+            />
           ))}
         </div>
 

@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import ProjectTitle from './ProjectTitle'
 import projects from '../content/projects'
 import { workContent } from '../content/work'
+
+const sortedProjects = [...projects].sort((a, b) => Number(a.num) - Number(b.num))
 
 export default function Work() {
   return (
@@ -10,7 +13,7 @@ export default function Work() {
           <h2 className="section-title">{workContent.sectionTitle}</h2>
         </div>
 
-        {projects.map((p) => (
+        {sortedProjects.map((p) => (
           <div className="project-feature" key={p.num}>
             <div className="project-number-bg">{p.num}</div>
             <div className="project-meta">
@@ -18,7 +21,9 @@ export default function Work() {
               <span className="project-meta-divider">—</span>
               <span className="project-type">{p.type}</span>
             </div>
-            <h3 className="project-title">{p.title}</h3>
+            <h3 className="project-title">
+              <ProjectTitle title={p.title} />
+            </h3>
             <p className="project-desc">{p.desc}</p>
             <div className="project-tags">
               {p.tags.map((tag) => (

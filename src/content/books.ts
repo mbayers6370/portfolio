@@ -20,7 +20,7 @@ export const books: Book[] = [
     statusClass: 'available',
     description:
       'A story of memory, identity, and what gets left behind when the world resets around you. Book one of The Shape Sequence.',
-    link: 'https://www.amazon.com/dp/B0DPF54L84',
+    link: 'https://www.amazon.com/Shape-Echo-Matthew-Bayers/dp/B0GDQGP5C3/ref=tmm_pap_swatch_0',
     linkLabel: 'Buy on Amazon →',
     cover: cover01,
   },

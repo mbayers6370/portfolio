@@ -9,7 +9,7 @@ import nelaRideTypographyTwo from '../assets/Typography_2.png'
 const projects: Project[] = [
   {
     slug: 'sonus',
-    num: '01',
+    num: '02',
     title: 'Sonus',
     type: 'Full-Stack Web Application',
     desc: 'Sonus is a language-learning app built for serious learners. It uses native-speaker standards for fluency, draws from country-of-origin vocabulary lists, and organizes study into units that build on each other over time. It is not perfect, but it is honest, a language lab for the serious learner.',
@@ -34,7 +34,7 @@ const projects: Project[] = [
   },
   {
     slug: 'abovo',
-    num: '02',
+    num: '03',
     title: 'abovo',
     type: 'Full-Stack Web Application',
     desc: 'abovo is a recipe and meal-planning app built for the full rhythm of home cooking. It helps users capture recipes from wherever they find them, organize what matters, plan meals for the week, build grocery lists that make sense in the store, and cook from a cleaner step-by-step interface. It is designed less as a recipe archive and more as a working kitchen system.',
@@ -59,17 +59,17 @@ const projects: Project[] = [
   },
   {
     slug: 'nelaride',
-    num: '03',
-    title: 'NelaRide',
+    num: '01',
+    title: 'NELARide',
     type: 'Product Design / Website Redesign',
-    desc: 'NelaRide is a community rideshare startup building connected Rider and Driver apps. I began by spearheading the website redesign, then expanded into product design work across the platform, helping shape branding, UI guidelines, and a more cohesive visual system across both apps.',
+    desc: 'NELARide is a community rideshare startup building connected Rider and Driver apps. I began by spearheading the website redesign, then expanded into product design work across the platform, helping shape branding, UI guidelines, and a more cohesive visual system across both apps.',
     tags: ['Branding', 'Product Design', 'UI Design', 'Design Systems', 'UX Audit', 'Website Redesign'],
     link: 'https://nelaride.com',
     linkLabel: 'Live Site',
     details: [
       {
         heading: 'The Problem',
-        body: 'NelaRide needed a clearer and more cohesive design presence across its public website and its two-sided product ecosystem. With separate Rider and Driver experiences, the challenge was not only making each surface feel polished, but making the brand and interface system feel consistent across the company as a whole.',
+        body: 'NELARide needed a clearer and more cohesive design presence across its public website and its two-sided product ecosystem. With separate Rider and Driver experiences, the challenge was not only making each surface feel polished, but making the brand and interface system feel consistent across the company as a whole.',
       },
       {
         heading: 'Design Scope',
@@ -84,32 +84,32 @@ const projects: Project[] = [
     gallery: [
       {
         src: nelaRideComponents,
-        alt: 'NelaRide UI guideline page for components',
+        alt: 'NELARide UI guideline page for components',
         label: 'Components',
       },
       {
         src: nelaRideIconography,
-        alt: 'NelaRide UI guideline page for iconography',
+        alt: 'NELARide UI guideline page for iconography',
         label: 'Iconography',
       },
       {
         src: nelaRideLayoutOne,
-        alt: 'NelaRide UI guideline page for layout and design one',
+        alt: 'NELARide UI guideline page for layout and design one',
         label: 'Layout & Design I',
       },
       {
         src: nelaRideLayoutTwo,
-        alt: 'NelaRide UI guideline page for layout and design two',
+        alt: 'NELARide UI guideline page for layout and design two',
         label: 'Layout & Design II',
       },
       {
         src: nelaRideTypographyOne,
-        alt: 'NelaRide UI guideline page for typography one',
+        alt: 'NELARide UI guideline page for typography one',
         label: 'Typography I',
       },
       {
         src: nelaRideTypographyTwo,
-        alt: 'NelaRide UI guideline page for typography two',
+        alt: 'NELARide UI guideline page for typography two',
         label: 'Typography II',
       },
     ],
