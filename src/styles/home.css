@@ -30,6 +30,14 @@
   pointer-events: none;
 }
 
+/* Keep the image pinned to the viewport edge after the content container
+   reaches its maximum width on larger desktop screens. */
+@media (min-width: 1400px) {
+  .hero-photo {
+    left: calc(-1 * var(--gutter) + (var(--container-max) - 100vw) / 2);
+  }
+}
+
 .hero-photo img {
   width: 100%;
   height: 100%;
@@ -443,12 +451,12 @@
 
 .contact {
   background: var(--olive);
-  color: var(--cream);
+  color: var(--on-dark);
   padding: var(--section-pad) 0;
 }
 
 .contact .section-title {
-  color: var(--cream);
+  color: var(--on-dark);
 }
 
 .contact .section-counter {
@@ -465,7 +473,7 @@
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.9;
-  color: var(--cream);
+  color: var(--on-dark);
   margin-bottom: clamp(3rem, 6vw, 6rem);
 }
 
@@ -500,7 +508,7 @@
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--hairline-dark);
-  color: var(--cream);
+  color: var(--on-dark);
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 300;
@@ -528,8 +536,8 @@
 
 .form-submit {
   background: transparent;
-  border: 1px solid var(--cream);
-  color: var(--cream);
+  border: 1px solid var(--on-dark);
+  color: var(--on-dark);
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.2em;
@@ -541,7 +549,7 @@
 }
 
 .form-submit:hover {
-  background: var(--cream);
+  background: var(--on-dark);
   color: var(--near-black);
 }
 
@@ -573,7 +581,7 @@
   width: 44px;
   height: 44px;
   border: 1px solid var(--hairline-dark);
-  color: var(--cream);
+  color: var(--on-dark);
   text-decoration: none;
   transition: border-color 0.25s, color 0.25s;
 }

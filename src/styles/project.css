@@ -1,31 +1,12 @@
 .project-page {
   --project-bg: var(--olive);
-  --project-text: var(--bg);
-  --project-mid: rgba(224, 225, 218, 0.72);
-  --project-faded: rgba(224, 225, 218, 0.44);
+  --project-text: var(--on-dark);
+  --project-mid: rgba(255, 255, 255, 0.72);
+  --project-faded: rgba(255, 255, 255, 0.44);
   --project-line: rgba(224, 225, 218, 0.22);
 
   background: var(--project-bg);
   color: var(--project-text);
-}
-
-body:has(.scheduler-case-study) .nav,
-body:has(.scheduler-case-study) .nav--scrolled,
-body:has(.scheduler-case-study) .nav-mobile {
-  background: #1e3037 !important;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-body:has(.scheduler-case-study) .nav-logo,
-body:has(.scheduler-case-study) .nav-links a,
-body:has(.scheduler-case-study) .nav-linkedin,
-body:has(.scheduler-case-study) .nav-mobile a {
-  color: #e0e1da;
-}
-
-body:has(.scheduler-case-study) .nav-hamburger span {
-  background: #e0e1da;
 }
 
 .project-page-header {
@@ -230,7 +211,7 @@ body:has(.scheduler-case-study) .nav-hamburger span {
   margin: 0 auto;
   padding: clamp(1.5rem, 4vw, 3rem);
   background: var(--olive);
-  color: var(--bg);
+  color: var(--on-dark);
   text-align: center;
 }
 
@@ -238,7 +219,7 @@ body:has(.scheduler-case-study) .nav-hamburger span {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 700;
-  color: var(--bg);
+  color: var(--on-dark);
 }
 
 .project-page-detail-text {
@@ -347,36 +328,16 @@ body:has(.scheduler-case-study) .nav-hamburger span {
   --scheduler-dark: #1e3037;
   --scheduler-panel: #344952;
   --scheduler-light: #e0e1da;
-  --scheduler-muted: rgba(224, 225, 218, 0.67);
+  --scheduler-on-dark: var(--on-dark);
+  --scheduler-muted: rgba(255, 255, 255, 0.72);
   --scheduler-line: rgba(224, 225, 218, 0.23);
   background: var(--scheduler-light);
   color: var(--olive);
 }
 
 body:has(.scheduler-case-study) { background: var(--scheduler-light); }
-body:has(.scheduler-case-study) .nav,
-body:has(.scheduler-case-study) .nav--scrolled,
-body:has(.scheduler-case-study) .nav-mobile {
-  background: var(--scheduler-light) !important;
-  backdrop-filter: none;
-}
-body:has(.scheduler-case-study) .nav-logo,
-body:has(.scheduler-case-study) .nav-links a,
-body:has(.scheduler-case-study) .nav-linkedin,
-body:has(.scheduler-case-study) .nav-mobile a { color: var(--olive); }
-body:has(.scheduler-case-study) .nav-hamburger span { background: var(--olive); }
 
-@media (max-width: 900px) {
-  .nav-mobile.nav-mobile--scheduler.open {
-    inset: 58px 0 0;
-    height: calc(100dvh - 58px);
-    min-height: calc(100dvh - 58px);
-    justify-content: center;
-    overflow-y: auto;
-  }
-}
-
-.scheduler-hero { background: var(--scheduler-dark); color: var(--scheduler-light); overflow: hidden; padding: calc(58px + clamp(4rem, 8vw, 8rem)) 0 0; }
+.scheduler-hero { background: var(--scheduler-dark); color: var(--scheduler-on-dark); overflow: hidden; padding: calc(58px + clamp(4rem, 8vw, 8rem)) 0 0; }
 .scheduler-hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 0.55fr); gap: clamp(2rem, 7vw, 8rem); align-items: end; }
 .scheduler-kicker, .scheduler-section-heading span, .scheduler-metadata dt, .scheduler-notes span, .scheduler-carousel figcaption, .scheduler-comparison figcaption { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; }
 .scheduler-kicker { color: var(--scheduler-muted); margin-bottom: 2rem; }
@@ -385,7 +346,7 @@ body:has(.scheduler-case-study) .nav-hamburger span { background: var(--olive); 
 .scheduler-metadata { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; padding: 1.75rem 0 2.5rem; border-top: 1px solid var(--scheduler-line); }
 .scheduler-metadata div:last-child { grid-column: span 2; }
 .scheduler-metadata dt { color: rgba(224, 225, 218, 0.46); margin-bottom: 0.38rem; }
-.scheduler-metadata dd { font-size: 0.82rem; line-height: 1.55; color: var(--scheduler-light); }
+.scheduler-metadata dd { font-size: 0.82rem; line-height: 1.55; color: var(--scheduler-on-dark); }
 .scheduler-hero-screen { align-self: end; max-width: 20rem; justify-self: center; margin-bottom: 4rem; }
 .scheduler-hero-screen img, .scheduler-decision img, .scheduler-comparison-item img, .scheduler-carousel img { display: block; width: 100%; height: auto; border-radius: 1.25rem; }
 
@@ -395,16 +356,16 @@ body:has(.scheduler-case-study) .nav-hamburger span { background: var(--olive); 
 .scheduler-section-heading h2 { font-family: var(--font-display); font-size: clamp(2.25rem, 5vw, 5rem); font-weight: 800; letter-spacing: -0.045em; line-height: 0.93; }
 .scheduler-prose { max-width: 43rem; font-size: clamp(1.05rem, 1.4vw, 1.3rem); line-height: 1.75; }
 .scheduler-prose p + p { margin-top: 1.25rem; }
-.scheduler-comparison-section { background: var(--olive); color: var(--scheduler-light); }
+.scheduler-comparison-section { background: var(--olive); color: var(--scheduler-on-dark); }
 .scheduler-comparison-section .scheduler-section-heading span { color: var(--scheduler-muted); }
 .scheduler-section-heading--wide { margin-bottom: clamp(3rem, 7vw, 6rem); }
-.scheduler-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 18rem)); justify-content: center; gap: clamp(1.5rem, 5vw, 5rem); align-items: end; }
+.scheduler-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 18rem)); justify-content: center; gap: clamp(1.5rem, 5vw, 5rem); align-items: start; }
 .scheduler-comparison-item figcaption { color: var(--scheduler-muted); margin-top: 1rem; line-height: 1.5; }
-.scheduler-placeholder { aspect-ratio: 9 / 20; background: var(--scheduler-panel); border: 1px dashed rgba(224, 225, 218, 0.48); border-radius: 1.25rem; color: var(--scheduler-light); display: flex; flex-direction: column; justify-content: flex-end; gap: 0.35rem; padding: 1.25rem; }
+.scheduler-placeholder { aspect-ratio: 9 / 20; background: var(--scheduler-panel); border: 1px dashed rgba(224, 225, 218, 0.48); border-radius: 1.25rem; color: var(--scheduler-on-dark); display: flex; flex-direction: column; justify-content: flex-end; gap: 0.35rem; padding: 1.25rem; }
 .scheduler-placeholder span, .scheduler-placeholder small { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--scheduler-muted); }
 .scheduler-placeholder strong { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.05; }
 .scheduler-notes { max-width: 70rem; margin: clamp(3rem, 7vw, 6rem) auto 0; padding-top: 1.5rem; border-top: 1px solid var(--scheduler-line); display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; list-style: none; font-size: 0.82rem; line-height: 1.6; color: var(--scheduler-muted); }
-.scheduler-notes span { display: block; color: var(--scheduler-light); margin-bottom: 0.75rem; }
+.scheduler-notes span { display: block; color: var(--scheduler-on-dark); margin-bottom: 0.75rem; }
 
 .scheduler-decisions { border-top: 1px solid var(--hairline); }
 .scheduler-decision { display: grid; grid-template-columns: minmax(0, 1fr) minmax(12rem, 15rem); justify-content: space-between; gap: clamp(2rem, 10vw, 12rem); align-items: center; padding: clamp(4rem, 8vw, 7rem) max(0px, calc((100% - 62rem) / 2)); border-top: 1px solid var(--hairline); }
@@ -414,10 +375,10 @@ body:has(.scheduler-case-study) .nav-hamburger span { background: var(--olive); 
 .scheduler-decision--reverse div { grid-column: 2; grid-row: 1; }
 .scheduler-decision--reverse img { grid-column: 1; grid-row: 1; }
 
-.scheduler-final { background: var(--scheduler-dark); color: var(--scheduler-light); }
+.scheduler-final { background: var(--scheduler-dark); color: var(--scheduler-on-dark); }
 .scheduler-final .scheduler-section-heading span { color: var(--scheduler-muted); }
 .scheduler-carousel { max-width: 56rem; margin: 0 auto; outline: none; }
-.scheduler-carousel:focus-visible { outline: 1px solid var(--scheduler-light); outline-offset: 0.75rem; }
+.scheduler-carousel:focus-visible { outline: 1px solid var(--scheduler-on-dark); outline-offset: 0.75rem; }
 .scheduler-carousel-stage { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(0.75rem, 2vw, 2rem); }
 .scheduler-carousel-track { display: grid; grid-template-columns: minmax(6rem, 0.8fr) minmax(12rem, 1.25fr) minmax(6rem, 0.8fr); gap: clamp(0.75rem, 2vw, 1.75rem); align-items: center; overflow: hidden; padding: 1.5rem 0; }
 .scheduler-carousel-slide { margin: 0; transition: opacity 0.35s ease, transform 0.35s ease; transform-origin: center; }
@@ -425,23 +386,26 @@ body:has(.scheduler-case-study) .nav-hamburger span { background: var(--olive); 
 .scheduler-carousel-slide figcaption { margin-top: 0.85rem; color: var(--scheduler-muted); text-align: center; }
 .scheduler-carousel-slide.is-preview { opacity: 0.42; transform: scale(0.78); }
 .scheduler-carousel-slide.is-active { opacity: 1; transform: scale(1); }
-.scheduler-carousel-control { width: 2.75rem; height: 2.75rem; display: grid; place-items: center; border: 1px solid var(--scheduler-line); border-radius: 50%; background: transparent; color: var(--scheduler-light); font: 1.2rem/1 var(--font-body); cursor: pointer; transition: background-color 0.2s, color 0.2s; }
+.scheduler-carousel-control { width: 2.75rem; height: 2.75rem; display: grid; place-items: center; border: 1px solid var(--scheduler-line); border-radius: 50%; background: transparent; color: var(--scheduler-on-dark); font: 1.2rem/1 var(--font-body); cursor: pointer; transition: background-color 0.2s, color 0.2s; }
 .scheduler-carousel-control:hover { background: var(--scheduler-light); color: var(--scheduler-dark); }
-.scheduler-carousel-control:focus-visible, .scheduler-carousel-pagination button:focus-visible { outline: 2px solid var(--scheduler-light); outline-offset: 3px; }
+.scheduler-carousel-control:focus-visible, .scheduler-carousel-pagination button:focus-visible { outline: 2px solid var(--scheduler-on-dark); outline-offset: 3px; }
 .scheduler-carousel-pagination { display: flex; justify-content: center; gap: 0.65rem; margin-top: 1rem; }
 .scheduler-carousel-pagination button { width: 1.75rem; height: 1.75rem; padding: 0; border: 0; background: transparent; color: var(--scheduler-muted); font: 0.6rem/1 var(--font-mono); cursor: pointer; }
 .scheduler-carousel-pagination button::before { content: ''; display: block; width: 100%; height: 1px; background: currentColor; margin-bottom: 0.35rem; }
-.scheduler-carousel-pagination button.is-active { color: var(--scheduler-light); }
+.scheduler-carousel-pagination button.is-active { color: var(--scheduler-on-dark); }
 
-.scheduler-reflection { background: var(--scheduler-light); }
+.scheduler-reflection { background: var(--scheduler-light); padding-block: clamp(5rem, 10vw, 10rem); }
+.scheduler-reflection .scheduler-split { align-items: center; }
+.scheduler-case-study .project-page-footer { padding: 0 var(--gutter) 2rem; }
+.scheduler-case-study .project-page-footer .books-back { color: var(--olive); }
 .scheduler-links { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; margin-top: 2.25rem; }
 .scheduler-links a { color: var(--olive); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 0.2rem; }
 .scheduler-links a:hover { opacity: 0.62; }
 
 @media (max-width: 700px) {
   .scheduler-hero-grid, .scheduler-split { grid-template-columns: 1fr; }
-  .scheduler-hero { padding-top: calc(58px + 4.5rem); }
-  .scheduler-hero-screen { max-width: 15rem; justify-self: center; margin: 1rem auto -2.5rem; }
+  .scheduler-hero { padding: calc(58px + 4.5rem) 0 2.5rem; }
+  .scheduler-hero-screen { max-width: 15rem; justify-self: center; margin: 1rem auto 0; }
   .scheduler-metadata { grid-template-columns: 1fr; }
   .scheduler-metadata div:last-child { grid-column: auto; }
   .scheduler-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
@@ -457,15 +421,6 @@ body:has(.scheduler-case-study) .nav-hamburger span { background: var(--olive); 
   .scheduler-carousel-control { position: absolute; top: 50%; z-index: 1; width: 2.25rem; height: 2.25rem; font-size: 1rem; transform: translateY(-50%); }
   .scheduler-carousel-control:first-child { left: 0; }
   .scheduler-carousel-control:last-child { right: 0; }
-}
-
-body:has(.scheduler-case-study) nav.nav,
-body:has(.scheduler-case-study) nav.nav--scrolled {
-  background: #1e3037 !important;
-  background-image: none !important;
-  opacity: 1 !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

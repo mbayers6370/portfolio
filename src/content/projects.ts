@@ -12,7 +12,7 @@ import schedulerCollections from '../assets/eportfolio/scheduler-collections.png
 const projects: Project[] = [
   {
     slug: 'sonus',
-    num: '02',
+    num: '03',
     title: 'Sonus',
     type: 'Full-Stack Web Application',
     desc: 'Sonus is a language-learning app built for serious learners. It uses native-speaker standards for fluency, draws from country-of-origin vocabulary lists, and organizes study into units that build on each other over time. It is not perfect, but it is honest, a language lab for the serious learner.',
@@ -37,7 +37,7 @@ const projects: Project[] = [
   },
   {
     slug: 'cs499-eportfolio',
-    num: '03',
+    num: '02',
     title: 'Android Scheduler',
     type: 'Android Application',
     desc: 'Redesigning a scheduling experience around clarity, hierarchy, and discoverability.',
