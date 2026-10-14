@@ -5,6 +5,9 @@ import nelaRideLayoutOne from '../assets/Layout&Design.png'
 import nelaRideLayoutTwo from '../assets/Layout&Design(2).png'
 import nelaRideTypographyOne from '../assets/Typography.png'
 import nelaRideTypographyTwo from '../assets/Typography_2.png'
+import schedulerHome from '../assets/eportfolio/scheduler-home.png'
+import schedulerEvents from '../assets/eportfolio/scheduler-events.png'
+import schedulerCollections from '../assets/eportfolio/scheduler-collections.png'
 
 const projects: Project[] = [
   {
@@ -33,29 +36,48 @@ const projects: Project[] = [
     role: 'Full-Stack Developer',
   },
   {
-    slug: 'abovo',
+    slug: 'cs499-eportfolio',
     num: '03',
-    title: 'abovo',
-    type: 'Full-Stack Web Application',
-    desc: 'abovo is a recipe and meal-planning app built for the full rhythm of home cooking. It helps users capture recipes from wherever they find them, organize what matters, plan meals for the week, build grocery lists that make sense in the store, and cook from a cleaner step-by-step interface. It is designed less as a recipe archive and more as a working kitchen system.',
-    tags: ['Next.js', 'React', 'Prisma', 'PostgreSQL', 'Zod', 'PWA'],
-    link: 'https://recipes-peach-two.vercel.app',
+    title: 'Android Scheduler',
+    type: 'Android Application',
+    desc: 'Redesigning a scheduling experience around clarity, hierarchy, and discoverability.',
+    tags: ['Kotlin', 'Jetpack Compose', 'Android', 'UI/UX Design'],
+    link: 'https://mbayers6370.github.io/cs499-eportfolio/',
+    linkLabel: 'ePortfolio',
     details: [
       {
-        heading: 'The Problem',
-        body: 'abovo began with a familiar frustration: recipes are easy to save and hard to use. They end up scattered across websites, screenshots, notes, and social posts, disconnected from the actual work of planning meals, shopping for ingredients, and cooking dinner. I wanted to build something that treated cooking as a complete flow rather than a collection of saved links, making it easier to move from inspiration to preparation without losing clarity along the way.',
+        heading: 'Navigation & Information Architecture',
+        body: 'The redesign moves from a mixed event list and dropdown-based navigation to explicit destinations and distinct content areas, giving events and collections clearer places to live.',
       },
       {
-        heading: 'Architecture',
-        body: 'abovo is structured as a full-stack Next.js application with React on the front end, Prisma as the data layer, and PostgreSQL for persistent storage. Recipe imports from links, pasted text, and images are parsed and normalized into local structured records, which can then be edited, categorized, attached to meal plans, and reused across the app without depending on the source at read time. From there, the system connects recipe data to shared kitchen membership, weekly planning state, grocery-list generation, and cook-mode presentation, so each part of the product feeds the next instead of existing as a separate tool.',
+        heading: 'Search & Interaction',
+        body: 'A visible search field replaces the less prominent search icon and translucent overlay, while contextual creation controls make the next action clear within each destination.',
       },
       {
-        heading: 'Key Features',
-        body: 'abovo combines recipe import, weekly planning, grocery generation, and cooking tools into one continuous experience, but its most distinctive feature is the shared kitchen. Instead of treating meal planning as a single-user task, the app creates a collaborative household space where recipes, meal ideas, and plans can be shared across the people actually cooking and shopping together. Alongside that, users can save recipes from URLs, pasted text, photos, or screenshots, organize them into folders, cook from a focused step-by-step view with inline timers, and generate grocery lists that are normalized and grouped for more practical use in the store. The result is a system that supports both personal organization and real shared decision-making around food.',
+        heading: 'Visual Hierarchy & Consistency',
+        body: 'Primary event cards, secondary collections, calmer action hierarchy, and consistent typography and spacing make the interface easier to scan and act on.',
+      },
+    ],
+    galleryLabel: 'Android Scheduler',
+    gallery: [
+      {
+        src: schedulerHome,
+        alt: 'Android Scheduler home screen showing upcoming events and collections',
+        label: 'Schedule',
+      },
+      {
+        src: schedulerEvents,
+        alt: 'Android Scheduler event details screen',
+        label: 'Event details',
+      },
+      {
+        src: schedulerCollections,
+        alt: 'Android Scheduler collections screen',
+        label: 'Collections',
       },
     ],
     year: '2026',
-    role: 'Full-Stack Developer',
+    role: 'UI/UX Design & Android Development',
   },
   {
     slug: 'nelaride',
