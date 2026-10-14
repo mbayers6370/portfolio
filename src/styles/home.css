@@ -4,7 +4,7 @@
   padding-top: 58px;
   position: relative;
   overflow: hidden;
-  background: var(--cream);
+  background: var(--cream) url('../assets/Portfolio_Background.png') center / cover no-repeat;
 }
 
 .hero-inner {
@@ -94,36 +94,13 @@
   color: var(--forest);
 }
 
-.hero-meta {
-  position: absolute;
-  bottom: clamp(1.5rem, 3vw, 3rem);
-  left: var(--gutter);
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  letter-spacing: 0.14em;
-  color: rgba(215, 237, 48, 0.4);
-  text-transform: uppercase;
-  z-index: 3;
-}
-
-.hero-scroll {
-  position: absolute;
-  bottom: clamp(1.5rem, 3vw, 3rem);
-  right: var(--gutter);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  letter-spacing: 0.14em;
-  color: var(--mid);
-  text-transform: uppercase;
-  z-index: 3;
-}
-
 .work {
   padding: var(--section-pad) 0;
   border-top: 1px solid var(--hairline);
+}
+
+.work-header {
+  border-bottom: 0;
 }
 
 .project-feature {
@@ -216,15 +193,28 @@
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
   margin-bottom: 2rem;
   position: relative;
   z-index: 2;
 }
 
+.project-feature .project-tag {
+  padding: 0;
+  border: 0;
+  font-size: 0.62rem;
+  line-height: 1.5;
+  color: var(--near-black);
+}
+
+.project-feature .project-tag:not(:last-child)::after {
+  content: '/';
+  margin: 0 0.8rem;
+  color: var(--sage);
+}
+
 .project-actions {
   display: flex;
-  gap: 1.5rem;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
@@ -260,9 +250,12 @@
 }
 
 .project-feature:hover .project-tag {
-  color: var(--forest);
-  border-color: var(--white);
-  background: var(--white);
+  color: var(--on-dark);
+  background: transparent;
+}
+
+.project-feature:hover .project-tag:not(:last-child)::after {
+  color: var(--on-dark);
 }
 
 .project-link--ghost {
@@ -286,7 +279,17 @@
 
 .about {
   padding: var(--section-pad) 0;
-  border-top: 1px solid var(--hairline);
+  background: var(--olive);
+  color: var(--on-dark);
+  border-top: 0;
+}
+
+.about .label {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.about .section-title {
+  color: var(--on-dark);
 }
 
 .about-inner {
@@ -310,23 +313,26 @@
 .about-left-rule {
   width: 1px;
   height: 60px;
-  background: var(--hairline);
+  background: rgba(255, 255, 255, 0.3);
   margin: 0.75rem 0;
 }
 
 .about-right p {
   font-size: clamp(0.875rem, 1.15vw, 0.975rem);
   line-height: 1.85;
-  color: var(--near-black);
+  color: rgba(255, 255, 255, 0.86);
   margin-bottom: 1.25rem;
   font-weight: 300;
+}
+
+.about-right {
 }
 
 .about-right p:first-child {
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   font-family: var(--font-display);
   font-weight: 500;
-  color: var(--forest);
+  color: var(--on-dark);
   margin-bottom: 2rem;
   line-height: 1.6;
 }
@@ -336,11 +342,11 @@
   font-size: 0.6rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--mid);
+  color: rgba(255, 255, 255, 0.72);
   margin-top: 3rem;
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .skills-grid {
@@ -354,7 +360,7 @@
   font-size: 0.56rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--mid);
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: 0.5rem;
   margin-top: 1.25rem;
 }
@@ -365,9 +371,9 @@
 
 .skills-column ul li {
   font-size: 0.82rem;
-  color: var(--near-black);
+  color: var(--on-dark);
   padding: 0.35rem 0;
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -379,21 +385,18 @@
   display: block;
   width: 4px;
   height: 4px;
-  background: var(--sage);
+  background: rgba(255, 255, 255, 0.7);
   flex-shrink: 0;
 }
 
 .beyond {
-  padding: clamp(3rem, 5vw, 5rem) 0;
-  border-top: 1px solid var(--hairline);
+  padding: clamp(3.5rem, 6vw, 6.5rem) 0;
+  background: var(--cream) url('../assets/Beyond_Code.png') center / cover no-repeat;
 }
 
 .beyond-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(1.5rem, 3vw, 2rem);
-  text-align: center;
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
 }
 
 .beyond-label {
@@ -402,51 +405,107 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--mid);
-  white-space: nowrap;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.beyond-intro {
+  max-width: 31rem;
+}
+
+.beyond-intro h2 {
+  max-width: 8ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 11vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.93;
+  color: var(--forest);
+}
+
+.beyond-intro p {
+  max-width: 33ch;
+  margin-top: 1.5rem;
+  font-size: clamp(0.86rem, 2.8vw, 1rem);
+  line-height: 1.6;
+  color: var(--mid);
 }
 
 .beyond-cards {
-  display: flex;
-  gap: 1px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
 .beyond-card {
-  border: 1px solid var(--hairline);
-  padding: 1.75rem 2rem;
-  width: 260px;
+  position: relative;
+  aspect-ratio: 1.5;
+  padding: clamp(1.35rem, 4vw, 2rem);
+  border: 1px solid rgba(71, 79, 9, 0.22);
+  background-color: var(--cream);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.3s;
+  transition: border-color 0.25s ease, transform 0.25s ease;
   display: block;
 }
 
 .beyond-card:hover {
   border-color: var(--forest);
+  transform: translateY(-3px);
 }
 
-.beyond-card-label {
+.beyond-card:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 3px;
+}
+
+.beyond-card--books {
+  background-image: url('../assets/Books.png');
+}
+
+.beyond-card--art {
+  background-image: url('../assets/Paint.png');
+}
+
+.beyond-card-meta {
+  display: flex;
+  justify-content: space-between;
   font-family: var(--font-mono);
   font-size: 0.56rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--mid);
-  margin-bottom: 0.5rem;
 }
 
 .beyond-card-title {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 700;
   color: var(--near-black);
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
+  margin-top: clamp(1.75rem, 7vw, 3.25rem);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
 .beyond-card-desc {
-  font-size: 0.75rem;
+  max-width: 23ch;
+  font-size: clamp(0.75rem, 2.5vw, 0.86rem);
   color: var(--mid);
   line-height: 1.65;
   font-weight: 300;
+}
+
+.beyond-card-arrow {
+  position: absolute;
+  bottom: clamp(1.1rem, 3vw, 1.75rem);
+  left: clamp(1.35rem, 4vw, 2rem);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--forest);
 }
 
 .contact {
@@ -619,6 +678,28 @@
   font-size: 0.875rem;
 }
 
+@media (min-width: 1100px) {
+  .about-inner {
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
+  }
+
+  .about-right {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 960px) {
+  .beyond-inner {
+    grid-template-columns: minmax(15rem, 0.85fr) minmax(0, 2fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  .beyond-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
   .about-inner {
     grid-template-columns: 1fr;
@@ -636,15 +717,15 @@
 
 @media (max-width: 600px) {
   .hero {
-    min-height: auto;
+    min-height: 100svh;
   }
 
   .hero-inner {
     padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
     padding-bottom: 4rem;
-    min-height: 130vw;
+    min-height: calc(100svh - 58px);
   }
 
   .hero-photo {
@@ -666,23 +747,20 @@
   }
 
   .hero-name {
-    padding-left: 52vw;
-    padding-right: clamp(0.5rem, 2vw, 1rem);
-    padding-top: clamp(2rem, 8vw, 4rem);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: clamp(2rem, 7vw, 3rem);
   }
 
   .hero-name-first,
   .hero-name-last {
-    font-size: clamp(1.75rem, 6.5vw, 2.75rem);
+    font-size: clamp(4rem, 20vw, 7.5rem);
   }
 
   .hero-tagline {
-    padding-left: 52vw;
-    padding-right: clamp(0.75rem, 3vw, 1.5rem);
-  }
-
-  .hero-meta {
-    left: var(--gutter);
+    margin-top: 0.75rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .project-feature {
@@ -706,5 +784,17 @@
 
   .skills-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 415px) and (max-width: 600px) {
+  .hero-name,
+  .hero-tagline {
+    padding-left: 40vw;
+  }
+
+  .hero-name-first,
+  .hero-name-last {
+    font-size: clamp(4rem, 15vw, 5.5rem);
   }
 }

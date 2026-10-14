@@ -16,15 +16,6 @@ export default function Hero() {
         </div>
 
         <p className="hero-tagline">{heroContent.tagline}</p>
-
-        <div className="hero-meta">{heroContent.meta}</div>
-
-        <div className="hero-scroll">
-          <span>{heroContent.scrollLabel}</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 5v14M5 12l7 7 7-7" />
-          </svg>
-        </div>
       </div>
     </section>
   )
