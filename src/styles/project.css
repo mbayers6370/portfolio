@@ -366,26 +366,24 @@ body:has(.scheduler-case-study) { background: var(--scheduler-light); }
 .scheduler-placeholder strong { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.05; }
 .scheduler-notes { max-width: 70rem; margin: clamp(3rem, 7vw, 6rem) auto 0; padding-top: 1.5rem; border-top: 1px solid var(--scheduler-line); display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; list-style: none; font-size: 0.82rem; line-height: 1.6; color: var(--scheduler-muted); }
 .scheduler-notes span { display: block; color: var(--scheduler-on-dark); margin-bottom: 0.75rem; }
+.scheduler-notes strong { color: var(--scheduler-on-dark); display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 0.45rem; }
+.scheduler-notes p { margin: 0; }
 
 .scheduler-decisions { border-top: 1px solid var(--hairline); }
-.scheduler-decision-carousel { max-width: 62rem; margin: 0 auto; outline: none; }
+.scheduler-decision-carousel { max-width: 68rem; margin: 0 auto; outline: none; overflow-anchor: none; }
 .scheduler-decision-carousel:focus-visible { outline: 2px solid var(--olive); outline-offset: 0.75rem; }
-.scheduler-decision-panel { align-items: center; border-block: 1px solid var(--hairline); display: grid; gap: clamp(2rem, 10vw, 10rem); grid-template-columns: minmax(0, 1fr) minmax(12rem, 15rem); min-height: 29rem; padding: clamp(2.5rem, 6vw, 5rem) 0; }
+.scheduler-decision-stage { align-items: center; display: grid; gap: clamp(0.75rem, 2vw, 2rem); grid-template-columns: auto minmax(0, 1fr) auto; }
+.scheduler-decision-panel { align-items: center; display: grid; gap: clamp(1.5rem, 3vw, 3.5rem); grid-template-columns: minmax(0, 1fr) minmax(15rem, 31rem); min-height: 0; padding: clamp(1.5rem, 3vw, 2.5rem) 0; }
 .scheduler-decision-copy { max-width: 45ch; }
-.scheduler-decision-count { color: var(--olive); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.14em; margin-bottom: 1.5rem; }
 .scheduler-decision-copy h3 { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 3.4rem); letter-spacing: -0.04em; line-height: 0.95; margin-bottom: 1.25rem; }
 .scheduler-decision-copy > p:last-child { color: var(--mid); font-size: 0.95rem; line-height: 1.75; }
 .scheduler-decision-panel figure { margin: 0; }
 .scheduler-decision-screens { justify-self: center; width: min(100%, 15rem); }
-.scheduler-decision-screens.has-multiple { display: grid; gap: 0.8rem; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 24rem); }
+.scheduler-decision-screens.has-multiple { display: grid; gap: 0.8rem; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 31rem); }
 .scheduler-decision-panel img { border-radius: 1.25rem; box-shadow: 0 1.25rem 3.5rem rgba(30, 48, 55, 0.14); display: block; height: auto; width: 100%; }
-.scheduler-decision-controls { align-items: center; display: grid; grid-template-columns: auto 1fr auto; margin-top: 1.5rem; }
-.scheduler-decision-controls > button { align-items: center; background: transparent; border: 1px solid var(--hairline); border-radius: 50%; color: var(--olive); cursor: pointer; display: grid; font: 1.2rem/1 var(--font-body); height: 2.75rem; place-items: center; transition: background-color 0.2s, color 0.2s; width: 2.75rem; }
-.scheduler-decision-controls > button:hover { background: var(--olive); color: var(--on-dark); }
-.scheduler-decision-controls > div { display: flex; justify-content: center; gap: 0.65rem; }
-.scheduler-decision-controls > div button { background: transparent; border: 0; color: var(--mid); cursor: pointer; font: 0.6rem/1 var(--font-mono); letter-spacing: 0.08em; padding: 0.6rem; }
-.scheduler-decision-controls > div button.is-active { color: var(--olive); }
-.scheduler-decision-controls button:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+.scheduler-decision-control { align-items: center; background: transparent; border: 1px solid var(--hairline); border-radius: 50%; color: var(--olive); cursor: pointer; display: grid; font: 1.2rem/1 var(--font-body); height: 2.75rem; place-items: center; transition: background-color 0.2s, color 0.2s; width: 2.75rem; }
+.scheduler-decision-control:hover { background: var(--olive); color: var(--on-dark); }
+.scheduler-decision-control:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
 
 .scheduler-final { background: var(--scheduler-dark); color: var(--scheduler-on-dark); }
 .scheduler-final .scheduler-section-heading span { color: var(--scheduler-muted); }
@@ -422,7 +420,7 @@ body:has(.scheduler-case-study) { background: var(--scheduler-light); }
   .scheduler-metadata div:last-child { grid-column: auto; }
   .scheduler-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .scheduler-notes { grid-template-columns: 1fr; gap: 1.5rem; }
-  .scheduler-decision-panel { grid-template-columns: 1fr; min-height: 0; padding: 3.5rem 0; }
+  .scheduler-decision-panel { grid-template-columns: 1fr; min-height: 0; padding: 2.5rem 0; }
   .scheduler-decision-screens { width: min(13rem, 58vw); margin-inline: auto; }
   .scheduler-decision-screens.has-multiple { gap: 0.55rem; width: min(22rem, 88vw); }
   .scheduler-carousel-stage { gap: 0.35rem; }
@@ -470,10 +468,10 @@ body:has(.sonus-case-study) { background: var(--sonus-paper); }
 .sonus-kicker { color: var(--sonus-blue); margin-bottom: 1.8rem; }
 .sonus-section h2 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; }
 .sonus-lead { color: var(--sonus-muted); font-family: var(--font-body); font-size: 1.05rem; font-weight: 300; line-height: 1.7; margin-top: 2rem; max-width: 62ch; }
-.sonus-challenge { border-top: 1px solid var(--sonus-rule); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 10vw, 12rem); margin-top: 2.7rem; padding-top: 2.3rem; }
+.sonus-challenge { border-top: 1px solid var(--sonus-rule); margin-top: 2.7rem; padding-top: 2.3rem; }
 .sonus-challenge .sonus-kicker { margin-bottom: 1.5rem; }
 .sonus-challenge h3 { font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.3; }
-.sonus-challenge > p { color: var(--sonus-muted); font-family: var(--font-body); font-size: 1rem; font-weight: 300; line-height: 1.8; max-width: 58ch; }
+.sonus-challenge-copy { color: var(--sonus-muted); font-family: var(--font-body); font-size: 1rem; font-weight: 300; line-height: 1.8; margin-top: 1.25rem; max-width: 58ch; }
 .sonus-product { background: var(--sonus-teal); color: #f9fbfa; }
 .sonus-product .sonus-kicker { color: #b6cac7; }
 .sonus-paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.2rem; }
@@ -492,7 +490,7 @@ body:has(.sonus-case-study) { background: var(--sonus-paper); }
 .sonus-component-preview { align-items: center; align-self: stretch; background: transparent; border: 2px solid rgba(255,255,255,.9); border-radius: 1rem; color: #fff; display: flex; font-family: var(--font-body); font-size: 1rem; font-weight: 500; gap: .75rem; padding: .75rem 1rem; }.sonus-component-preview span { font-family: var(--font-body); font-size: 1rem; font-weight: 500; letter-spacing: normal; text-transform: none; }.sonus-component-preview b { align-items: center; border: 1px solid rgba(255,255,255,.9); border-radius: 50%; display: inline-flex; font-family: var(--font-body); font-size: 1.5rem; font-weight: 300; height: 1.9rem; justify-content: center; line-height: 1; margin-left: auto; padding-bottom: .2rem; width: 1.9rem; }.sonus-component > span { color: rgba(255,255,255,.72); }
 .sonus-outcome { background: var(--sonus-blue); color: #fff; }.sonus-outcome .sonus-kicker { color: #c5e0ef; }.sonus-outcome > .container > p:not(.sonus-kicker) { color: #deedf4; font-family: var(--font-body); font-size: 1.05rem; font-weight: 300; line-height: 1.7; margin: 1.8rem 0 2.5rem; max-width: 62ch; }.sonus-outcome a { border-top: 1px solid rgba(255,255,255,.48); color: #fff; display: flex; justify-content: space-between; padding-top: 2.5rem; font-family: var(--font-mono); font-size: .72rem; font-weight: 400; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }.sonus-outcome a span { font-size: 1.6em; line-height: .8; }
 .sonus-footer { background: var(--sonus-paper); }.sonus-footer .books-back { color: var(--sonus-ink); }
-@media (max-width: 700px) { .sonus-hero-spec, .sonus-hero-meta { gap: 1rem; }.sonus-hero-spec { flex-direction: column; }.sonus-challenge, .sonus-system-grid { grid-template-columns: 1fr; gap: 2rem; }.sonus-paths { grid-template-columns: 1fr; }.sonus-paths article { min-height: 0; }.sonus-phone-frame { max-width: 15rem; width: min(78%, 15rem); }.sonus-home-showcase figcaption { align-items: flex-start; flex-direction: column; gap: .35rem; }.sonus-swatches { gap: .45rem; }.sonus-swatches span { height: 3.6rem; }.sonus-type-sample, .sonus-component { min-height: 9rem; } }
+@media (max-width: 700px) { .sonus-hero-spec, .sonus-hero-meta { gap: 1rem; }.sonus-hero-spec { flex-direction: column; }.sonus-system-grid { grid-template-columns: 1fr; gap: 2rem; }.sonus-paths { grid-template-columns: 1fr; }.sonus-paths article { min-height: 0; }.sonus-phone-frame { max-width: 15rem; width: min(78%, 15rem); }.sonus-home-showcase figcaption { align-items: flex-start; flex-direction: column; gap: .35rem; }.sonus-swatches { gap: .45rem; }.sonus-swatches span { height: 3.6rem; }.sonus-type-sample, .sonus-component { min-height: 9rem; } }
 
 /* NELARide case study. The existing page header is intentionally shared. */
 .nela-case-study { --nela-olive: #4f560d; --nela-ink: #30311f; --nela-paper: #f7f7f2; --nela-rule: rgba(48,49,31,.2); background: var(--nela-paper); color: var(--nela-ink); }

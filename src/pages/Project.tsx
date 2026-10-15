@@ -166,33 +166,18 @@ function SchedulerDecisionCarousel({ decisions }: { decisions: SchedulerDecision
       }}
       tabIndex={0}
     >
-      <div className="scheduler-decision-panel" aria-live="polite">
-        <div className="scheduler-decision-copy">
-          <p className="scheduler-decision-count">0{activeIndex + 1} / 0{decisionCount}</p>
-          <h3>{activeDecision.heading}</h3>
-          <p>{activeDecision.body}</p>
+      <div className="scheduler-decision-stage">
+        <button className="scheduler-decision-control" type="button" onClick={(event) => { event.preventDefault(); event.stopPropagation(); move(-1) }} aria-label="Show previous design decision">←</button>
+        <div className="scheduler-decision-panel">
+          <div className="scheduler-decision-copy">
+            <h3>{activeDecision.heading}</h3>
+            <p>{activeDecision.body}</p>
+          </div>
+          <figure className={`scheduler-decision-screens${activeDecision.images.length > 1 ? ' has-multiple' : ''}`}>
+            {activeDecision.images.map((image) => <img key={image.src} src={image.src} alt={image.alt} />)}
+          </figure>
         </div>
-        <figure className={`scheduler-decision-screens${activeDecision.images.length > 1 ? ' has-multiple' : ''}`}>
-          {activeDecision.images.map((image) => <img key={image.src} src={image.src} alt={image.alt} />)}
-        </figure>
-      </div>
-      <div className="scheduler-decision-controls">
-        <button type="button" onClick={() => move(-1)} aria-label="Show previous design decision">←</button>
-        <div aria-label="Choose a design decision">
-          {decisions.map((decision, index) => (
-            <button
-              aria-current={index === activeIndex ? 'true' : undefined}
-              aria-label={`Show ${decision.heading}`}
-              className={index === activeIndex ? 'is-active' : ''}
-              key={decision.heading}
-              onClick={() => setActiveIndex(index)}
-              type="button"
-            >
-              0{index + 1}
-            </button>
-          ))}
-        </div>
-        <button type="button" onClick={() => move(1)} aria-label="Show next design decision">→</button>
+        <button className="scheduler-decision-control" type="button" onClick={(event) => { event.preventDefault(); event.stopPropagation(); move(1) }} aria-label="Show next design decision">→</button>
       </div>
     </div>
   )
@@ -212,18 +197,18 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
   ].filter(Boolean) as SchedulerScreen[]
   const schedulerDecisions = [
     home && {
-      heading: 'Navigation & information architecture.',
-      body: 'The interface shifts from a mixed event list and dropdown-based navigation to explicit destinations. Events and collections are separated into distinct places, while persistent bottom navigation gives the app a stable, legible structure.',
+      heading: 'Navigation & information architecture',
+      body: 'Reorganized the interface around four persistent destinations, separating events from collections and reducing reliance on dropdown navigation. Contextual creation controls and a quieter archive establish clearer priorities without removing functionality.',
       images: [home],
     },
     {
-      heading: 'Search & interaction.',
-      body: 'Search is surfaced directly on the Home screen so it is easy to find. The dedicated search screen keeps the interaction focused, with a clear empty state that explains what to do next. Contextual plus controls live where creation is relevant, reducing ambiguity around adding events or collections.',
+      heading: 'Search & interaction',
+      body: 'Made search immediately discoverable on the Home screen and replaced the previous overlay with a dedicated experience. Clear empty-state guidance and consistent event interactions support discovery without confusing viewing with editing.',
       images: [{ src: schedulerSearch, alt: 'Android Scheduler search screen with an empty-state prompt', label: 'Search' }],
     },
     events && {
-      heading: 'Visual hierarchy & consistency.',
-      body: 'Event cards carry the strongest visual weight; collections use a quieter treatment. Edit is the primary event action, while Delete recedes. Repeated spacing, type, and card patterns let the content, not the interface, set the hierarchy.',
+      heading: 'Visual hierarchy & consistency',
+      body: 'Refined the existing expandable event cards to prioritize essential information and reveal details progressively. Editing receives primary emphasis, while deletion remains accessible as a tertiary action. Consistent spacing, typography, and card treatments reinforce hierarchy throughout the application.',
       images: [
         { src: schedulerEventsClosed, alt: 'Android Scheduler events screen with event cards closed', label: 'Events closed' },
         { src: schedulerEventsOpenCard, alt: 'Android Scheduler events screen with an expanded event card', label: 'Events card expanded' },
@@ -269,9 +254,9 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
               {home && <figure className="scheduler-comparison-item"><img src={home.src} alt={home.alt} /><figcaption>Redesigned home / visible search, distinct sections, persistent navigation</figcaption></figure>}
             </div>
             <ol className="scheduler-notes">
-              <li><span>01</span> Persistent bottom navigation makes the app’s main destinations immediately available.</li>
-              <li><span>02</span> A visible search field replaces the less prominent icon and overlay treatment.</li>
-              <li><span>03</span> Contextual creation controls and Edit-first actions clarify what to do next.</li>
+              <li><span>01</span><strong>Persistent navigation</strong><p>Four visible destinations replace reliance on dropdown navigation, making the application's structure easier to understand.</p></li>
+              <li><span>02</span><strong>Clearer content hierarchy</strong><p>Upcoming events and collections are separated into distinct sections, prioritizing scheduled activities while keeping organization accessible.</p></li>
+              <li><span>03</span><strong>Discoverable interactions</strong><p>A visible search field and contextual creation controls replace less prominent actions, making common tasks easier to identify.</p></li>
             </ol>
           </div>
         </section>
@@ -331,7 +316,7 @@ function SonusCaseStudy({ project }: { project: Project }) {
             <p className="sonus-kicker">01 / The idea</p>
             <h2>Language learning, without the noise.</h2>
             <p className="sonus-lead">Sonus began as an attempt to make language learning feel more deliberate. Structured lessons, meaningful practice, and real-world application take priority over points and streaks.</p>
-            <div className="sonus-challenge"><div><p className="sonus-kicker">The challenge</p><h3>Structure over gamification.</h3></div><p>Build a system that supports retention, progression, and practical language use without overwhelming the learner.</p></div>
+            <div className="sonus-challenge"><div><p className="sonus-kicker">The challenge</p><h3>Structure over gamification.</h3><p className="sonus-challenge-copy">Build a system that supports retention, progression, and practical language use without overwhelming the learner.</p></div></div>
           </div>
         </section>
 
