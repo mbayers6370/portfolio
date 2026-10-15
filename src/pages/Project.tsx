@@ -79,6 +79,12 @@ type SchedulerScreen = {
   src: string
 }
 
+type SchedulerDecision = {
+  body: string
+  heading: string
+  image: SchedulerScreen
+}
+
 function SchedulerCarousel({ screens }: { screens: SchedulerScreen[] }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const screenCount = screens.length
@@ -139,6 +145,55 @@ function SchedulerCarousel({ screens }: { screens: SchedulerScreen[] }) {
   )
 }
 
+function SchedulerDecisionCarousel({ decisions }: { decisions: SchedulerDecision[] }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const decisionCount = decisions.length
+  const activeDecision = decisions[activeIndex]
+
+  const move = (direction: number) => {
+    setActiveIndex((current) => (current + direction + decisionCount) % decisionCount)
+  }
+
+  return (
+    <div
+      className="scheduler-decision-carousel"
+      aria-label="Scheduler design decisions"
+      onKeyDown={(event) => {
+        if (event.key === 'ArrowLeft') move(-1)
+        if (event.key === 'ArrowRight') move(1)
+      }}
+      tabIndex={0}
+    >
+      <div className="scheduler-decision-panel" aria-live="polite">
+        <div className="scheduler-decision-copy">
+          <p className="scheduler-decision-count">0{activeIndex + 1} / 0{decisionCount}</p>
+          <h3>{activeDecision.heading}</h3>
+          <p>{activeDecision.body}</p>
+        </div>
+        <figure><img src={activeDecision.image.src} alt={activeDecision.image.alt} /></figure>
+      </div>
+      <div className="scheduler-decision-controls">
+        <button type="button" onClick={() => move(-1)} aria-label="Show previous design decision">←</button>
+        <div aria-label="Choose a design decision">
+          {decisions.map((decision, index) => (
+            <button
+              aria-current={index === activeIndex ? 'true' : undefined}
+              aria-label={`Show ${decision.heading}`}
+              className={index === activeIndex ? 'is-active' : ''}
+              key={decision.heading}
+              onClick={() => setActiveIndex(index)}
+              type="button"
+            >
+              0{index + 1}
+            </button>
+          ))}
+        </div>
+        <button type="button" onClick={() => move(1)} aria-label="Show next design decision">→</button>
+      </div>
+    </div>
+  )
+}
+
 function SchedulerCaseStudy({ project }: { project: Project }) {
   const [home, events, collections] = project.gallery || []
   const schedulerScreens = [
@@ -151,6 +206,23 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
     { src: schedulerAddEvent, alt: 'Android Scheduler form for adding an event', label: 'Add event' },
     { src: schedulerAddCollection, alt: 'Android Scheduler form for adding a collection', label: 'Add collection' },
   ].filter(Boolean) as SchedulerScreen[]
+  const schedulerDecisions = [
+    home && {
+      heading: 'Navigation & information architecture.',
+      body: 'The interface shifts from a mixed event list and dropdown-based navigation to explicit destinations. Events and collections are separated into distinct places, while persistent bottom navigation gives the app a stable, legible structure.',
+      image: home,
+    },
+    {
+      heading: 'Search & interaction.',
+      body: 'Search is surfaced directly on the Home screen so it is easy to find. The dedicated search screen keeps the interaction focused, with a clear empty state that explains what to do next. Contextual plus controls live where creation is relevant, reducing ambiguity around adding events or collections.',
+      image: { src: schedulerSearch, alt: 'Android Scheduler search screen with an empty-state prompt', label: 'Search' },
+    },
+    events && {
+      heading: 'Visual hierarchy & consistency.',
+      body: 'Event cards carry the strongest visual weight; collections use a quieter treatment. Edit is the primary event action, while Delete recedes. Repeated spacing, type, and card patterns let the content—not the interface—set the hierarchy.',
+      image: events,
+    },
+  ].filter(Boolean) as SchedulerDecision[]
 
   return (
     <div className="project-page scheduler-case-study">
@@ -200,9 +272,7 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
         <section className="scheduler-section scheduler-decisions">
           <div className="container">
             <div className="scheduler-section-heading scheduler-section-heading--wide"><span>03</span><h2>Design decisions.</h2></div>
-            <article className="scheduler-decision"><div><h3>Navigation &amp;<br />information architecture.</h3><p>The interface shifts from a mixed event list and dropdown-based navigation to explicit destinations. Events and collections are separated into distinct places, while persistent bottom navigation gives the app a stable, legible structure.</p></div>{home && <img src={home.src} alt={home.alt} />}</article>
-            <article className="scheduler-decision scheduler-decision--reverse"><div><h3>Search &amp;<br />interaction.</h3><p>Search is surfaced directly on the Home screen so it is easy to find. The dedicated search screen keeps the interaction focused, with a clear empty state that explains what to do next. Contextual plus controls live where creation is relevant, reducing ambiguity around adding events or collections.</p></div><img src={schedulerSearch} alt="Android Scheduler search screen with an empty-state prompt" /></article>
-            <article className="scheduler-decision"><div><h3>Visual hierarchy &amp;<br />consistency.</h3><p>Event cards carry the strongest visual weight; collections use a quieter treatment. Edit is the primary event action, while Delete recedes. Repeated spacing, type, and card patterns let the content—not the interface—set the hierarchy.</p></div>{events && <img src={events.src} alt={events.alt} />}</article>
+            <SchedulerDecisionCarousel decisions={schedulerDecisions} />
           </div>
         </section>
 
