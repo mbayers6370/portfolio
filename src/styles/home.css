@@ -565,27 +565,27 @@
 
 .contact-socials {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-bottom: 2.5rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--hairline-dark);
 }
 
 .contact-social-icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--hairline-dark);
   color: var(--on-dark);
   text-decoration: none;
-  transition: border-color 0.25s, color 0.25s;
 }
 
-.contact-social-icon:hover {
-  border-color: var(--sage);
-  color: var(--sage);
+.contact-social-icon:focus-visible {
+  color: var(--on-dark);
+}
+
+.contact-social-icon:focus-visible {
+  outline: 1px solid var(--sage);
+  outline-offset: 0.4rem;
 }
 
 .contact-availability {
