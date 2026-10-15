@@ -8,6 +8,9 @@ import type { Project } from '../types/content'
 import schedulerOriginalHome from '../assets/Old-Home-Screen-Scheduler.png'
 import schedulerSearch from '../assets/Search.png'
 import schedulerAccount from '../assets/Account.png'
+import schedulerArchived from '../assets/Archived.png'
+import schedulerAddEvent from '../assets/Add_Event.png'
+import schedulerAddCollection from '../assets/Add_Collection.png'
 import sonusTopographic from '../assets/Topographic.png'
 import sonusDesktopHome from '../assets/Desktop_Home.png'
 import sonusLearn from '../assets/Learn.PNG'
@@ -144,6 +147,9 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
     collections && { ...collections, label: 'Collections' },
     { src: schedulerSearch, alt: 'Android Scheduler search screen with an empty-state prompt', label: 'Search' },
     { src: schedulerAccount, alt: 'Android Scheduler account screen with profile and preferences', label: 'Account' },
+    { src: schedulerArchived, alt: 'Android Scheduler archived items screen', label: 'Archived' },
+    { src: schedulerAddEvent, alt: 'Android Scheduler form for adding an event', label: 'Add event' },
+    { src: schedulerAddCollection, alt: 'Android Scheduler form for adding a collection', label: 'Add collection' },
   ].filter(Boolean) as SchedulerScreen[]
 
   return (
