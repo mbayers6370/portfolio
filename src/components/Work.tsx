@@ -33,7 +33,7 @@ export default function Work() {
             <div className="project-number-bg">{p.num}</div>
             <div className="project-meta">
               <span className="project-num">No. {p.num}</span>
-              <span className="project-meta-divider">—</span>
+              <span className="project-meta-divider">•</span>
               <span className="project-type">{p.type}</span>
             </div>
             <h3 className="project-title">

@@ -11,6 +11,8 @@ import schedulerAccount from '../assets/Account.png'
 import schedulerArchived from '../assets/Archived.png'
 import schedulerAddEvent from '../assets/Add_Event.png'
 import schedulerAddCollection from '../assets/Add_Collection.png'
+import schedulerEventsClosed from '../assets/Events_Closed.png'
+import schedulerEventsOpenCard from '../assets/Events_open_card.png'
 import sonusTopographic from '../assets/Topographic.png'
 import sonusDesktopHome from '../assets/Desktop_Home.png'
 import sonusLearn from '../assets/Learn.PNG'
@@ -82,7 +84,7 @@ type SchedulerScreen = {
 type SchedulerDecision = {
   body: string
   heading: string
-  image: SchedulerScreen
+  images: SchedulerScreen[]
 }
 
 function SchedulerCarousel({ screens }: { screens: SchedulerScreen[] }) {
@@ -170,7 +172,9 @@ function SchedulerDecisionCarousel({ decisions }: { decisions: SchedulerDecision
           <h3>{activeDecision.heading}</h3>
           <p>{activeDecision.body}</p>
         </div>
-        <figure><img src={activeDecision.image.src} alt={activeDecision.image.alt} /></figure>
+        <figure className={`scheduler-decision-screens${activeDecision.images.length > 1 ? ' has-multiple' : ''}`}>
+          {activeDecision.images.map((image) => <img key={image.src} src={image.src} alt={image.alt} />)}
+        </figure>
       </div>
       <div className="scheduler-decision-controls">
         <button type="button" onClick={() => move(-1)} aria-label="Show previous design decision">←</button>
@@ -210,17 +214,20 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
     home && {
       heading: 'Navigation & information architecture.',
       body: 'The interface shifts from a mixed event list and dropdown-based navigation to explicit destinations. Events and collections are separated into distinct places, while persistent bottom navigation gives the app a stable, legible structure.',
-      image: home,
+      images: [home],
     },
     {
       heading: 'Search & interaction.',
       body: 'Search is surfaced directly on the Home screen so it is easy to find. The dedicated search screen keeps the interaction focused, with a clear empty state that explains what to do next. Contextual plus controls live where creation is relevant, reducing ambiguity around adding events or collections.',
-      image: { src: schedulerSearch, alt: 'Android Scheduler search screen with an empty-state prompt', label: 'Search' },
+      images: [{ src: schedulerSearch, alt: 'Android Scheduler search screen with an empty-state prompt', label: 'Search' }],
     },
     events && {
       heading: 'Visual hierarchy & consistency.',
-      body: 'Event cards carry the strongest visual weight; collections use a quieter treatment. Edit is the primary event action, while Delete recedes. Repeated spacing, type, and card patterns let the content—not the interface—set the hierarchy.',
-      image: events,
+      body: 'Event cards carry the strongest visual weight; collections use a quieter treatment. Edit is the primary event action, while Delete recedes. Repeated spacing, type, and card patterns let the content, not the interface, set the hierarchy.',
+      images: [
+        { src: schedulerEventsClosed, alt: 'Android Scheduler events screen with event cards closed', label: 'Events closed' },
+        { src: schedulerEventsOpenCard, alt: 'Android Scheduler events screen with an expanded event card', label: 'Events card expanded' },
+      ],
     },
   ].filter(Boolean) as SchedulerDecision[]
 

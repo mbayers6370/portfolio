@@ -376,6 +376,8 @@ body:has(.scheduler-case-study) { background: var(--scheduler-light); }
 .scheduler-decision-copy h3 { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 3.4rem); letter-spacing: -0.04em; line-height: 0.95; margin-bottom: 1.25rem; }
 .scheduler-decision-copy > p:last-child { color: var(--mid); font-size: 0.95rem; line-height: 1.75; }
 .scheduler-decision-panel figure { margin: 0; }
+.scheduler-decision-screens { justify-self: center; width: min(100%, 15rem); }
+.scheduler-decision-screens.has-multiple { display: grid; gap: 0.8rem; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 24rem); }
 .scheduler-decision-panel img { border-radius: 1.25rem; box-shadow: 0 1.25rem 3.5rem rgba(30, 48, 55, 0.14); display: block; height: auto; width: 100%; }
 .scheduler-decision-controls { align-items: center; display: grid; grid-template-columns: auto 1fr auto; margin-top: 1.5rem; }
 .scheduler-decision-controls > button { align-items: center; background: transparent; border: 1px solid var(--hairline); border-radius: 50%; color: var(--olive); cursor: pointer; display: grid; font: 1.2rem/1 var(--font-body); height: 2.75rem; place-items: center; transition: background-color 0.2s, color 0.2s; width: 2.75rem; }
@@ -421,7 +423,8 @@ body:has(.scheduler-case-study) { background: var(--scheduler-light); }
   .scheduler-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .scheduler-notes { grid-template-columns: 1fr; gap: 1.5rem; }
   .scheduler-decision-panel { grid-template-columns: 1fr; min-height: 0; padding: 3.5rem 0; }
-  .scheduler-decision-panel figure { width: min(13rem, 58vw); margin-inline: auto; }
+  .scheduler-decision-screens { width: min(13rem, 58vw); margin-inline: auto; }
+  .scheduler-decision-screens.has-multiple { gap: 0.55rem; width: min(22rem, 88vw); }
   .scheduler-carousel-stage { gap: 0.35rem; }
   .scheduler-carousel-stage { display: block; position: relative; }
   .scheduler-carousel-track { display: grid; grid-template-columns: 1fr; padding: 1.25rem 0; }
@@ -491,7 +494,7 @@ body:has(.sonus-case-study) { background: var(--sonus-paper); }
 .sonus-footer { background: var(--sonus-paper); }.sonus-footer .books-back { color: var(--sonus-ink); }
 @media (max-width: 700px) { .sonus-hero-spec, .sonus-hero-meta { gap: 1rem; }.sonus-hero-spec { flex-direction: column; }.sonus-challenge, .sonus-system-grid { grid-template-columns: 1fr; gap: 2rem; }.sonus-paths { grid-template-columns: 1fr; }.sonus-paths article { min-height: 0; }.sonus-phone-frame { max-width: 15rem; width: min(78%, 15rem); }.sonus-home-showcase figcaption { align-items: flex-start; flex-direction: column; gap: .35rem; }.sonus-swatches { gap: .45rem; }.sonus-swatches span { height: 3.6rem; }.sonus-type-sample, .sonus-component { min-height: 9rem; } }
 
-/* NELARide case study — the existing page header is intentionally shared. */
+/* NELARide case study. The existing page header is intentionally shared. */
 .nela-case-study { --nela-olive: #4f560d; --nela-ink: #30311f; --nela-paper: #f7f7f2; --nela-rule: rgba(48,49,31,.2); background: var(--nela-paper); color: var(--nela-ink); }
 body:has(.nela-case-study) { background: var(--nela-paper); }
 .nela-case-study .project-page-header { --project-text: #333333; --project-mid: rgba(51,51,51,.72); --project-faded: rgba(51,51,51,.58); --project-line: rgba(51,51,51,.22); background: #e9d7a6; color: var(--project-text); }
