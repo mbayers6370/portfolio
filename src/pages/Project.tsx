@@ -143,7 +143,7 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
   const [home, events, collections] = project.gallery || []
   const schedulerScreens = [
     home && { ...home, label: 'Home' },
-    events && { ...events, label: 'Events' },
+    events && { ...events, label: 'EVENTS / CARD EXPANDED' },
     collections && { ...collections, label: 'Collections' },
     { src: schedulerSearch, alt: 'Android Scheduler search screen with an empty-state prompt', label: 'Search' },
     { src: schedulerAccount, alt: 'Android Scheduler account screen with profile and preferences', label: 'Account' },
