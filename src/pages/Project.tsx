@@ -8,6 +8,16 @@ import type { Project } from '../types/content'
 import schedulerOriginalHome from '../assets/Old-Home-Screen-Scheduler.png'
 import schedulerSearch from '../assets/Search.png'
 import schedulerAccount from '../assets/Account.png'
+import sonusTopographic from '../assets/Topographic.png'
+import sonusDesktopHome from '../assets/Desktop_Home.png'
+import sonusLearn from '../assets/Learn.PNG'
+import sonusPractice from '../assets/Practice.PNG'
+import sonusTravel from '../assets/Travel.PNG'
+import nelaRideBefore from '../assets/Before.PNG'
+import nelaRideAfter from '../assets/After.PNG'
+import nelaRideComponents from '../assets/Components.png'
+import nelaRideTypography from '../assets/Typography.png'
+import nelaRideIconography from '../assets/Iconography.png'
 
 type ProjectDetailProps = {
   body: string
@@ -209,6 +219,166 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
   )
 }
 
+function SonusCaseStudy({ project }: { project: Project }) {
+  return (
+    <div className="project-page sonus-case-study">
+      <header className="sonus-hero">
+        <div className="container">
+          <div className="sonus-hero-meta"><span>No. {project.num} / Independent project</span><span>{project.year}</span></div>
+          <div className="sonus-hero-intro">
+            <h1>Sonus.</h1>
+            <p>Speak with clarity. Learn with structure.</p>
+          </div>
+          <div className="sonus-hero-spec"><span>Product design / engineering</span><span>React · TypeScript · PostgreSQL</span></div>
+        </div>
+      </header>
+
+      <main>
+        <section className="sonus-terrain-section" aria-label="Sonus project introduction">
+          <div className="container">
+            <div className="sonus-terrain-frame">
+              <img src={sonusTopographic} alt="Topographic linework representing Sonus's focused learning paths" />
+              <p>A learning experience built around focus, not distraction.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="sonus-section sonus-idea">
+          <div className="container">
+            <p className="sonus-kicker">01 / The idea</p>
+            <h2>Language learning, without the noise.</h2>
+            <p className="sonus-lead">Sonus began as an attempt to make language learning feel more deliberate. Structured lessons, meaningful practice, and real-world application take priority over points and streaks.</p>
+            <div className="sonus-challenge"><div><p className="sonus-kicker">The challenge</p><h3>Structure over gamification.</h3></div><p>Build a system that supports retention, progression, and practical language use without overwhelming the learner.</p></div>
+          </div>
+        </section>
+
+        <section className="sonus-section sonus-product">
+          <div className="container">
+            <p className="sonus-kicker">02 / The product</p>
+            <h2>Three ways to learn.</h2>
+            <div className="sonus-paths">
+              <article><div><span>01</span><h3>Learn</h3><p>Guided units and structured progression.</p></div><figure className="sonus-phone-frame"><img src={sonusLearn} alt="Sonus Learn mobile experience" /></figure></article>
+              <article><div><span>02</span><h3>Practice</h3><p>Listening, speaking, and review.</p></div><figure className="sonus-phone-frame"><img src={sonusPractice} alt="Sonus Practice mobile experience" /></figure></article>
+              <article><div><span>03</span><h3>Travel</h3><p>Useful language for real situations.</p></div><figure className="sonus-phone-frame"><img src={sonusTravel} alt="Sonus Travel mobile experience" /></figure></article>
+            </div>
+            <figure className="sonus-home-showcase">
+              <figcaption><span>Home / Desktop</span><span>The full learning dashboard</span></figcaption>
+              <div><img src={sonusDesktopHome} alt="Sonus desktop home screen" /></div>
+            </figure>
+          </div>
+        </section>
+
+        <section className="sonus-section sonus-system">
+          <div className="container">
+            <p className="sonus-kicker">03 / The design system</p>
+            <h2>A system discovered through building.</h2>
+            <p className="sonus-lead">The interface came first. As Sonus evolved, its recurring patterns became the foundation for a formal visual identity.</p>
+            <div className="sonus-swatches" aria-label="Sonus color palette"><span /><span /><span /><span /></div>
+            <div className="sonus-system-grid">
+              <div className="sonus-type-sample">
+                <div>
+                  <strong>Aa</strong>
+                  <p className="sonus-type-name">Tenor Sans</p>
+                  <p className="sonus-type-role">Display / Headlines</p>
+                </div>
+                <p className="sonus-type-line">Speak with clarity.<br />Learn with structure.</p>
+                <span>Source Sans 3 · Body &nbsp; / &nbsp; Monoist · Captions</span>
+              </div>
+              <div className="sonus-component">
+                <div className="sonus-component-preview">
+                  <span>Continue Learning</span>
+                  <b aria-hidden="true">›</b>
+                </div>
+                <span>Primary action / dark surface</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="sonus-section sonus-outcome">
+          <div className="container">
+            <p className="sonus-kicker">04 / The outcome</p>
+            <h2>One product. One coherent language.</h2>
+            <p>A working learning platform supported by a reusable design system, with clearer visual patterns and room for future growth.</p>
+            <a href={project.link} target="_blank" rel="noopener noreferrer">Explore Sonus <span>↗</span></a>
+          </div>
+        </section>
+      </main>
+      <div className="container project-page-footer sonus-footer"><Link to="/#work" className="books-back">{projectPageContent.labels.allProjects}</Link></div>
+    </div>
+  )
+}
+
+function NelaRideCaseStudy({ project }: { project: Project }) {
+  const [expandedGuideline, setExpandedGuideline] = useState<{ alt: string; label: string; src: string } | null>(null)
+  const guidelines = [
+    { src: nelaRideComponents, alt: 'NELARide component guidelines', label: 'Components' },
+    { src: nelaRideTypography, alt: 'NELARide typography guidelines', label: 'Typography' },
+    { src: nelaRideIconography, alt: 'NELARide iconography guidelines', label: 'Iconography' },
+  ]
+
+  useEffect(() => {
+    if (!expandedGuideline) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setExpandedGuideline(null)
+    }
+
+    document.addEventListener('keydown', closeOnEscape)
+    return () => document.removeEventListener('keydown', closeOnEscape)
+  }, [expandedGuideline])
+
+  return (
+    <div className="project-page nela-case-study">
+      {/* This header intentionally mirrors the pre-existing NELARide hero. */}
+      <div className="page-header project-page-header">
+        <div className="container">
+          <div className="project-page-meta">
+            <span className="page-header-label">No. {project.num}</span>
+            <span className="page-header-label">{project.type}</span>
+          </div>
+          <h1 className="page-header-title"><ProjectTitle title={project.title} />.</h1>
+          <div className="project-page-info">
+            <div className="project-page-info-item"><span className="project-page-info-label">{projectPageContent.labels.role}</span><span className="project-page-info-value">{project.role}</span></div>
+            <div className="project-page-info-item"><span className="project-page-info-label">{projectPageContent.labels.year}</span><span className="project-page-info-value">{project.year}</span></div>
+            <div className="project-page-info-item project-page-info-tags"><span className="project-page-info-label">{projectPageContent.labels.stack}</span><div className="project-page-tags">{project.tags.map((tag) => <span key={tag} className="project-tag">{tag}</span>)}</div></div>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <section className="nela-section nela-project">
+          <div className="container nela-intro-grid">
+            <div><p className="nela-kicker">01 / The project</p><h2>One company.<br />Multiple experiences.</h2><p className="nela-copy">NELARide operates across a public website and separate Rider and Driver apps. My work began with the website redesign and expanded into helping establish a more consistent design language across the platform.</p></div>
+            <dl className="nela-scope"><div><dt>01</dt><dd><strong>Website</strong><span>Visual redesign</span></dd></div><div><dt>02</dt><dd><strong>Rider app</strong><span>User experience</span></dd></div><div><dt>03</dt><dd><strong>Driver app</strong><span>User experience</span></dd></div></dl>
+          </div>
+        </section>
+
+        <section className="nela-section nela-website">
+          <div className="container nela-website-grid">
+            <div><p className="nela-kicker">02 / Website &amp; system</p><h2>From website to<br />visual system.</h2><p>The website redesign became the foundation for a shared visual system across the Rider and Driver apps, bringing clearer hierarchy, consistent patterns, and a more cohesive NELARide experience.</p><a href={project.link} target="_blank" rel="noopener noreferrer">View live site <span>→</span></a></div>
+            <div className="nela-guideline-cards">
+              {guidelines.map((guideline) => <button className="nela-guideline-card" key={guideline.label} type="button" onClick={() => setExpandedGuideline(guideline)} aria-label={`Expand ${guideline.label} guidelines`}><img src={guideline.src} alt={guideline.alt} /><span>{guideline.label}</span></button>)}
+            </div>
+          </div>
+        </section>
+
+        <section className="nela-section nela-evolution">
+          <div className="container nela-evolution-grid">
+            <div><p className="nela-kicker">03 / From guidelines to experience</p><h2>Consistency shows<br />up in the details.</h2><p className="nela-copy">The Activity screen is one example of how the updated visual language improved hierarchy, clarity, and consistency within the Rider app.</p></div>
+            <div className="nela-comparison"><figure><img src={nelaRideBefore} alt="NELARide Rider app interface before the visual update" /><figcaption>Earlier interface</figcaption></figure><span aria-hidden="true">→</span><figure><img src={nelaRideAfter} alt="NELARide Rider app interface after the visual update" /><figcaption>Updated interface</figcaption></figure></div>
+          </div>
+        </section>
+
+        <section className="nela-section nela-ecosystem">
+          <div className="container"><p className="nela-kicker">04 / The outcome</p><h2>Different journeys.<br />The same visual language.</h2><p>The website, Rider app, and Driver app serve different needs, but share a consistent visual foundation. My work grew from redesigning the public website to helping establish clearer guidance for future design decisions and a more cohesive experience for both riders and drivers.</p><div><Link to="/#work">← All projects</Link><a href={project.link} target="_blank" rel="noopener noreferrer">View live site →</a></div></div>
+        </section>
+      </main>
+      {expandedGuideline && <div className="nela-guideline-modal" role="presentation" onMouseDown={() => setExpandedGuideline(null)}><div className="nela-guideline-modal-content" role="dialog" aria-modal="true" aria-label={`${expandedGuideline.label} guidelines`} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="nela-guideline-modal-close" onClick={() => setExpandedGuideline(null)} aria-label="Close guideline preview">×</button><img src={expandedGuideline.src} alt={expandedGuideline.alt} /><p>{expandedGuideline.label}</p></div></div>}
+    </div>
+  )
+}
+
 export default function Project() {
   const { slug } = useParams<{ slug: string }>()
   const project = projects.find((p) => p.slug === slug)
@@ -226,6 +396,14 @@ export default function Project() {
 
   if (project.slug === 'cs499-eportfolio') {
     return <SchedulerCaseStudy project={project} />
+  }
+
+  if (project.slug === 'sonus') {
+    return <SonusCaseStudy project={project} />
+  }
+
+  if (project.slug === 'nelaride') {
+    return <NelaRideCaseStudy project={project} />
   }
 
   return (
