@@ -1,45 +1,70 @@
 import '../styles/art.css'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { artPageContent } from '../content/art'
 import artworks from '../content/artworks'
 
 export default function Art() {
+  const [expandedArtwork, setExpandedArtwork] = useState<(typeof artworks)[number] | null>(null)
+
+  useEffect(() => {
+    if (!expandedArtwork) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setExpandedArtwork(null)
+    }
+
+    document.addEventListener('keydown', closeOnEscape)
+    return () => document.removeEventListener('keydown', closeOnEscape)
+  }, [expandedArtwork])
+
+  const renderArtwork = (artwork: (typeof artworks)[number]) => (
+    <div className="art-tile" key={artwork.title}>
+      <button className="art-tile-img" type="button" onClick={() => setExpandedArtwork(artwork)} aria-label={`Expand ${artwork.title}`}>
+        <img src={artwork.src} alt={artwork.title} style={artwork.pos ? { objectPosition: artwork.pos } : undefined} />
+      </button>
+      <div className="art-tile-meta">
+        <span className="art-tile-title">{artwork.title}</span>
+        <span className="art-tile-medium">{artwork.medium}</span>
+      </div>
+    </div>
+  )
+
   return (
     <div className="page-art">
-      <div className="page-header">
-        <div className="container">
-          <span className="page-header-label">{artPageContent.pageLabel}</span>
-          <h1 className="page-header-title">
+      <header className="art-header">
+        <div className="container art-header-inner">
+          <div>
+            <span className="art-header-label">{artPageContent.pageLabel}</span>
+            <h1 className="art-header-title">
             {artPageContent.title[0]}
             <br />
-            <em>{artPageContent.title[1]}</em>
-          </h1>
+              {artPageContent.title[1]}
+            </h1>
+          </div>
+          <p>{artPageContent.tagline}</p>
         </div>
-      </div>
+      </header>
 
-      <div className="container">
-        <div className="art-statement">
-          <p>{artPageContent.statement}</p>
+      <main className="container art-gallery">
+        <div className="art-grid art-grid--pair">
+          {artworks.slice(0, 2).map(renderArtwork)}
         </div>
 
-        <div className="art-grid">
-          {artworks.map((p) => (
-            <div className="art-tile" key={p.title}>
-              <div className="art-tile-img">
-                <img src={p.src} alt={p.title} style={p.pos ? { objectPosition: p.pos } : undefined} />
-              </div>
-              <div className="art-tile-meta">
-                <span className="art-tile-title">{p.title}</span>
-                <span className="art-tile-medium">{p.medium}</span>
-              </div>
-            </div>
-          ))}
+        <div className="art-interlude">
+          <h2>{artPageContent.interlude}</h2>
+          <p>{artPageContent.interludeLabel}</p>
+        </div>
+
+        <div className="art-grid art-grid--pair">
+          {artworks.slice(2).map(renderArtwork)}
         </div>
 
         <div className="art-enquire">
           <Link to="/" className="books-back">{artPageContent.backLabel}</Link>
         </div>
-      </div>
+      </main>
+      {expandedArtwork && <div className="art-modal" role="presentation" onMouseDown={() => setExpandedArtwork(null)}><div className="art-modal-content" role="dialog" aria-modal="true" aria-label={expandedArtwork.title} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="art-modal-close" onClick={() => setExpandedArtwork(null)} aria-label="Close artwork preview">×</button><img src={expandedArtwork.src} alt={expandedArtwork.title} /><p>{expandedArtwork.title}</p></div></div>}
     </div>
   )
 }

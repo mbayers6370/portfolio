@@ -44,6 +44,8 @@
 .project-feature {
   position: relative;
   border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  overflow: hidden;
   padding: clamp(2rem, 4vw, 4rem);
   margin-bottom: 2px;
   overflow: hidden;
@@ -200,6 +202,7 @@
   background: transparent;
   color: var(--mid);
   border: 1px solid var(--hairline);
+  border-radius: var(--radius-control);
   padding: 0.6rem 1.2rem;
   transition: color 0.35s, border-color 0.35s, background-color 0.35s;
 }
@@ -289,42 +292,34 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3.5rem);
 }
 
-.skills-column h4 {
+.skill-group h4 {
   font-family: var(--font-mono);
   font-size: 0.56rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.72);
-  margin-bottom: 0.5rem;
-  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
-.skills-column ul {
+.skill-group ul {
   list-style: none;
 }
 
-.skills-column ul li {
+.skill-group ul li {
   font-size: 0.82rem;
   color: var(--on-dark);
-  padding: 0.35rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  padding: 0.2rem 0;
   font-weight: 300;
 }
 
-.skills-column ul li::before {
-  content: '';
-  display: block;
-  width: 4px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.7);
-  flex-shrink: 0;
+@media (max-width: 1050px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .beyond {
@@ -384,6 +379,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: var(--radius-card);
+  overflow: hidden;
   text-decoration: none;
   color: inherit;
   transition: border-color 0.25s ease, transform 0.25s ease;
@@ -536,6 +533,7 @@
 .form-submit {
   background: transparent;
   border: 1px solid var(--on-dark);
+  border-radius: var(--radius-control);
   color: var(--on-dark);
   font-family: var(--font-mono);
   font-size: 0.62rem;

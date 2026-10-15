@@ -32,6 +32,9 @@
   --section-pad: clamp(5rem, 9vw, 10rem);
   --container-max: 1400px;
   --gutter: clamp(1.5rem, 4vw, 4rem);
+  --radius-card: 0.75rem;
+  --radius-control: 0.5rem;
+  --radius-round: 999px;
 }
 
 html {
@@ -47,6 +50,11 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+button,
+[role='button'] {
+  border-radius: var(--radius-control);
 }
 
 .container {
@@ -251,6 +259,46 @@ body {
 
 .nav--scheduler .nav-hamburger span {
   background: var(--on-dark);
+}
+
+.nav--art,
+.nav--art.nav--scrolled,
+.nav-mobile--art {
+  background: #222e3d;
+  border-color: rgba(248, 251, 253, 0.2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav--art .nav-logo,
+.nav--art .nav-links a,
+.nav--art .nav-linkedin,
+.nav-mobile--art a {
+  color: #f8fbfd;
+}
+
+.nav--art .nav-hamburger span {
+  background: #f8fbfd;
+}
+
+.nav--books,
+.nav--books.nav--scrolled,
+.nav-mobile--books {
+  background: var(--forest);
+  border-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav--books .nav-logo,
+.nav--books .nav-links a,
+.nav--books .nav-linkedin,
+.nav-mobile--books a {
+  color: var(--white);
+}
+
+.nav--books .nav-hamburger span {
+  background: var(--white);
 }
 
 @media (max-width: 900px) {

@@ -8,6 +8,8 @@ export default function Nav() {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
   const isSchedulerCaseStudy = pathname === "/work/cs499-eportfolio";
+  const isArtPage = pathname === "/art";
+  const isBooksPage = pathname === "/books";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -27,7 +29,7 @@ export default function Nav() {
       <nav
         className={`nav${scrolled ? " nav--scrolled" : ""}${
           isSchedulerCaseStudy ? " nav--scheduler" : ""
-        }`}
+        }${isArtPage ? " nav--art" : ""}${isBooksPage ? " nav--books" : ""}`}
       >
         <Link to="/" className="nav-logo">
           {navContent.logo}
@@ -119,7 +121,7 @@ export default function Nav() {
       <div
         className={`nav-mobile${menuOpen ? " open" : ""}${
           isSchedulerCaseStudy ? " nav-mobile--scheduler" : ""
-        }`}
+        }${isArtPage ? " nav-mobile--art" : ""}${isBooksPage ? " nav-mobile--books" : ""}`}
       >
         <a href={homeHref("#work")} onClick={close}>
           {navContent.links.work}

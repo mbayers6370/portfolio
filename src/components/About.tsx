@@ -24,16 +24,12 @@ export default function About() {
 
             <div className="skills-header">{aboutContent.skillsHeader}</div>
             <div className="skills-grid">
-              {Object.entries(aboutContent.skills).map(([col, groups]) => (
-                <div className="skills-column" key={col}>
-                  {Object.entries(groups).map(([group, items]) => (
-                    <div key={group}>
-                      <h4>{group}</h4>
-                      <ul>
-                        {items.map((item) => <li key={item}>{item}</li>)}
-                      </ul>
-                    </div>
-                  ))}
+              {Object.values(aboutContent.skills).flatMap((groups) => Object.entries(groups)).map(([group, items]) => (
+                <div className="skill-group" key={group}>
+                  <h4>{group}</h4>
+                  <ul>
+                    {items.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
                 </div>
               ))}
             </div>

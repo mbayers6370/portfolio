@@ -162,6 +162,7 @@
   width: 100%;
   display: block;
   border: 1px solid var(--project-line);
+  border-radius: var(--radius-card);
   background: var(--warm-white);
 }
 
@@ -348,7 +349,7 @@ body:has(.scheduler-case-study) { background: var(--scheduler-light); }
 .scheduler-metadata dt { color: rgba(224, 225, 218, 0.46); margin-bottom: 0.38rem; }
 .scheduler-metadata dd { font-size: 0.82rem; line-height: 1.55; color: var(--scheduler-on-dark); }
 .scheduler-hero-screen { align-self: end; max-width: 20rem; justify-self: center; margin-bottom: 4rem; }
-.scheduler-hero-screen img, .scheduler-decision img, .scheduler-comparison-item img, .scheduler-carousel img { display: block; width: 100%; height: auto; border-radius: 1.25rem; }
+.scheduler-hero-screen img, .scheduler-decision img, .scheduler-comparison-item img, .scheduler-carousel img { display: block; width: 100%; height: auto; border-radius: var(--radius-card); }
 
 .scheduler-section { padding: clamp(5rem, 10vw, 10rem) 0; }
 .scheduler-split { display: grid; grid-template-columns: minmax(13rem, 0.55fr) minmax(0, 1fr); gap: clamp(2rem, 10vw, 12rem); }
@@ -361,7 +362,7 @@ body:has(.scheduler-case-study) { background: var(--scheduler-light); }
 .scheduler-section-heading--wide { margin-bottom: clamp(3rem, 7vw, 6rem); }
 .scheduler-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 18rem)); justify-content: center; gap: clamp(1.5rem, 5vw, 5rem); align-items: start; }
 .scheduler-comparison-item figcaption { color: var(--scheduler-muted); margin-top: 1rem; line-height: 1.5; }
-.scheduler-placeholder { aspect-ratio: 9 / 20; background: var(--scheduler-panel); border: 1px dashed rgba(224, 225, 218, 0.48); border-radius: 1.25rem; color: var(--scheduler-on-dark); display: flex; flex-direction: column; justify-content: flex-end; gap: 0.35rem; padding: 1.25rem; }
+.scheduler-placeholder { aspect-ratio: 9 / 20; background: var(--scheduler-panel); border: 1px dashed rgba(224, 225, 218, 0.48); border-radius: var(--radius-card); color: var(--scheduler-on-dark); display: flex; flex-direction: column; justify-content: flex-end; gap: 0.35rem; padding: 1.25rem; }
 .scheduler-placeholder span, .scheduler-placeholder small { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--scheduler-muted); }
 .scheduler-placeholder strong { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.05; }
 .scheduler-notes { max-width: 70rem; margin: clamp(3rem, 7vw, 6rem) auto 0; padding-top: 1.5rem; border-top: 1px solid var(--scheduler-line); display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; list-style: none; font-size: 0.82rem; line-height: 1.6; color: var(--scheduler-muted); }
@@ -380,7 +381,7 @@ body:has(.scheduler-case-study) { background: var(--scheduler-light); }
 .scheduler-decision-panel figure { margin: 0; }
 .scheduler-decision-screens { justify-self: center; width: min(100%, 15rem); }
 .scheduler-decision-screens.has-multiple { display: grid; gap: 0.8rem; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 31rem); }
-.scheduler-decision-panel img { border-radius: 1.25rem; box-shadow: 0 1.25rem 3.5rem rgba(30, 48, 55, 0.14); display: block; height: auto; width: 100%; }
+.scheduler-decision-panel img { border-radius: var(--radius-card); box-shadow: 0 1.25rem 3.5rem rgba(30, 48, 55, 0.14); display: block; height: auto; width: 100%; }
 .scheduler-decision-control { align-items: center; background: transparent; border: 1px solid var(--hairline); border-radius: 50%; color: var(--olive); cursor: pointer; display: grid; font: 1.2rem/1 var(--font-body); height: 2.75rem; place-items: center; transition: background-color 0.2s, color 0.2s; width: 2.75rem; }
 .scheduler-decision-control:hover { background: var(--olive); color: var(--on-dark); }
 .scheduler-decision-control:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
@@ -460,7 +461,7 @@ body:has(.sonus-case-study) { background: var(--sonus-paper); }
 .sonus-hero-intro p { color: #d0dce3; font-family: var(--font-body); font-size: 1.05rem; font-weight: 300; line-height: 1.7; margin-top: 1.2rem; }
 .sonus-hero-spec { border-top: 1px solid #71808d; padding: 1.4rem 0 3.9rem; }
 .sonus-terrain-section { background: var(--sonus-blue); color: #e6eff5; padding: 1.5rem 0 1.8rem; }
-.sonus-terrain-frame { height: clamp(13rem, 30vw, 29rem); background: #14181e; border: 2px solid #e5edf2; border-radius: .45rem; overflow: hidden; position: relative; }
+.sonus-terrain-frame { height: clamp(13rem, 30vw, 29rem); background: #14181e; border: 2px solid #e5edf2; border-radius: var(--radius-card); overflow: hidden; position: relative; }
 .sonus-terrain-frame img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .sonus-terrain-frame p { bottom: clamp(1.25rem, 3vw, 3rem); color: #fff; font-family: var(--font-display); font-size: clamp(2rem, 4vw, 4.5rem); font-weight: 800; left: clamp(1.25rem, 3vw, 3rem); letter-spacing: -0.04em; line-height: .95; max-width: 18ch; position: absolute; }
 .sonus-section { padding: clamp(4rem, 7vw, 6.5rem) 0; }

@@ -5,26 +5,25 @@ import { books, booksPageContent } from '../content/books'
 export default function Books() {
   return (
     <div className="page-books">
-      <div className="page-header">
+      <header className="books-hero">
         <div className="container">
-          <span className="page-header-label">{booksPageContent.pageLabel}</span>
-          <h1 className="page-header-title">
-            {booksPageContent.title[0]}
-            <br />
-            <em>{booksPageContent.title[1]}</em>
-          </h1>
-          <p className="page-header-sub">{booksPageContent.subtitle}</p>
+          <span className="books-hero-label">{booksPageContent.pageLabel} / Fiction</span>
+          <div className="books-hero-layout">
+            <h1 className="books-hero-title">
+              {booksPageContent.title[0]}
+              <br />
+              <em>{booksPageContent.title[1]}</em>
+            </h1>
+            <p className="books-hero-sub">{booksPageContent.subtitle}</p>
+          </div>
         </div>
-      </div>
+      </header>
 
-      <div className="container">
+      <main className="container">
         <div className="books-list">
-          {books.map((book) => (
-            <article className="book-entry" key={book.number}>
-              <div className="book-entry-number">No.&nbsp;{book.number}</div>
-              <div className="book-entry-cover">
-                <img src={book.cover} alt={book.title.replace('\n', ' ')} />
-              </div>
+          {books.map((book, index) => (
+            <article className={`book-entry book-entry--${index % 2 === 0 ? 'dark' : 'olive'}`} key={book.number}>
+              <div className="book-entry-number">Volume&nbsp;{book.number}</div>
               <div className="book-entry-body">
                 <div className="book-entry-top">
                   <h2 className="book-entry-title">
@@ -32,9 +31,6 @@ export default function Books() {
                       <span key={`${book.number}-${line}`}>{line}{i === 0 && <br />}</span>
                     ))}
                   </h2>
-                  <span className={`book-status book-status--${book.statusClass}`}>
-                    {book.status}
-                  </span>
                 </div>
                 <p className="book-entry-desc">{book.description}</p>
                 <a
@@ -46,6 +42,14 @@ export default function Books() {
                   {book.linkLabel}
                 </a>
               </div>
+              <div className="book-entry-cover-group">
+                <div className="book-entry-cover">
+                  <img src={book.cover} alt={book.title.replace('\n', ' ')} />
+                </div>
+                <span className={`book-status book-status--${book.statusClass}`}>
+                  {book.status}
+                </span>
+              </div>
             </article>
           ))}
         </div>
@@ -55,7 +59,7 @@ export default function Books() {
           <p>{booksPageContent.authorBio}</p>
           <Link to="/" className="books-back">{booksPageContent.backLabel}</Link>
         </div>
-      </div>
+      </main>
     </div>
   )
 }

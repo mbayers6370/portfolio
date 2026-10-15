@@ -6,7 +6,7 @@ export const booksPageContent = {
   pageLabel: 'Writing',
   title: ['The Shape', 'Sequence.'],
   subtitle: 'A series about the architecture of a world meant to make you forget.',
-  authorQuote: 'Writing found me when everything else fell apart.',
+  authorQuote: 'I am interested in what makes us human. And what happens when we start changing the definition.',
   authorBio:
     "Matthew Bayers is a self-published author, full-stack developer, and painter. His fiction explores queer identity, memory, and the architecture of worlds that feel just slightly out of reach, built for anyone who has ever felt like they didn't quite fit.",
   backLabel: '← Back to portfolio',

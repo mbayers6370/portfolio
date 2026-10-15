@@ -1,5 +1,5 @@
-import rose from '../assets/Rose_BW.jpeg'
-import lemons from '../assets/Lemons.jpeg'
+import rose from '../assets/Rose_BW.jpg'
+import lemons from '../assets/Lemons.jpg'
 import bathtub from '../assets/Bathtub_Benjamin.jpeg'
 import copperFlowers from '../assets/Copper_Flowers.jpeg'
 import type { Artwork } from '../types/content'

@@ -1,7 +1,8 @@
 export const artPageContent = {
-  pageLabel: 'Visual Practice',
+  pageLabel: 'Visual Practice / Selected Works',
   title: ['Oil & Acrylic', 'Paintings.'],
-  statement:
-    'I’m drawn to structure and negative space. I constantly ask myself, “What is necessary here? What can be removed?” I find that tension between presence and absence to be the most interesting place to work, whether I’m writing, designing, or coding. The discipline of that process is something I enjoy in itself.',
+  tagline: 'Studies in presence, absence & restraint.',
+  interlude: 'What can be removed?',
+  interludeLabel: 'Notes on negative space',
   backLabel: '← Back to portfolio',
 }
