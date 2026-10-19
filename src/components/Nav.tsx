@@ -36,6 +36,7 @@ export default function Nav() {
         <Link to="/" className="nav-logo">
           {navContent.logo}
         </Link>
+        {isHome && <span className="nav-home-label">Portfolio / 2026</span>}
         <ul className="nav-links">
           <li>
             <a href={homeHref("#work")} onClick={close}>

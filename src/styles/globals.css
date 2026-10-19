@@ -126,6 +126,8 @@ button,
   line-height: 1;
 }
 
+.nav-home-label { display: none; }
+
 .nav-links {
   display: flex;
   align-items: center;
