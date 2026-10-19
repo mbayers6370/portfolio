@@ -8,6 +8,13 @@ export default function Hero() {
         <div className="hero-photo">
           <img src={headshot} alt={heroContent.alt} />
         </div>
+        <div className="hero-copy">
+          <h1>
+            <span>{heroContent.firstName}</span>
+            <span>{heroContent.lastName}</span>
+          </h1>
+          <p>{heroContent.tagline}</p>
+        </div>
       </div>
     </section>
   )

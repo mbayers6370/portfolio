@@ -46,23 +46,31 @@ export default function Art() {
         </div>
       </header>
 
-      <main className="container art-gallery">
-        <div className="art-grid art-grid--pair">
-          {artworks.slice(0, 2).map(renderArtwork)}
-        </div>
+      <main className="art-gallery">
+        <section className="art-works art-works--dark">
+          <div className="container art-grid art-grid--pair">
+            {artworks.slice(0, 2).map(renderArtwork)}
+          </div>
+        </section>
 
-        <div className="art-interlude">
-          <h2>{artPageContent.interlude}</h2>
-          <p>{artPageContent.interludeLabel}</p>
-        </div>
+        <section className="art-interlude-section">
+          <div className="container art-interlude">
+            <h2>{artPageContent.interlude}</h2>
+            <p>{artPageContent.interludeLabel}</p>
+          </div>
+        </section>
 
-        <div className="art-grid art-grid--pair">
-          {artworks.slice(2).map(renderArtwork)}
-        </div>
+        <section className="art-works art-works--cream">
+          <div className="container art-grid art-grid--pair">
+            {artworks.slice(2).map(renderArtwork)}
+          </div>
+        </section>
 
-        <div className="art-enquire">
-          <Link to="/" className="books-back">{artPageContent.backLabel}</Link>
-        </div>
+        <section className="art-enquire">
+          <div className="container">
+            <Link to="/" className="books-back">{artPageContent.backLabel}</Link>
+          </div>
+        </section>
       </main>
       {expandedArtwork && <div className="art-modal" role="presentation" onMouseDown={() => setExpandedArtwork(null)}><div className="art-modal-content" role="dialog" aria-modal="true" aria-label={expandedArtwork.title} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="art-modal-close" onClick={() => setExpandedArtwork(null)} aria-label="Close artwork preview">×</button><img src={expandedArtwork.src} alt={expandedArtwork.title} /><p>{expandedArtwork.title}</p></div></div>}
     </div>

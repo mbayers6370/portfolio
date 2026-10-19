@@ -352,12 +352,38 @@ function SonusCaseStudy({ project }: { project: Project }) {
                 <p className="sonus-type-line">Speak with clarity.<br />Learn with structure.</p>
                 <span>Source Sans 3 · Body &nbsp; / &nbsp; Monoist · Captions</span>
               </div>
-              <div className="sonus-component">
-                <div className="sonus-component-preview">
-                  <span>Continue Learning</span>
-                  <b aria-hidden="true">›</b>
+              <div className="sonus-component sonus-component--resume">
+                <div className="sonus-resume-preview">
+                  <p>Welcome, Matt</p>
+                  <strong>N5</strong>
+                  <span>Unit 3 · Lesson 1</span>
+                  <b>Continue Learning <em aria-hidden="true">→</em></b>
                 </div>
-                <span>Primary action / dark surface</span>
+                <span>Learning dashboard / resume card</span>
+              </div>
+            </div>
+            <div className="sonus-component-library">
+              <div className="sonus-component sonus-component--travel">
+                <div className="sonus-travel-preview">
+                  <h3>Travel Sprint</h3>
+                  <p>Short on time? Practice essential travel phrases before you go.</p>
+                  <div><span>Airport</span><span>Hotel</span><span>Konbini</span></div>
+                  <b>Explore Travel Content <em aria-hidden="true">→</em></b>
+                </div>
+                <span>Travel module / tags and action</span>
+              </div>
+              <div className="sonus-component sonus-component--travel-feature">
+                <div className="sonus-travel-feature-preview">
+                  <div className="sonus-travel-feature-head"><b aria-hidden="true">‹</b><span>Travel Sprint</span></div>
+                  <div className="sonus-travel-feature-body">
+                    <p>✈&nbsp; Travel Sprint</p>
+                    <h3>Leaving Soon?</h3>
+                    <p>Travel Sprint prepares you for real-world Japanese with essential phrases for your trip.</p>
+                    <strong>Pick a situation, practice the lines, and get day-one confidence fast.</strong>
+                  </div>
+                  <div className="sonus-travel-feature-meta"><span>8 scenarios</span><span>Audio + rapid recall</span></div>
+                </div>
+                <span>Feature page / campaign state</span>
               </div>
             </div>
           </div>

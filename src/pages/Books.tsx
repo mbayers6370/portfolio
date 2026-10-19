@@ -21,8 +21,8 @@ export default function Books() {
 
       <main className="container">
         <div className="books-list">
-          {books.map((book, index) => (
-            <article className={`book-entry book-entry--${index % 2 === 0 ? 'dark' : 'olive'}`} key={book.number}>
+          {books.map((book) => (
+            <article className="book-entry" key={book.number}>
               <div className="book-entry-number">Volume&nbsp;{book.number}</div>
               <div className="book-entry-body">
                 <div className="book-entry-top">
