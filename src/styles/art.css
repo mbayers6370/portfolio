@@ -219,6 +219,7 @@ body:has(.page-art) {
 }
 
 .art-modal-close:hover { color: var(--secondary); }
+.art-modal-close svg { height: 1.1em; width: 1.1em; }
 
 .art-modal-close:focus-visible {
   outline: 2px solid var(--art-text);

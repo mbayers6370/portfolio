@@ -1,6 +1,7 @@
 import '../styles/art.css'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { X } from 'lucide-react'
 import { artPageContent } from '../content/art'
 import artworks from '../content/artworks'
 
@@ -72,7 +73,7 @@ export default function Art() {
           </div>
         </section>
       </main>
-      {expandedArtwork && <div className="art-modal" role="presentation" onMouseDown={() => setExpandedArtwork(null)}><div className="art-modal-content" role="dialog" aria-modal="true" aria-label={expandedArtwork.title} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="art-modal-close" onClick={() => setExpandedArtwork(null)} aria-label="Close artwork preview">×</button><img src={expandedArtwork.src} alt={expandedArtwork.title} /><p>{expandedArtwork.title}</p></div></div>}
+      {expandedArtwork && <div className="art-modal" role="presentation" onMouseDown={() => setExpandedArtwork(null)}><div className="art-modal-content" role="dialog" aria-modal="true" aria-label={expandedArtwork.title} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="art-modal-close" onClick={() => setExpandedArtwork(null)} aria-label="Close artwork preview"><X aria-hidden="true" /></button><img src={expandedArtwork.src} alt={expandedArtwork.title} /><p>{expandedArtwork.title}</p></div></div>}
     </div>
   )
 }

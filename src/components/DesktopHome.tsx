@@ -108,16 +108,20 @@ export default function DesktopHome() {
 
             {activeTab === 'contact' && (
               <section id="desktop-contact" role="tabpanel" aria-labelledby="desktop-tab-contact" className="desktop-contact">
-                <div><h2>{contactContent.heading}</h2><p>{contactContent.availability}</p></div>
+                <div><h2>{contactContent.heading}</h2></div>
                 {sent ? <div className="desktop-form-success"><strong>{contactContent.success.title}</strong><p>{contactContent.success.subtitle}</p></div> : (
                   <form onSubmit={submitForm} name="desktop-contact" data-netlify="true">
                     <input type="hidden" name="form-name" value="desktop-contact" />
-                    <input name="name" placeholder={contactContent.fields.name.placeholder} value={form.name} onChange={updateForm} required />
-                    <input type="email" name="email" placeholder={contactContent.fields.email.placeholder} value={form.email} onChange={updateForm} required />
-                    <textarea name="message" placeholder={contactContent.fields.message.placeholder} value={form.message} onChange={updateForm} required />
+                    <label htmlFor="desktop-name">{contactContent.fields.name.label}</label>
+                    <input id="desktop-name" name="name" placeholder={contactContent.fields.name.placeholder} value={form.name} onChange={updateForm} required />
+                    <label htmlFor="desktop-email">{contactContent.fields.email.label}</label>
+                    <input id="desktop-email" type="email" name="email" placeholder={contactContent.fields.email.placeholder} value={form.email} onChange={updateForm} required />
+                    <label htmlFor="desktop-message">{contactContent.fields.message.label}</label>
+                    <textarea id="desktop-message" name="message" placeholder={contactContent.fields.message.placeholder} value={form.message} onChange={updateForm} required />
                     <button type="submit">{contactContent.submitLabel}</button>
                   </form>
                 )}
+                <p className="desktop-contact-availability">{contactContent.availability}</p>
               </section>
             )}
 

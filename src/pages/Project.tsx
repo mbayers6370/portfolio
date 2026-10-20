@@ -1,6 +1,7 @@
 import '../styles/project.css'
 import { useEffect, useRef, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { ArrowLeft, ArrowRight, BedDouble, CarFront, ExternalLink, Plane, Store, X } from 'lucide-react'
 import ProjectTitle from '../components/ProjectTitle'
 import { projectPageContent } from '../content/project-page'
 import projects from '../content/projects'
@@ -13,7 +14,7 @@ import schedulerAddEvent from '../assets/Add_Event.png'
 import schedulerAddCollection from '../assets/Add_Collection.png'
 import schedulerEventsClosed from '../assets/Events_Closed.png'
 import schedulerEventsOpenCard from '../assets/Events_open_card.png'
-import sonusTopographic from '../assets/Topographic.png'
+import sonusTopographicTransparent from '../assets/Topographic_Transparent.png'
 import sonusDesktopHome from '../assets/Desktop_Home.png'
 import sonusLearn from '../assets/Learn.PNG'
 import sonusPractice from '../assets/Practice.png'
@@ -118,7 +119,7 @@ function SchedulerCarousel({ screens }: { screens: SchedulerScreen[] }) {
       tabIndex={0}
     >
       <div className="scheduler-carousel-stage">
-        <button className="scheduler-carousel-control" type="button" onClick={() => move(-1)} aria-label="Show previous screen">←</button>
+        <button className="scheduler-carousel-control" type="button" onClick={() => move(-1)} aria-label="Show previous screen"><ArrowLeft aria-hidden="true" /></button>
         <div className="scheduler-carousel-track" aria-live="polite">
           {visibleScreens.map((screen) => (
             <figure className={`scheduler-carousel-slide${screen.offset === 0 ? ' is-active' : ' is-preview'}`} key={`slot-${screen.offset}`}>
@@ -127,7 +128,7 @@ function SchedulerCarousel({ screens }: { screens: SchedulerScreen[] }) {
             </figure>
           ))}
         </div>
-        <button className="scheduler-carousel-control" type="button" onClick={() => move(1)} aria-label="Show next screen">→</button>
+        <button className="scheduler-carousel-control" type="button" onClick={() => move(1)} aria-label="Show next screen"><ArrowRight aria-hidden="true" /></button>
       </div>
       <div className="scheduler-carousel-pagination" aria-label="Choose a screen">
         {screens.map((screen, index) => (
@@ -167,7 +168,7 @@ function SchedulerDecisionCarousel({ decisions }: { decisions: SchedulerDecision
       tabIndex={0}
     >
       <div className="scheduler-decision-stage">
-        <button className="scheduler-decision-control" type="button" onClick={(event) => { event.preventDefault(); event.stopPropagation(); move(-1) }} aria-label="Show previous design decision">←</button>
+        <button className="scheduler-decision-control" type="button" onClick={(event) => { event.preventDefault(); event.stopPropagation(); move(-1) }} aria-label="Show previous design decision"><ArrowLeft aria-hidden="true" /></button>
         <div className="scheduler-decision-panel">
           <div className="scheduler-decision-copy">
             <h3>{activeDecision.heading}</h3>
@@ -177,7 +178,7 @@ function SchedulerDecisionCarousel({ decisions }: { decisions: SchedulerDecision
             {activeDecision.images.map((image) => <img key={image.src} src={image.src} alt={image.alt} />)}
           </figure>
         </div>
-        <button className="scheduler-decision-control" type="button" onClick={(event) => { event.preventDefault(); event.stopPropagation(); move(1) }} aria-label="Show next design decision">→</button>
+        <button className="scheduler-decision-control" type="button" onClick={(event) => { event.preventDefault(); event.stopPropagation(); move(1) }} aria-label="Show next design decision"><ArrowRight aria-hidden="true" /></button>
       </div>
     </div>
   )
@@ -278,7 +279,7 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
         <section className="scheduler-section scheduler-reflection">
           <div className="container scheduler-split">
             <div className="scheduler-section-heading"><span>05</span><h2>Reflection &amp;<br />next steps.</h2></div>
-            <div className="scheduler-prose"><p>This redesign came from evaluating an existing interface against practical design principles, then carrying the decisions through in Kotlin and Jetpack Compose. It was not informed by formal user research, and it does not claim measured outcomes.</p><p>Future usability testing could validate discoverability across navigation, event creation, search, and editing workflows.</p><div className="scheduler-links"><a href="https://mbayers6370.github.io/cs499-eportfolio/" target="_blank" rel="noopener noreferrer">Full technical capstone ↗</a><a href="https://github.com/mbayers6370/scheduler" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a></div></div>
+            <div className="scheduler-prose"><p>This redesign began with an evaluation of the existing interface against established usability principles, followed by implementation in Kotlin and Jetpack Compose. While the changes were informed by UX reasoning rather than formal user research, their effectiveness has not yet been measured.</p><p>Future usability testing would focus on key tasks: finding an upcoming event, creating a new event, searching for an existing entry, and editing its details. Task completion rates, time on task, and points of confusion would help determine whether the redesigned navigation, hierarchy, and interactions improve usability and identify opportunities for further iteration.</p><div className="scheduler-links"><a href="https://mbayers6370.github.io/cs499-eportfolio/" target="_blank" rel="noopener noreferrer">Full technical capstone ↗</a><a href="https://github.com/mbayers6370/scheduler" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a></div></div>
           </div>
         </section>
       </main>
@@ -305,7 +306,7 @@ function SonusCaseStudy({ project }: { project: Project }) {
         <section className="sonus-terrain-section" aria-label="Sonus project introduction">
           <div className="container">
             <div className="sonus-terrain-frame">
-              <img src={sonusTopographic} alt="Topographic linework representing Sonus's focused learning paths" />
+              <img src={sonusTopographicTransparent} alt="Topographic linework representing Sonus's focused learning paths" />
               <p>A learning experience built around focus, not distraction.</p>
             </div>
           </div>
@@ -342,6 +343,7 @@ function SonusCaseStudy({ project }: { project: Project }) {
             <h2>A system discovered through building.</h2>
             <p className="sonus-lead">The interface came first. As Sonus evolved, its recurring patterns became the foundation for a formal visual identity.</p>
             <div className="sonus-swatches" aria-label="Sonus color palette"><span /><span /><span /><span /></div>
+            <div className="sonus-showcase-grid">
             <div className="sonus-system-grid">
               <div className="sonus-type-sample">
                 <div>
@@ -349,17 +351,14 @@ function SonusCaseStudy({ project }: { project: Project }) {
                   <p className="sonus-type-name">Tenor Sans</p>
                   <p className="sonus-type-role">Display / Headlines</p>
                 </div>
-                <p className="sonus-type-line">Speak with clarity.<br />Learn with structure.</p>
-                <span>Source Sans 3 · Body &nbsp; / &nbsp; Monoist · Captions</span>
-              </div>
-              <div className="sonus-component sonus-component--resume">
-                <div className="sonus-resume-preview">
-                  <p>Welcome, Matt</p>
-                  <strong>N5</strong>
-                  <span>Unit 3 · Lesson 1</span>
-                  <b>Continue Learning <em aria-hidden="true">→</em></b>
+                <div className="sonus-type-specimen">
+                  <p className="sonus-type-line">Speak with clarity.<br />Learn with structure.</p>
                 </div>
-                <span>Learning dashboard / resume card</span>
+                <div className="sonus-type-roles">
+                  <span>Source Sans 3 <small>Body / Interface</small></span>
+                  <span>Monoist <small>Captions / Metadata</small></span>
+                  <span className="sonus-type-scale">48 / 28 / 16 / 12</span>
+                </div>
               </div>
             </div>
             <div className="sonus-component-library">
@@ -367,24 +366,39 @@ function SonusCaseStudy({ project }: { project: Project }) {
                 <div className="sonus-travel-preview">
                   <h3>Travel Sprint</h3>
                   <p>Short on time? Practice essential travel phrases before you go.</p>
-                  <div><span>Airport</span><span>Hotel</span><span>Konbini</span></div>
+                  <div>
+                    <span><Plane aria-hidden="true" /> Airport</span>
+                    <span><BedDouble aria-hidden="true" /> Hotel</span>
+                    <span><Store aria-hidden="true" /> Konbini</span>
+                  </div>
                   <b>Explore Travel Content <em aria-hidden="true">→</em></b>
                 </div>
-                <span>Travel module / tags and action</span>
               </div>
               <div className="sonus-component sonus-component--travel-feature">
                 <div className="sonus-travel-feature-preview">
                   <div className="sonus-travel-feature-head"><b aria-hidden="true">‹</b><span>Travel Sprint</span></div>
                   <div className="sonus-travel-feature-body">
-                    <p>✈&nbsp; Travel Sprint</p>
+                    <p><Plane aria-hidden="true" /> Travel Sprint</p>
                     <h3>Leaving Soon?</h3>
                     <p>Travel Sprint prepares you for real-world Japanese with essential phrases for your trip.</p>
                     <strong>Pick a situation, practice the lines, and get day-one confidence fast.</strong>
                   </div>
                   <div className="sonus-travel-feature-meta"><span>8 scenarios</span><span>Audio + rapid recall</span></div>
+                  <div className="sonus-travel-feature-scenarios">
+                    <div><Plane aria-hidden="true" /><strong>Airport</strong><small>&amp; Arrival</small></div>
+                    <div><CarFront aria-hidden="true" /><strong>Transport</strong><small>&amp; Getting Around</small></div>
+                  </div>
                 </div>
-                <span>Feature page / campaign state</span>
               </div>
+            </div>
+            <div className="sonus-component sonus-component--resume sonus-resume-after-travel">
+              <div className="sonus-resume-preview">
+                <p>Welcome, Matt</p>
+                <strong>N5</strong>
+                <span>Unit 3 · Lesson 1</span>
+                <b>Continue Learning <em aria-hidden="true">→</em></b>
+              </div>
+            </div>
             </div>
           </div>
         </section>
@@ -468,7 +482,7 @@ function NelaRideCaseStudy({ project }: { project: Project }) {
           <div className="container"><p className="nela-kicker">04 / The outcome</p><h2>Different journeys.<br />The same visual language.</h2><p>The website, Rider app, and Driver app serve different needs, but share a consistent visual foundation. My work grew from redesigning the public website to helping establish clearer guidance for future design decisions and a more cohesive experience for both riders and drivers.</p><div><Link to="/#work">← All projects</Link><a href={project.link} target="_blank" rel="noopener noreferrer">View live site →</a></div></div>
         </section>
       </main>
-      {expandedGuideline && <div className="nela-guideline-modal" role="presentation" onMouseDown={() => setExpandedGuideline(null)}><div className="nela-guideline-modal-content" role="dialog" aria-modal="true" aria-label={`${expandedGuideline.label} guidelines`} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="nela-guideline-modal-close" onClick={() => setExpandedGuideline(null)} aria-label="Close guideline preview">×</button><img src={expandedGuideline.src} alt={expandedGuideline.alt} /><p>{expandedGuideline.label}</p></div></div>}
+      {expandedGuideline && <div className="nela-guideline-modal" role="presentation" onMouseDown={() => setExpandedGuideline(null)}><div className="nela-guideline-modal-content" role="dialog" aria-modal="true" aria-label={`${expandedGuideline.label} guidelines`} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="nela-guideline-modal-close" onClick={() => setExpandedGuideline(null)} aria-label="Close guideline preview"><X aria-hidden="true" /></button><img src={expandedGuideline.src} alt={expandedGuideline.alt} /><p>{expandedGuideline.label}</p></div></div>}
     </div>
   )
 }
