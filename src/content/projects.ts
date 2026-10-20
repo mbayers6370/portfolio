@@ -138,6 +138,36 @@ const projects: Project[] = [
     year: '2026',
     role: 'Product Design Intern',
   },
+  {
+    slug: 'travlr',
+    num: '04',
+    title: 'Travlr',
+    type: 'Independent UI/UX Redesign',
+    desc: 'A full-stack travel booking application independently redesigned to create a clearer, more cohesive booking experience.',
+    tags: ['UI/UX Design', 'Full-Stack Development', 'Responsive Design'],
+    link: 'https://github.com/mbayers6370/Travlr',
+    linkLabel: 'GitHub repository',
+    details: [
+      {
+        heading: 'Starting with the foundation',
+        body: 'Travlr Getaways began as a full-stack application developed for a computer science course. The original work met the technical requirements of a travel booking site, but its older template did not provide the visual clarity or cohesion expected from a polished product experience.',
+      },
+      {
+        heading: 'Redesigning the experience',
+        body: 'I independently reimagined the interface with a modern visual identity, improved navigation, clearer content hierarchy, and more intuitive layouts. The redesign carried across travel packages, accommodations, dining, and contact pages so the application would feel like one connected experience rather than a collection of templates.',
+      },
+      {
+        heading: 'Using comparison with purpose',
+        body: 'The before-and-after work makes the redesign tangible. It shows how visual hierarchy, navigation, spacing, and page structure can shift an interface from technically complete to easier to understand, scan, and use.',
+      },
+      {
+        heading: 'Beyond the requirements',
+        body: 'This project demonstrates the ability to take a complete web application beyond its technical foundation and apply UI/UX principles across the whole experience. The independent redesign became an opportunity to practice systems thinking, visual consistency, and user-centered decision-making in a real product context.',
+      },
+    ],
+    year: '2026',
+    role: 'Full-Stack Developer & UI/UX Designer',
+  },
 ]
 
 export default projects

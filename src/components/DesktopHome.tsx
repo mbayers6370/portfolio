@@ -22,6 +22,7 @@ const projectSummaries: Record<string, string> = {
   nelaride: 'Designing cohesive rider and driver experiences across web and mobile.',
   'cs499-eportfolio': 'Simplifying event creation and schedule management through intuitive interactions.',
   sonus: 'Building a language-learning experience focused on clarity and thoughtful progression.',
+  travlr: 'Independently redesigning a full-stack travel booking experience around clarity, cohesion, and easier navigation.',
 }
 const designSkills = {
   'Experience Design': ['Interaction design', 'Information architecture', 'Wireframing & prototyping'],
@@ -112,12 +113,18 @@ export default function DesktopHome() {
                 {sent ? <div className="desktop-form-success"><strong>{contactContent.success.title}</strong><p>{contactContent.success.subtitle}</p></div> : (
                   <form onSubmit={submitForm} name="desktop-contact" data-netlify="true">
                     <input type="hidden" name="form-name" value="desktop-contact" />
-                    <label htmlFor="desktop-name">{contactContent.fields.name.label}</label>
-                    <input id="desktop-name" name="name" placeholder={contactContent.fields.name.placeholder} value={form.name} onChange={updateForm} required />
-                    <label htmlFor="desktop-email">{contactContent.fields.email.label}</label>
-                    <input id="desktop-email" type="email" name="email" placeholder={contactContent.fields.email.placeholder} value={form.email} onChange={updateForm} required />
-                    <label htmlFor="desktop-message">{contactContent.fields.message.label}</label>
-                    <textarea id="desktop-message" name="message" placeholder={contactContent.fields.message.placeholder} value={form.message} onChange={updateForm} required />
+                    <div className="desktop-form-field">
+                      <label htmlFor="desktop-name">{contactContent.fields.name.label}</label>
+                      <input id="desktop-name" name="name" placeholder={contactContent.fields.name.placeholder} value={form.name} onChange={updateForm} required />
+                    </div>
+                    <div className="desktop-form-field">
+                      <label htmlFor="desktop-email">{contactContent.fields.email.label}</label>
+                      <input id="desktop-email" type="email" name="email" placeholder={contactContent.fields.email.placeholder} value={form.email} onChange={updateForm} required />
+                    </div>
+                    <div className="desktop-form-field desktop-form-field--message">
+                      <label htmlFor="desktop-message">{contactContent.fields.message.label}</label>
+                      <textarea id="desktop-message" name="message" placeholder={contactContent.fields.message.placeholder} value={form.message} onChange={updateForm} required />
+                    </div>
                     <button type="submit">{contactContent.submitLabel}</button>
                   </form>
                 )}

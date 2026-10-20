@@ -1,14 +1,21 @@
-/* Reset & Base */
-*, *::before, *::after {
+/* ========================================================================== */
+/* Global styles                                                              */
+/* ========================================================================== */
+
+/* Reset and design tokens */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --bg: #e0e1da;
-  --olive: #283113;
-  --secondary: #f3ff74;
+  /* Moss palette: deep slate, muted moss, and pale lichen. */
+  --bg: #e4e1d2;
+  --olive: #1e3037;
+  --secondary: #c3cb84;
   --white: #ffffff;
 
   --cream: var(--bg);
@@ -21,14 +28,14 @@
   --on-dark-dim: var(--white);
   --forest: var(--olive);
   --sage: var(--secondary);
-  --sage-dim: rgba(243, 255, 116, 0.68);
+  --sage-dim: rgba(195, 203, 132, 0.68);
   --teal: var(--olive);
-  --hairline: rgba(40, 49, 19, 0.15);
+  --hairline: rgba(30, 48, 55, 0.18);
   --hairline-dark: rgba(255, 255, 255, 0.15);
 
-  --font-display: 'Jost', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'DM Mono', monospace;
+  --font-display: "Jost", sans-serif;
+  --font-body: "Atkinson Hyperlegible", sans-serif;
+  --font-mono: "DM Mono", monospace;
 
   --section-pad: clamp(5rem, 9vw, 10rem);
   --container-max: 1400px;
@@ -54,7 +61,7 @@ body {
 }
 
 button,
-[role='button'] {
+[role="button"] {
   border-radius: var(--radius-control);
 }
 
@@ -96,7 +103,9 @@ button,
   letter-spacing: 0.1em;
 }
 
-/* Shared Nav */
+/* -------------------------------------------------------------------------- */
+/* Shared navigation                                                          */
+/* -------------------------------------------------------------------------- */
 .nav {
   position: fixed;
   top: 0;
@@ -126,7 +135,9 @@ button,
   line-height: 1;
 }
 
-.nav-home-label { display: none; }
+.nav-home-label {
+  display: none;
+}
 
 .nav-links {
   display: flex;
@@ -248,6 +259,27 @@ button,
   height: 1.2rem;
 }
 
+/* Route-specific navigation themes */
+.nav--project,
+.nav--project.nav--scrolled,
+.nav-mobile--project {
+  background: #e0e1da;
+  border-color: rgba(40, 49, 19, 0.18);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav--project .nav-logo,
+.nav--project .nav-links a,
+.nav--project .nav-linkedin,
+.nav-mobile--project a {
+  color: #283113;
+}
+
+.nav--project .nav-hamburger span {
+  background: #283113;
+}
+
 /* The scheduler case study starts on a dark hero, so its fixed navigation
    has an explicit route modifier rather than relying on page-content selectors. */
 .nav--scheduler,
@@ -274,7 +306,7 @@ button,
 .nav--art.nav--scrolled,
 .nav-mobile--art {
   background: var(--cream);
-  border-color: rgba(40, 49, 19, 0.18);
+  border-color: rgba(30, 48, 55, 0.18);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
@@ -290,7 +322,9 @@ button,
   background: var(--olive);
 }
 
-.nav-mobile--art .nav-mobile-socials a { color: var(--secondary); }
+.nav-mobile--art .nav-mobile-socials a {
+  color: var(--secondary);
+}
 
 .nav--books,
 .nav--books.nav--scrolled,
@@ -323,7 +357,7 @@ button,
   .nav--home,
   .nav--home.nav--scrolled {
     background: var(--olive);
-    border-color: rgba(243, 255, 116, 0.28);
+    border-color: rgba(195, 203, 132, 0.42);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
@@ -368,7 +402,7 @@ button,
   .nav--home.nav--scrolled,
   .nav-mobile--home {
     background: var(--olive);
-    border-color: rgba(243, 255, 116, 0.28);
+    border-color: rgba(195, 203, 132, 0.42);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
@@ -409,7 +443,9 @@ button,
   }
 }
 
-/* Shared Footer */
+/* -------------------------------------------------------------------------- */
+/* Shared footer                                                              */
+/* -------------------------------------------------------------------------- */
 .footer {
   background: var(--olive);
   border-top: 1px solid var(--hairline-dark);
@@ -428,7 +464,9 @@ button,
   color: var(--on-dark-mid);
 }
 
-/* Shared page chrome */
+/* -------------------------------------------------------------------------- */
+/* Shared page chrome                                                         */
+/* -------------------------------------------------------------------------- */
 .page-header {
   padding: calc(var(--section-pad) + 4rem) 0 var(--section-pad);
   border-bottom: 1px solid var(--hairline);
@@ -495,7 +533,10 @@ button,
   padding: 0.3rem 0.75rem;
   border: 1px solid var(--hairline);
   color: var(--near-black);
-  transition: border-color 0.35s, color 0.35s, background-color 0.35s;
+  transition:
+    border-color 0.35s,
+    color 0.35s,
+    background-color 0.35s;
 }
 
 @media (max-width: 900px) {

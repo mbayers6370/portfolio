@@ -1,25 +1,27 @@
-import { useLayoutEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
-import Nav from './components/Nav'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import Books from './pages/Books'
-import Art from './pages/Art'
-import Project from './pages/Project'
+import { useLayoutEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Books from "./pages/Books";
+import Art from "./pages/Art";
+import Project from "./pages/Project";
 
 function ScrollToRoutePosition() {
-  const { pathname, hash } = useLocation()
+  const { pathname, hash } = useLocation();
 
   useLayoutEffect(() => {
     if (hash) {
-      document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView()
-      return
+      document
+        .getElementById(decodeURIComponent(hash.slice(1)))
+        ?.scrollIntoView();
+      return;
     }
 
-    window.scrollTo(0, 0)
-  }, [pathname, hash])
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
 
-  return null
+  return null;
 }
 
 export default function App() {
@@ -37,5 +39,5 @@ export default function App() {
       </main>
       <Footer />
     </>
-  )
+  );
 }
