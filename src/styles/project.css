@@ -958,7 +958,7 @@ body:has(.sonus-case-study) {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 4.5rem);
   font-weight: 800;
-  left: clamp(1.25rem, 3vw, 3rem);
+  left: max(var(--gutter), calc((100vw - var(--container-max)) / 2 + var(--gutter)));
   letter-spacing: -0.04em;
   line-height: 0.95;
   max-width: 18ch;
@@ -2470,21 +2470,24 @@ body:has(.travlr-case-study) {
   min-width: 0;
 }
 .travlr-comparison-grid figure > div {
+  --travlr-frame-inset: clamp(0.45rem, 0.75vw, 0.75rem);
   background: var(--travlr-night);
   border: 1px solid rgba(30, 48, 55, 0.18);
   border-radius: 0.6rem;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 3;
   height: auto;
   overflow: hidden;
-  padding: clamp(0.45rem, 0.75vw, 0.75rem);
+  position: relative;
 }
 .travlr-comparison-grid img {
   border-radius: 0.3rem;
   display: block;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  position: absolute;
+  inset: var(--travlr-frame-inset);
+  height: calc(100% - (var(--travlr-frame-inset) * 2));
+  width: calc(100% - (var(--travlr-frame-inset) * 2));
 }
 .travlr-comparison-grid figure:last-of-type > div {
   height: auto;
@@ -2534,7 +2537,7 @@ body:has(.travlr-case-study) {
   border-top: 1px solid rgba(228, 225, 210, 0.24);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: clamp(3rem, 6vw, 5rem);
+  margin-top: clamp(1.75rem, 3.5vw, 3rem);
 }
 .travlr-principles article {
   border-right: 1px solid rgba(228, 225, 210, 0.24);
@@ -2546,16 +2549,11 @@ body:has(.travlr-case-study) {
 .travlr-principles article:last-child {
   border-right: 0;
 }
-.travlr-principles span {
-  color: var(--travlr-accent);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-}
 .travlr-principles h3 {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 2.2vw, 2rem);
   letter-spacing: -0.04em;
-  margin-top: 2.25rem;
+  margin-top: 0.25rem;
 }
 .travlr-principles p {
   color: rgba(228, 225, 210, 0.72);
@@ -2589,33 +2587,31 @@ body:has(.travlr-case-study) {
   grid-template-columns: minmax(16rem, 0.5fr) minmax(0, 1.5fr);
 }
 .travlr-experience-list {
-  border-top: 1px solid rgba(30, 48, 55, 0.25);
+  display: grid;
+  gap: 0.6rem;
 }
 .travlr-experience-list button {
   align-items: center;
   background: transparent;
-  border: 0;
-  border-bottom: 1px solid rgba(30, 48, 55, 0.25);
+  border: 1px solid rgba(30, 48, 55, 0.3);
+  border-radius: 0.45rem;
   color: var(--travlr-night);
   cursor: pointer;
   display: grid;
   gap: 1rem;
-  grid-template-columns: 2.5rem 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   padding: 1.15rem 0.75rem;
   text-align: left;
   transition: background 180ms ease, color 180ms ease, padding 180ms ease;
   width: 100%;
 }
-.travlr-experience-list button span {
-  color: rgba(30, 48, 55, 0.62);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-}
 .travlr-experience-list button strong {
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+  font-size: clamp(1.6rem, 2.55vw, 2.25rem);
   font-weight: 600;
+  justify-self: center;
   letter-spacing: -0.035em;
+  transform: translateX(0.8rem);
 }
 .travlr-experience-list button svg {
   height: 1rem;
@@ -2628,10 +2624,6 @@ body:has(.travlr-case-study) {
   color: var(--travlr-paper);
   padding-left: 1rem;
   padding-right: 1rem;
-}
-.travlr-experience-list button:hover span,
-.travlr-experience-list button.is-active span {
-  color: var(--travlr-accent);
 }
 .travlr-experience-list button:hover svg,
 .travlr-experience-list button.is-active svg {
@@ -2646,6 +2638,21 @@ body:has(.travlr-case-study) {
   border-radius: 0.8rem;
   color: var(--travlr-paper);
   padding: clamp(1rem, 2vw, 1.5rem);
+}
+.travlr-experience-preview-button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: zoom-in;
+  display: block;
+  font: inherit;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+.travlr-experience-preview-button:focus-visible {
+  outline: 2px solid var(--travlr-accent);
+  outline-offset: 0.4rem;
 }
 .travlr-experience-preview-label {
   align-items: baseline;
@@ -2663,13 +2670,21 @@ body:has(.travlr-case-study) {
   letter-spacing: 0;
   text-transform: none;
 }
+.travlr-experience-preview-label em {
+  color: rgba(228, 225, 210, 0.72);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 .travlr-experience-preview-grid {
   display: grid;
   gap: 0.75rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 1rem;
 }
-.travlr-experience-preview figure {
+.travlr-experience-preview-grid > span {
   background: var(--travlr-paper);
   border-radius: 0.5rem;
   color: var(--travlr-night);
@@ -2681,13 +2696,20 @@ body:has(.travlr-case-study) {
   object-fit: contain;
   width: 100%;
 }
-.travlr-experience-preview figcaption {
+.travlr-experience-preview-grid > span > span {
   border-top: 1px solid rgba(30, 48, 55, 0.16);
+  display: block;
   font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.1em;
   padding: 0.65rem 0.75rem;
   text-transform: uppercase;
+}
+.travlr-experience-preview-button:hover .travlr-experience-preview-grid > span {
+  transform: translateY(-0.2rem);
+}
+.travlr-experience-preview-grid > span {
+  transition: transform 180ms ease;
 }
 .travlr-outcome {
   background: var(--travlr-paper);
@@ -2719,6 +2741,81 @@ body:has(.travlr-case-study) {
 .travlr-back:hover {
   color: var(--travlr-night);
 }
+.travlr-comparison-modal {
+  align-items: center;
+  background: rgba(11, 20, 24, 0.82);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  position: fixed;
+  z-index: 100;
+}
+.travlr-comparison-modal-content {
+  background: var(--travlr-paper);
+  border-radius: 0.8rem;
+  max-height: min(90vh, 62rem);
+  max-width: 100rem;
+  overflow: auto;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  position: relative;
+  width: 100%;
+}
+.travlr-comparison-modal-close {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--travlr-night);
+  cursor: pointer;
+  display: inline-flex;
+  padding: 0.25rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+.travlr-comparison-modal-close svg {
+  height: 1.1rem;
+  width: 1.1rem;
+}
+.travlr-comparison-modal-close:focus-visible {
+  outline: 2px solid var(--travlr-night);
+  outline-offset: 0.2rem;
+}
+.travlr-comparison-modal-heading span,
+.travlr-comparison-modal-grid figcaption {
+  color: rgba(30, 48, 55, 0.62);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.travlr-comparison-modal-heading h2 {
+  color: var(--travlr-night);
+  font-size: clamp(2rem, 4vw, 3.75rem);
+  margin-top: 0.35rem;
+}
+.travlr-comparison-modal-grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(1.25rem, 3vw, 2.5rem);
+}
+.travlr-comparison-modal-grid figure {
+  background: #fff;
+  border: 1px solid rgba(30, 48, 55, 0.15);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.travlr-comparison-modal-grid img {
+  display: block;
+  height: min(58vh, 42rem);
+  object-fit: contain;
+  width: 100%;
+}
+.travlr-comparison-modal-grid figcaption {
+  border-top: 1px solid rgba(30, 48, 55, 0.12);
+  padding: 0.7rem 0.85rem;
+}
 @media (max-width: 800px) {
   .travlr-hero-grid,
   .travlr-foundation-grid,
@@ -2740,6 +2837,13 @@ body:has(.travlr-case-study) {
   .travlr-experience-preview-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .travlr-comparison-modal-grid {
+    grid-template-columns: 1fr;
+  }
+  .travlr-comparison-modal-grid img {
+    height: auto;
+    max-height: 52vh;
+  }
   .travlr-map {
     max-width: 34rem;
   }
@@ -2757,7 +2861,7 @@ body:has(.travlr-case-study) {
     border-bottom: 0;
   }
   .travlr-principles h3 {
-    margin-top: 1rem;
+    margin-top: 0;
   }
 }
 @media (max-width: 560px) {
@@ -2773,5 +2877,9 @@ body:has(.travlr-case-study) {
   .travlr-foundation-meta,
   .travlr-experience-preview-grid {
     grid-template-columns: 1fr;
+  }
+  .travlr-experience-preview-label {
+    flex-wrap: wrap;
+    gap: 0.45rem 0.75rem;
   }
 }

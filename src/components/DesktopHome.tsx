@@ -109,7 +109,7 @@ export default function DesktopHome() {
 
             {activeTab === 'contact' && (
               <section id="desktop-contact" role="tabpanel" aria-labelledby="desktop-tab-contact" className="desktop-contact">
-                <div><h2>{contactContent.heading}</h2></div>
+                <div><h2>Let&apos;s Work<br />Together</h2></div>
                 {sent ? <div className="desktop-form-success"><strong>{contactContent.success.title}</strong><p>{contactContent.success.subtitle}</p></div> : (
                   <form onSubmit={submitForm} name="desktop-contact" data-netlify="true">
                     <input type="hidden" name="form-name" value="desktop-contact" />

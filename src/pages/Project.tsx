@@ -517,7 +517,19 @@ function TravlrCaseStudy({ project }: { project: Project }) {
     { id: 'about', label: 'About', old: travlrAboutOld, redesign: travlrAboutRedesign },
   ]
   const [activeExperience, setActiveExperience] = useState(0)
+  const [isExperienceModalOpen, setIsExperienceModalOpen] = useState(false)
   const activePage = experiencePages[activeExperience]
+
+  useEffect(() => {
+    if (!isExperienceModalOpen) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsExperienceModalOpen(false)
+    }
+
+    document.addEventListener('keydown', closeOnEscape)
+    return () => document.removeEventListener('keydown', closeOnEscape)
+  }, [isExperienceModalOpen])
 
   return (
     <div className="project-page travlr-case-study">
@@ -568,7 +580,7 @@ function TravlrCaseStudy({ project }: { project: Project }) {
             <p className="travlr-kicker">03 / Redesign principles</p>
             <div className="travlr-focus-heading"><h2>Every decision needed<br />a clearer purpose.</h2><p>The redesign focused on helping visitors orient themselves quickly, understand what each page offered, and move through the site without fighting its structure.</p></div>
             <div className="travlr-principles">
-              {redesignAreas.map(([title, copy], index) => <article key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{copy}</p></article>)}
+              {redesignAreas.map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p></article>)}
             </div>
           </div>
         </section>
@@ -578,12 +590,12 @@ function TravlrCaseStudy({ project }: { project: Project }) {
             <div className="travlr-pages-intro"><div><p className="travlr-kicker">04 / Across the experience</p><h2>One system,<br />four destinations.</h2></div><p>The visual update carried through the key areas of the application, connecting information architecture and interface styling rather than treating each route as an isolated page.</p></div>
             <div className="travlr-experience-viewer">
               <div className="travlr-experience-list" role="tablist" aria-label="Travlr redesigned screens">
-                {experiencePages.map((page, index) => <button key={page.id} type="button" role="tab" aria-selected={activeExperience === index} aria-controls="travlr-experience-panel" className={activeExperience === index ? 'is-active' : ''} onClick={() => setActiveExperience(index)}><span>{String(index + 1).padStart(2, '0')}</span><strong>{page.label}</strong><ArrowRight aria-hidden="true" /></button>)}
+                {experiencePages.map((page, index) => <button key={page.id} type="button" role="tab" aria-selected={activeExperience === index} aria-controls="travlr-experience-panel" className={activeExperience === index ? 'is-active' : ''} onClick={() => setActiveExperience(index)}><strong>{page.label}</strong><ArrowRight aria-hidden="true" /></button>)}
               </div>
-              <div className="travlr-experience-preview" id="travlr-experience-panel" role="tabpanel" aria-live="polite">
-                <div className="travlr-experience-preview-label"><span>Before / after</span><strong>{activePage.label}</strong></div>
-                <div className="travlr-experience-preview-grid"><figure><img src={activePage.old} alt={`${activePage.label} prebuilt site`} /><figcaption>Prebuilt</figcaption></figure><figure><img src={activePage.redesign} alt={`${activePage.label} independent redesign`} /><figcaption>Redesign</figcaption></figure></div>
-              </div>
+              <div className="travlr-experience-preview" id="travlr-experience-panel" role="tabpanel" aria-live="polite"><button className="travlr-experience-preview-button" type="button" aria-haspopup="dialog" aria-label={`Expand ${activePage.label} before-and-after comparison`} onClick={() => setIsExperienceModalOpen(true)}>
+                <span className="travlr-experience-preview-label"><span>Before / after</span><strong>{activePage.label}</strong><em>Open comparison ↗</em></span>
+                <span className="travlr-experience-preview-grid"><span><img src={activePage.old} alt={`${activePage.label} prebuilt site`} /><span>Prebuilt</span></span><span><img src={activePage.redesign} alt={`${activePage.label} independent redesign`} /><span>Redesign</span></span></span>
+              </button></div>
             </div>
           </div>
         </section>
@@ -592,6 +604,7 @@ function TravlrCaseStudy({ project }: { project: Project }) {
           <div className="container"><p className="travlr-kicker">05 / The outcome</p><h2>Beyond the build.</h2><p>This project demonstrates how I take a functional application beyond its technical requirements. I independently improved its information architecture, interface consistency, and overall presentation, then used visible before-and-after evidence to explain each decision.</p><div className="travlr-actions"><Link to="/#work" className="travlr-back">Back to all projects <ArrowRight aria-hidden="true" /></Link><a href={project.link} target="_blank" rel="noopener noreferrer" className="travlr-back">View GitHub repository <ExternalLink aria-hidden="true" /></a></div></div>
         </section>
       </main>
+      {isExperienceModalOpen && <div className="travlr-comparison-modal" role="presentation" onMouseDown={() => setIsExperienceModalOpen(false)}><div className="travlr-comparison-modal-content" role="dialog" aria-modal="true" aria-label={`${activePage.label} before-and-after comparison`} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="travlr-comparison-modal-close" onClick={() => setIsExperienceModalOpen(false)} aria-label="Close comparison"><X aria-hidden="true" /></button><div className="travlr-comparison-modal-heading"><span>Before / after</span><h2>{activePage.label}</h2></div><div className="travlr-comparison-modal-grid"><figure><img src={activePage.old} alt={`${activePage.label} prebuilt site`} /><figcaption>Prebuilt</figcaption></figure><figure><img src={activePage.redesign} alt={`${activePage.label} independent redesign`} /><figcaption>Independent redesign</figcaption></figure></div></div></div>}
     </div>
   )
 }
