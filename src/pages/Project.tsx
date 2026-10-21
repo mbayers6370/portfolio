@@ -232,7 +232,7 @@ function SchedulerCaseStudy({ project }: { project: Project }) {
       <header className="scheduler-hero">
         <div className="container scheduler-hero-grid">
           <div className="scheduler-hero-copy">
-            <p className="scheduler-kicker">No. {project.num} / Android application</p>
+            <p className="scheduler-kicker">Android application</p>
             <h1>Android<br />Scheduler.</h1>
             <p className="scheduler-hero-subtitle">{project.desc}</p>
             <dl className="scheduler-metadata">
@@ -302,26 +302,18 @@ function SonusCaseStudy({ project }: { project: Project }) {
   return (
     <div className="project-page sonus-case-study">
       <header className="sonus-hero">
+        <img className="sonus-hero-topographic" src={sonusTopographicTransparent} alt="" aria-hidden="true" />
         <div className="container">
-          <div className="sonus-hero-meta"><span>No. {project.num} / Independent project</span><span>{project.year}</span></div>
+          <div className="sonus-hero-meta"><span>Independent project</span><span>{project.year}</span></div>
           <div className="sonus-hero-intro">
             <h1>Sonus.</h1>
-            <p>Speak with clarity. Learn with structure.</p>
+            <p>A learning experience built around focus, not distraction.</p>
           </div>
           <div className="sonus-hero-spec"><span>Product design / engineering</span><span>React · TypeScript · PostgreSQL</span></div>
         </div>
       </header>
 
       <main>
-        <section className="sonus-terrain-section" aria-label="Sonus project introduction">
-          <div className="container">
-            <div className="sonus-terrain-frame">
-              <img src={sonusTopographicTransparent} alt="Topographic linework representing Sonus's focused learning paths" />
-              <p>A learning experience built around focus, not distraction.</p>
-            </div>
-          </div>
-        </section>
-
         <section className="sonus-section sonus-idea">
           <div className="container">
             <p className="sonus-kicker">01 / The idea</p>
@@ -452,7 +444,6 @@ function NelaRideCaseStudy({ project }: { project: Project }) {
       <div className="page-header project-page-header">
         <div className="container">
           <div className="project-page-meta">
-            <span className="page-header-label">No. {project.num}</span>
             <span className="page-header-label">{project.type}</span>
           </div>
           <h1 className="page-header-title"><ProjectTitle title={project.title} />.</h1>
@@ -499,9 +490,9 @@ function NelaRideCaseStudy({ project }: { project: Project }) {
 
 function TravlrCaseStudy({ project }: { project: Project }) {
   const redesignAreas = [
-    ['Navigation', 'Clearer routes between packages, stays, dining, and contact.'],
-    ['Hierarchy', 'A calmer order for decisions, content, and calls to action.'],
-    ['Cohesion', 'One visual language across every page of the application.'],
+    ['Navigation', 'Reorganized the experience around recognizable destinations and clear routes between travel packages, accommodations, dining, and supporting information.'],
+    ['Hierarchy', 'Replaced crowded layouts and competing visual elements with stronger headings, purposeful spacing, clearer content groupings, and more recognizable calls to action.'],
+    ['Cohesion', 'Established a consistent visual language through typography, color, imagery, navigation patterns, and reusable interface treatments across the website.'],
   ]
   const caseStudySections = [
     { id: 'travlr-starting-point', label: 'Starting point' },
@@ -511,20 +502,26 @@ function TravlrCaseStudy({ project }: { project: Project }) {
     { id: 'travlr-outcome', label: 'The outcome' },
   ]
   const experiencePages = [
-    { id: 'travel', label: 'Travel', old: travlrTravelOld, redesign: travlrTravelRedesign },
-    { id: 'rooms', label: 'Rooms', old: travlrRoomsOld, redesign: travlrRoomsRedesign },
-    { id: 'dining', label: 'Dining', old: travlrDiningOld, redesign: travlrDiningRedesign },
-    { id: 'about', label: 'About', old: travlrAboutOld, redesign: travlrAboutRedesign },
+    { id: 'travel', label: 'Travel', description: 'Reorganized destination and package information into more scannable layouts, with clearer headings, imagery, and content groupings.', old: travlrTravelOld, redesign: travlrTravelRedesign },
+    { id: 'rooms', label: 'Rooms', description: 'Refined the accommodations experience to make individual stays easier to distinguish and compare through more consistent presentation.', old: travlrRoomsOld, redesign: travlrRoomsRedesign },
+    { id: 'dining', label: 'Dining', description: 'Reworked the dining content into a more intentional editorial layout, allowing food imagery and descriptive content to establish hierarchy.', old: travlrDiningOld, redesign: travlrDiningRedesign },
+    { id: 'about', label: 'About', description: 'Introduced a clearer structure for the brand story and supporting information, bringing the page into alignment with the rest of the website.', old: travlrAboutOld, redesign: travlrAboutRedesign },
   ]
   const [activeExperience, setActiveExperience] = useState(0)
   const [isExperienceModalOpen, setIsExperienceModalOpen] = useState(false)
+  const experienceTriggerRef = useRef<HTMLButtonElement | null>(null)
   const activePage = experiencePages[activeExperience]
+
+  const closeExperienceModal = () => {
+    setIsExperienceModalOpen(false)
+    window.requestAnimationFrame(() => experienceTriggerRef.current?.focus())
+  }
 
   useEffect(() => {
     if (!isExperienceModalOpen) return
 
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsExperienceModalOpen(false)
+      if (event.key === 'Escape') closeExperienceModal()
     }
 
     document.addEventListener('keydown', closeOnEscape)
@@ -538,11 +535,11 @@ function TravlrCaseStudy({ project }: { project: Project }) {
           <div className="travlr-hero-copy">
             <p className="travlr-kicker">Travlr Getaways</p>
             <h1>Built to book.<br />Redesigned to <em>navigate.</em></h1>
-            <p>Independent UI/UX redesign of a full-stack travel booking application.</p>
+            <p>A full-stack travel application reimagined through an independent UI/UX redesign, transforming a dated course template into a more cohesive, intuitive, and visually engaging experience.</p>
             <dl className="travlr-hero-meta">
-              <div><dt>Role</dt><dd>{project.role}</dd></div>
-              <div><dt>Scope</dt><dd>Visual identity, navigation, hierarchy, responsive layouts</dd></div>
-              <div><dt>Year</dt><dd>{project.year}</dd></div>
+              <div><dt>Role</dt><dd>Full-Stack Developer / UI/UX Designer</dd></div>
+              <div><dt>Scope</dt><dd>Visual design, information architecture, navigation, responsive layouts</dd></div>
+              <div><dt>Year</dt><dd>2026</dd></div>
             </dl>
           </div>
           <div className="travlr-map" aria-label="Redesign focus areas">
@@ -555,10 +552,10 @@ function TravlrCaseStudy({ project }: { project: Project }) {
       <main>
         <section className="travlr-section travlr-foundation" id="travlr-starting-point">
           <div className="container travlr-foundation-grid">
-            <div><p className="travlr-kicker">01 / Starting point</p><h2>Technical foundation.<br />New visual direction.</h2></div>
+            <div><p className="travlr-kicker">01 / Starting point</p><h2>Technical foundation.<br />A new visual direction.</h2></div>
             <div className="travlr-foundation-copy">
-              <p>Travlr Getaways began as a full-stack application developed for a computer science course. The original site met its technical requirements, but an outdated template limited clarity, cohesion, and the sense of a complete booking experience. The redesign became an independent effort to bring the product closer to the standard its functionality deserved.</p>
-              <dl className="travlr-foundation-meta"><div><dt>Foundation</dt><dd>Full-stack course project</dd></div><div><dt>Independent work</dt><dd>UI/UX redesign</dd></div></dl>
+              <p>Travlr Getaways began as a full-stack application developed for a computer science course. The assignment focused on building a functional travel website, using a supplied template as the starting point.</p><p>While the original application provided the required technical foundation, its interface felt dated and visually fragmented. Dense content, inconsistent hierarchy, and an overly decorative presentation made it difficult to establish a clear sense of direction.</p><p>The coursework did not require a redesign. I chose to take that on independently, applying UI/UX principles to create a more coherent experience without losing sight of the application's underlying functionality.</p>
+              <dl className="travlr-foundation-meta"><div><dt>Foundation</dt><dd>Full-stack course application</dd></div><div><dt>Independent initiative</dt><dd>Complete UI/UX redesign</dd></div></dl>
             </div>
           </div>
         </section>
@@ -566,11 +563,11 @@ function TravlrCaseStudy({ project }: { project: Project }) {
         <section className="travlr-section travlr-comparison-section" id="travlr-comparison">
           <div className="container">
             <p className="travlr-kicker">02 / Before &amp; after</p>
-            <div className="travlr-comparison-heading"><h2>Same foundation.<br />A different experience.</h2><p>The redesign replaces a generic course template with a focused visual identity, a clearer navigation system, and a more intentional sense of place.</p></div>
+            <div className="travlr-comparison-heading"><h2>Same foundation.<br />A different experience.</h2><div className="travlr-comparison-copy"><p>The original website relied on a narrow, template-driven layout, competing colors, and dense content blocks. Its navigation and visual presentation offered little distinction between the different parts of the travel experience.</p><p>I replaced that approach with a more intentional visual system: spacious layouts, clearer content hierarchy, restrained colors, consistent navigation, and imagery that gives each destination a stronger sense of place.</p><p>The result is a redesign that changes not just how Travlr looks, but how its content is organized and presented.</p></div></div>
             <div className="travlr-comparison-grid">
-              <figure><div><img src={travlrPrebuilt} alt="Travlr Getaways prebuilt course template with crowded navigation and beach imagery" /></div><figcaption><span>Before</span><strong>Prebuilt course site</strong></figcaption></figure>
+              <figure><div><img src={travlrPrebuilt} alt="Travlr Getaways prebuilt course template with crowded navigation and beach imagery" /></div><figcaption><span>Before</span><strong>Original course template</strong></figcaption></figure>
               <ArrowRight className="travlr-comparison-arrow" aria-hidden="true" />
-              <figure><div><img src={travlrRedesign} alt="Travlr Getaways redesign with a simplified navigation and mountain-lake hero" /></div><figcaption><span>After</span><strong>Independent redesign</strong></figcaption></figure>
+              <figure><div><img src={travlrRedesign} alt="Travlr Getaways redesign with a simplified navigation and mountain-lake hero" /></div><figcaption><span>After</span><strong>Independent UI/UX redesign</strong></figcaption></figure>
             </div>
           </div>
         </section>
@@ -578,7 +575,7 @@ function TravlrCaseStudy({ project }: { project: Project }) {
         <section className="travlr-section travlr-focus" id="travlr-principles">
           <div className="container">
             <p className="travlr-kicker">03 / Redesign principles</p>
-            <div className="travlr-focus-heading"><h2>Every decision needed<br />a clearer purpose.</h2><p>The redesign focused on helping visitors orient themselves quickly, understand what each page offered, and move through the site without fighting its structure.</p></div>
+            <div className="travlr-focus-heading"><h2>Every decision needed<br />a clearer purpose.</h2><p>Rather than treating the redesign as a purely visual exercise, I focused on three connected problems: helping visitors find their way, making information easier to understand, and creating consistency across the application.</p></div>
             <div className="travlr-principles">
               {redesignAreas.map(([title, copy]) => <article key={title}><h3>{title}</h3><p>{copy}</p></article>)}
             </div>
@@ -587,13 +584,14 @@ function TravlrCaseStudy({ project }: { project: Project }) {
 
         <section className="travlr-section travlr-pages" id="travlr-experience">
           <div className="container travlr-pages-grid">
-            <div className="travlr-pages-intro"><div><p className="travlr-kicker">04 / Across the experience</p><h2>One system,<br />four destinations.</h2></div><p>The visual update carried through the key areas of the application, connecting information architecture and interface styling rather than treating each route as an isolated page.</p></div>
+            <div className="travlr-pages-intro"><div><p className="travlr-kicker">04 / Across the experience</p><h2>One system.<br />Four destinations.</h2></div><div><p>A redesign only feels cohesive when its principles carry beyond the homepage. I extended the same approach across Travlr's travel listings, accommodations, dining, and About pages, adapting each layout to its content while maintaining a shared visual identity.</p><p>Visitors encounter different information on each page, but the navigation, typography, spacing, and interface patterns remain familiar.</p></div></div>
             <div className="travlr-experience-viewer">
               <div className="travlr-experience-list" role="tablist" aria-label="Travlr redesigned screens">
-                {experiencePages.map((page, index) => <button key={page.id} type="button" role="tab" aria-selected={activeExperience === index} aria-controls="travlr-experience-panel" className={activeExperience === index ? 'is-active' : ''} onClick={() => setActiveExperience(index)}><strong>{page.label}</strong><ArrowRight aria-hidden="true" /></button>)}
+                {experiencePages.map((page, index) => <button id={`travlr-experience-tab-${page.id}`} key={page.id} type="button" role="tab" aria-selected={activeExperience === index} aria-controls="travlr-experience-panel" className={activeExperience === index ? 'is-active' : ''} onClick={() => setActiveExperience(index)}><strong>{page.label}</strong><ArrowRight aria-hidden="true" /></button>)}
               </div>
-              <div className="travlr-experience-preview" id="travlr-experience-panel" role="tabpanel" aria-live="polite"><button className="travlr-experience-preview-button" type="button" aria-haspopup="dialog" aria-label={`Expand ${activePage.label} before-and-after comparison`} onClick={() => setIsExperienceModalOpen(true)}>
+              <div className="travlr-experience-preview" id="travlr-experience-panel" role="tabpanel" aria-labelledby={`travlr-experience-tab-${activePage.id}`} aria-live="polite"><button className="travlr-experience-preview-button" ref={experienceTriggerRef} type="button" aria-haspopup="dialog" aria-label={`Expand ${activePage.label} before-and-after comparison`} onClick={() => setIsExperienceModalOpen(true)}>
                 <span className="travlr-experience-preview-label"><span>Before / after</span><strong>{activePage.label}</strong><em>Open comparison ↗</em></span>
+                <span className="travlr-experience-preview-description">{activePage.description}</span>
                 <span className="travlr-experience-preview-grid"><span><img src={activePage.old} alt={`${activePage.label} prebuilt site`} /><span>Prebuilt</span></span><span><img src={activePage.redesign} alt={`${activePage.label} independent redesign`} /><span>Redesign</span></span></span>
               </button></div>
             </div>
@@ -601,10 +599,10 @@ function TravlrCaseStudy({ project }: { project: Project }) {
         </section>
 
         <section className="travlr-section travlr-outcome" id="travlr-outcome">
-          <div className="container"><p className="travlr-kicker">05 / The outcome</p><h2>Beyond the build.</h2><p>This project demonstrates how I take a functional application beyond its technical requirements. I independently improved its information architecture, interface consistency, and overall presentation, then used visible before-and-after evidence to explain each decision.</p><div className="travlr-actions"><Link to="/#work" className="travlr-back">Back to all projects <ArrowRight aria-hidden="true" /></Link><a href={project.link} target="_blank" rel="noopener noreferrer" className="travlr-back">View GitHub repository <ExternalLink aria-hidden="true" /></a></div></div>
+          <div className="container"><p className="travlr-kicker">05 / The outcome</p><h2>Beyond the build.</h2><div className="travlr-outcome-copy"><p>Travlr began as a technical assignment, but it became an opportunity to explore what happens when functionality and design receive equal attention.</p><p>I took an existing application and independently reconsidered how people would navigate it, interpret its content, and experience it as a complete product. The redesign introduced a clearer information hierarchy, more consistent interface patterns, and a visual identity that extends across the website.</p><p>The project reinforced an approach I bring to frontend development: building an interface is only part of the work. Understanding how people experience it is what makes the result meaningful.</p></div><p className="travlr-outcome-statement">Good interfaces should do more than function.<br />They should make the next step feel obvious.</p><div className="travlr-actions"><Link to="/#work" className="travlr-back">Back to all projects <ArrowRight aria-hidden="true" /></Link><a href={project.link} target="_blank" rel="noopener noreferrer" className="travlr-back">View GitHub repository <ExternalLink aria-hidden="true" /></a></div></div>
         </section>
       </main>
-      {isExperienceModalOpen && <div className="travlr-comparison-modal" role="presentation" onMouseDown={() => setIsExperienceModalOpen(false)}><div className="travlr-comparison-modal-content" role="dialog" aria-modal="true" aria-label={`${activePage.label} before-and-after comparison`} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="travlr-comparison-modal-close" onClick={() => setIsExperienceModalOpen(false)} aria-label="Close comparison"><X aria-hidden="true" /></button><div className="travlr-comparison-modal-heading"><span>Before / after</span><h2>{activePage.label}</h2></div><div className="travlr-comparison-modal-grid"><figure><img src={activePage.old} alt={`${activePage.label} prebuilt site`} /><figcaption>Prebuilt</figcaption></figure><figure><img src={activePage.redesign} alt={`${activePage.label} independent redesign`} /><figcaption>Independent redesign</figcaption></figure></div></div></div>}
+      {isExperienceModalOpen && <div className="travlr-comparison-modal" role="presentation" onMouseDown={closeExperienceModal}><div className="travlr-comparison-modal-content" role="dialog" aria-modal="true" aria-labelledby="travlr-comparison-modal-title" onMouseDown={(event) => event.stopPropagation()}><button autoFocus type="button" className="travlr-comparison-modal-close" onClick={closeExperienceModal} aria-label="Close comparison"><X aria-hidden="true" /></button><div className="travlr-comparison-modal-heading"><span>Before / after</span><h2 id="travlr-comparison-modal-title">{activePage.label}</h2></div><div className="travlr-comparison-modal-grid"><figure><img src={activePage.old} alt={`${activePage.label} prebuilt site`} /><figcaption>Original template</figcaption></figure><figure><img src={activePage.redesign} alt={`${activePage.label} independent redesign`} /><figcaption>Independent redesign</figcaption></figure></div></div></div>}
     </div>
   )
 }
