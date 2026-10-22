@@ -2565,6 +2565,9 @@ body:has(.travlr-case-study) {
   gap: clamp(1.25rem, 3vw, 2.5rem);
   grid-template-columns: minmax(16rem, 0.5fr) minmax(0, 1.5fr);
 }
+.travlr-experience-select {
+  display: none;
+}
 .travlr-experience-list {
   display: grid;
   gap: 0.6rem;
@@ -2851,6 +2854,42 @@ body:has(.travlr-case-study) {
   }
   .travlr-experience-preview-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .travlr-experience-select {
+    display: grid;
+    gap: 0.45rem;
+    position: relative;
+  }
+  .travlr-experience-select > span {
+    color: rgba(30, 48, 55, 0.65);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .travlr-experience-select select {
+    appearance: none;
+    background: var(--travlr-night);
+    border: 0;
+    border-radius: 0.45rem;
+    color: var(--travlr-paper);
+    font: 600 1rem/1.2 var(--font-display);
+    padding: 0.95rem 2.75rem 0.95rem 1rem;
+    width: 100%;
+  }
+  .travlr-experience-select svg {
+    bottom: 0.95rem;
+    color: var(--travlr-paper);
+    height: 1rem;
+    pointer-events: none;
+    position: absolute;
+    right: 1rem;
+    stroke: currentColor;
+    width: 1rem;
+    z-index: 1;
+  }
+  .travlr-experience-list {
+    display: none;
   }
   .travlr-comparison-modal-grid {
     grid-template-columns: 1fr;

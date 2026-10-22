@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Books from "./pages/Books";
 import Art from "./pages/Art";
+import Design from "./pages/Design";
 import Project from "./pages/Project";
 
 function ScrollToRoutePosition() {
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/books" element={<Books />} />
           <Route path="/art" element={<Art />} />
+          <Route path="/design" element={<Design />} />
           <Route path="/work/:slug" element={<Project />} />
         </Routes>
       </main>

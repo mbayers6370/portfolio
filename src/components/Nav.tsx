@@ -11,6 +11,7 @@ export default function Nav() {
   const isSchedulerCaseStudy = pathname === "/work/cs499-eportfolio";
   const isArtPage = pathname === "/art";
   const isBooksPage = pathname === "/books";
+  const isDesignPage = pathname === "/design";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -32,7 +33,7 @@ export default function Nav() {
           isSchedulerCaseStudy ? " nav--scheduler" : ""
         }${isArtPage ? " nav--art" : ""}${isBooksPage ? " nav--books" : ""}${
           isHome ? " nav--home" : ""
-        }${isProjectPage ? " nav--project" : ""}`}
+        }${isProjectPage ? " nav--project" : ""}${isDesignPage ? " nav--design" : ""}`}
       >
         <Link to="/" className="nav-logo">
           {navContent.logo}
@@ -43,6 +44,11 @@ export default function Nav() {
             <a href={homeHref("#work")} onClick={close}>
               {navContent.links.work}
             </a>
+          </li>
+          <li>
+            <Link to="/design" onClick={close}>
+              {navContent.links.design}
+            </Link>
           </li>
           <li>
             <a href={homeHref("#about")} onClick={close}>
@@ -95,11 +101,14 @@ export default function Nav() {
           isSchedulerCaseStudy ? " nav-mobile--scheduler" : ""
         }${isArtPage ? " nav-mobile--art" : ""}${isBooksPage ? " nav-mobile--books" : ""}${
           isHome ? " nav-mobile--home" : ""
-        }${isProjectPage ? " nav-mobile--project" : ""}`}
+        }${isProjectPage ? " nav-mobile--project" : ""}${isDesignPage ? " nav-mobile--design" : ""}`}
       >
         <a href={homeHref("#work")} onClick={close}>
           {navContent.links.work}
         </a>
+        <Link to="/design" onClick={close}>
+          {navContent.links.design}
+        </Link>
         <a href={homeHref("#about")} onClick={close}>
           {navContent.links.about}
         </a>

@@ -157,6 +157,15 @@ button,
   transition: color 0.2s;
 }
 
+.nav-links .nav-link--secondary {
+  opacity: 0.58;
+}
+
+.nav-links .nav-link--secondary:hover,
+.nav-links .nav-link--secondary:focus-visible {
+  opacity: 1;
+}
+
 .nav-links a:hover,
 .nav-linkedin:hover,
 .nav-mobile a:hover {
@@ -299,6 +308,32 @@ button,
 }
 
 .nav--scheduler .nav-hamburger span {
+  background: var(--on-dark);
+}
+
+.nav--design,
+.nav--design.nav--scrolled,
+.nav-mobile--design {
+  background: var(--olive);
+  border-color: rgba(195, 203, 132, 0.36);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav--design .nav-logo,
+.nav--design .nav-links a,
+.nav--design .nav-linkedin,
+.nav-mobile--design a {
+  color: var(--on-dark);
+}
+
+.nav--design .nav-logo,
+.nav--design .nav-linkedin,
+.nav-mobile--design .nav-mobile-socials a {
+  color: var(--secondary);
+}
+
+.nav--design .nav-hamburger span {
   background: var(--on-dark);
 }
 

@@ -2,6 +2,7 @@ export const navContent = {
   logo: 'MB.',
   links: {
     work: 'Work',
+    design: 'Design',
     about: 'About',
     books: 'Books',
     art: 'Art',

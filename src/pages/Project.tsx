@@ -1,7 +1,7 @@
 import '../styles/project.css'
 import { useEffect, useRef, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, BedDouble, CarFront, ExternalLink, Plane, Store, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BedDouble, CarFront, ChevronDown, ExternalLink, Plane, Store, X } from 'lucide-react'
 import ProjectTitle from '../components/ProjectTitle'
 import { projectPageContent } from '../content/project-page'
 import projects from '../content/projects'
@@ -586,6 +586,13 @@ function TravlrCaseStudy({ project }: { project: Project }) {
           <div className="container travlr-pages-grid">
             <div className="travlr-pages-intro"><div><p className="travlr-kicker">04 / Across the experience</p><h2>One system.<br />Four destinations.</h2></div><div><p>A redesign only feels cohesive when its principles carry beyond the homepage. I extended the same approach across Travlr's travel listings, accommodations, dining, and About pages, adapting each layout to its content while maintaining a shared visual identity.</p><p>Visitors encounter different information on each page, but the navigation, typography, spacing, and interface patterns remain familiar.</p></div></div>
             <div className="travlr-experience-viewer">
+              <label className="travlr-experience-select">
+                <span>Choose a destination</span>
+                <select value={activeExperience} onChange={(event) => setActiveExperience(Number(event.target.value))}>
+                  {experiencePages.map((page, index) => <option key={page.id} value={index}>{page.label}</option>)}
+                </select>
+                <ChevronDown aria-hidden="true" />
+              </label>
               <div className="travlr-experience-list" role="tablist" aria-label="Travlr redesigned screens">
                 {experiencePages.map((page, index) => <button id={`travlr-experience-tab-${page.id}`} key={page.id} type="button" role="tab" aria-selected={activeExperience === index} aria-controls="travlr-experience-panel" className={activeExperience === index ? 'is-active' : ''} onClick={() => setActiveExperience(index)}><strong>{page.label}</strong><ArrowRight aria-hidden="true" /></button>)}
               </div>
