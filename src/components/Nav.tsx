@@ -50,19 +50,19 @@ export default function Nav() {
             </a>
           </li>
           <li>
-            <Link to="/books" onClick={close}>
-              {navContent.links.books}
-            </Link>
+            <a href={homeHref("#contact")} onClick={close}>
+              {navContent.links.contact}
+            </a>
           </li>
           <li>
-            <Link to="/art" onClick={close}>
+            <Link to="/art" onClick={close} className="nav-link--secondary">
               {navContent.links.art}
             </Link>
           </li>
           <li>
-            <a href={homeHref("#contact")} onClick={close}>
-              {navContent.links.contact}
-            </a>
+            <Link to="/books" onClick={close} className="nav-link--secondary">
+              {navContent.links.books}
+            </Link>
           </li>
         </ul>
         <div className="nav-socials" aria-label="Social links">
@@ -103,15 +103,15 @@ export default function Nav() {
         <a href={homeHref("#about")} onClick={close}>
           {navContent.links.about}
         </a>
-        <Link to="/books" onClick={close}>
-          {navContent.links.books}
-        </Link>
-        <Link to="/art" onClick={close}>
-          {navContent.links.art}
-        </Link>
         <a href={homeHref("#contact")} onClick={close}>
           {navContent.links.contact}
         </a>
+        <Link to="/art" onClick={close}>
+          {navContent.links.art}
+        </Link>
+        <Link to="/books" onClick={close}>
+          {navContent.links.books}
+        </Link>
         <div className="nav-mobile-socials" aria-label="Social links">
           <a
             href="https://github.com/mbayers6370"

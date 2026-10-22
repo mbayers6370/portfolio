@@ -1,5 +1,5 @@
 import { type ChangeEvent, type FormEvent, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Plane, TrainFront, Volume2 } from 'lucide-react'
 import headshot from '../assets/headshot-cutout.png'
 import nelaWorkPreview from '../assets/NELA_Work.png'
@@ -7,19 +7,11 @@ import schedulerPreview from '../assets/Scheduler_Hero.png'
 import travlrWorkPreview from '../assets/Travlr_Work.png'
 import travlrLogos from '../assets/Travlr_Logos.png'
 import { aboutContent } from '../content/about'
-import { booksArtContent } from '../content/books-art'
 import { contactContent } from '../content/contact'
 import { heroContent } from '../content/hero'
 import projects from '../content/projects'
 
-const tabs = [
-  { id: 'work', label: 'Work' },
-  { id: 'about', label: 'About' },
-  { id: 'contact', label: 'Contact' },
-  { id: 'beyond', label: 'Beyond Code' },
-] as const
-
-type TabId = (typeof tabs)[number]['id']
+type DesktopSection = 'work' | 'about' | 'contact'
 type ContactForm = { name: string; email: string; message: string }
 
 const nelaRideProject = projects.find((project) => project.slug === 'nelaride')!
@@ -35,13 +27,11 @@ const designSkills = {
 
 export default function DesktopHome() {
   const location = useLocation()
-  const navigate = useNavigate()
-  const selectedHash = location.hash.slice(1) as TabId
-  const activeTab = tabs.some((tab) => tab.id === selectedHash) ? selectedHash : 'work'
+  const selectedHash = location.hash.slice(1)
+  const activeTab: DesktopSection = selectedHash === 'about' || selectedHash === 'contact' ? selectedHash : 'work'
   const [form, setForm] = useState<ContactForm>({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
 
-  const changeTab = (tab: TabId) => navigate({ pathname: '/', hash: `#${tab}` })
   const updateForm = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const key = event.target.name as keyof ContactForm
     setForm((current) => ({ ...current, [key]: event.target.value }))
@@ -188,27 +178,10 @@ export default function DesktopHome() {
             </div>
           </section>
         ) : (
-        <section className="desktop-panel" aria-label="Portfolio sections">
-          <div className="desktop-tabs" role="tablist" aria-label="Portfolio sections">
-            <span className="desktop-tab-indicator" style={{ transform: `translateX(${tabs.findIndex((tab) => tab.id === activeTab) * 100}%)` }} />
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                role="tab"
-                aria-selected={activeTab === tab.id}
-                aria-controls={`desktop-${tab.id}`}
-                id={`desktop-tab-${tab.id}`}
-                onClick={() => changeTab(tab.id)}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
+        <section className="desktop-panel desktop-panel--section" aria-label="Portfolio section">
           <div className="desktop-panel-content">
             {activeTab === 'about' && (
-              <section id="desktop-about" role="tabpanel" aria-labelledby="desktop-tab-about" className="desktop-about">
+              <section id="desktop-about" className="desktop-about">
                 <div><h2>{aboutContent.title[0]} {aboutContent.title[1]}</h2></div>
                 <div className="desktop-about-copy">
                   <p>I’m a UI/UX Designer who turns complex product needs into clear, useful digital experiences. I work across interaction design, visual systems, and front-end implementation, using my engineering background to make thoughtful ideas practical and durable.</p>
@@ -222,7 +195,7 @@ export default function DesktopHome() {
             )}
 
             {activeTab === 'contact' && (
-              <section id="desktop-contact" role="tabpanel" aria-labelledby="desktop-tab-contact" className="desktop-contact">
+              <section id="desktop-contact" className="desktop-contact">
                 <div><h2>Let&apos;s Work<br />Together</h2></div>
                 {sent ? <div className="desktop-form-success"><strong>{contactContent.success.title}</strong><p>{contactContent.success.subtitle}</p></div> : (
                   <form onSubmit={submitForm} name="desktop-contact" data-netlify="true">
@@ -246,14 +219,6 @@ export default function DesktopHome() {
               </section>
             )}
 
-            {activeTab === 'beyond' && (
-              <section id="desktop-beyond" role="tabpanel" aria-labelledby="desktop-tab-beyond" className="desktop-beyond">
-                <div className="desktop-beyond-copy"><h2>{booksArtContent.title}</h2><p>{booksArtContent.description}</p></div>
-                <div className="desktop-beyond-links">
-                  {booksArtContent.cards.map((card) => <Link key={card.to} to={card.to} className={`desktop-beyond-card desktop-beyond-card--${card.theme}`}><span>{card.number} / {card.label}</span><h3>{card.title}</h3><p>{card.description}</p><b aria-hidden="true">↗</b></Link>)}
-                </div>
-              </section>
-            )}
           </div>
         </section>
         )}
