@@ -1,128 +1,162 @@
 import "../styles/design.css";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Bookmark, Copy, Check } from "lucide-react";
 import designInspo from "../assets/design-inspo.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const palette = [
+  { hex: "#D3AD36", ink: "#20323A" },
+  { hex: "#3D5060", ink: "#F7F6F1" },
+  { hex: "#B5B4A9", ink: "#20323A" },
+] as const;
+
+function PaletteSwatch({ hex, ink }: { hex: string; ink: string }) {
+  const [copied, setCopied] = useState(false);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (!copied) return;
+    const timeout = window.setTimeout(() => setCopied(false), 1800);
+    return () => window.clearTimeout(timeout);
+  }, [copied]);
+
+  async function copyColor() {
+    try {
+      await navigator.clipboard.writeText(hex);
+      setCopied(true);
+      setMessage(`${hex} copied to clipboard`);
+    } catch {
+      setMessage(`Select ${hex} to copy it manually`);
+    }
+  }
+
+  return (
+    <div className="palette-swatch" style={{ backgroundColor: hex, color: ink }}>
+      <button type="button" className="palette-copy" onClick={copyColor} aria-label={`Copy ${hex}`} title={copied ? "Copied!" : `Copy ${hex}`}>
+        <code>{hex}</code>
+        {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+      </button>
+      <span className="palette-copy-status" role="status">{message}</span>
+    </div>
+  );
+}
+
+const typeSpecimens = [
+  { role: "Display", family: '"Caudex", Georgia, serif', style: "normal", name: "Caudex Regular", text: "Look closer.", size: 48, leading: 48 },
+  { role: "Emphasis", family: '"Caudex", Georgia, serif', style: "italic", name: "Caudex Italic", text: "A quieter perspective.", size: 22, leading: 30 },
+  { role: "Body & interface", family: "var(--font-body)", style: "normal", name: "Atkinson Hyperlegible", text: "Good design leaves room to look, read, and think.", size: 16, leading: 26 },
+] as const;
+
+function InterfaceConcept({ mustard = false }: { mustard?: boolean }) {
+  const [saved, setSaved] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [view, setView] = useState<"journal" | "saved">("journal");
+  const showNote = view === "journal" || saved;
+
+  return (
+    <div className={`interaction-sample${mustard ? " interaction-sample--mustard" : ""}`}>
+      <header className="concept-header">
+        <strong>Field notes<span aria-hidden="true">.</span></strong>
+        <button className="concept-bookmark" type="button" aria-label={saved ? "Unsave note" : "Save note"} aria-pressed={saved} onClick={() => setSaved(!saved)}>
+          <Bookmark aria-hidden="true" fill={saved ? "currentColor" : "none"} />
+        </button>
+      </header>
+      <div className="concept-body">
+        <div className="concept-feature">
+          <div className="interface-copy">
+            <h2>{showNote ? "Small observations, properly held." : "Nothing saved yet."}</h2>
+            <p>{showNote ? "Three things worth returning to." : "Use the bookmark to keep this note here."}</p>
+          </div>
+          {showNote && <button className="concept-open" type="button" aria-label={open ? "Close note" : "Read note"} aria-expanded={open} onClick={() => setOpen(!open)}>
+            <ArrowUpRight aria-hidden="true" />
+          </button>}
+        </div>
+        {open && showNote && <p className="concept-excerpt">The color of the road after rain. A line of trees against the sky. The small details that stay with us on the way home.</p>}
+        <div className="concept-bottom"><span>{showNote ? "A short read" : "No saved notes"}</span></div>
+      </div>
+      <nav className="concept-footer" aria-label={mustard ? "Mustard concept views" : "Slate concept views"}>
+        <button type="button" aria-pressed={view === "journal"} onClick={() => setView("journal")}>Journal</button>
+        <button type="button" aria-pressed={view === "saved"} onClick={() => setView("saved")}>Saved <span>{saved ? 1 : 0}</span></button>
+      </nav>
+    </div>
+  );
+}
 
 export default function Design() {
-  const [activeFilter, setActiveFilter] = useState("All");
-  const show = (filter: string) =>
-    activeFilter === "All" || activeFilter === filter;
-
   return (
     <div className="curiosities-page">
       <main className="curiosities-main container">
         <header className="curiosities-intro">
-          <p className="curiosities-note">
-            An ongoing collection, established 2026
-          </p>
           <h1>Collected Curiosities.</h1>
           <p>
             Some things are simply worth a closer look.
           </p>
         </header>
         <section className="curiosities-grid" aria-label="Collection">
-          {show("Color") && (
             <article className="curiosity-card color-study">
               <div
                 className="color-study-swatches"
                 aria-label="A muted overcast color palette"
               >
-                <span />
-                <span />
-                <span />
+                {palette.map((color) => <PaletteSwatch key={color.hex} {...color} />)}
               </div>
               <div className="curiosity-card-caption">
                 <h2>An overcast afternoon</h2>
-                <p>Color study, October 2026</p>
+                <p className="color-study-note">
+                  This idea came to me on a drive home, watching the road meet
+                  the sky and the yellow lines cut through the gray. A few
+                  colors from an ordinary afternoon, worth keeping together.
+                </p>
               </div>
             </article>
-          )}
-          {show("Typography") && (
             <article className="curiosity-card type-study">
-              <p className="curiosity-card-index">Caudex / type guidelines</p>
-              <div className="type-study-letter">Ag</div>
-              <h2>Caudex</h2>
+              <header className="type-study-heading">
+                <div className="type-study-letter" aria-hidden="true">Ag</div>
+                <div><h2>Caudex</h2><p>Typography &amp; pairing</p></div>
+              </header>
               <div className="type-guidelines">
-                <div>
-                  <span>Display</span>
-                  <strong>Lorem Ipsum</strong>
-                  <small>Regular · 48 / 48</small>
-                </div>
-                <div>
-                  <span>Reading</span>
-                  <em>Lorem Ipsum</em>
-                  <small>Italic · 22 / 30</small>
-                </div>
+                {typeSpecimens.map((specimen) => (
+                  <div className="type-guideline-row" key={specimen.role}>
+                    <span className="type-guideline-role">{specimen.role}</span>
+                    <p
+                      className="type-guideline-specimen"
+                      style={{
+                        fontFamily: specimen.family,
+                        fontStyle: specimen.style,
+                        fontWeight: 400,
+                        fontSize: specimen.size,
+                        lineHeight: `${specimen.leading}px`,
+                      }}
+                    >
+                      {specimen.text}
+                    </p>
+                    <small>{specimen.name} · {specimen.size}px / {specimen.leading}px</small>
+                  </div>
+                ))}
               </div>
             </article>
-          )}
-          {show("Interfaces") && (
             <article className="curiosity-card interaction-study">
               <p className="curiosity-card-index">Interface Concepts</p>
               <div className="interface-variations">
-                <div className="interaction-sample">
-                  <header>
-                    <strong>Field notes</strong>
-                    <nav aria-label="Sample interface navigation">
-                      <span>Archive</span>
-                      <span>About</span>
-                    </nav>
-                  </header>
-                  <div className="interface-copy">
-                    <p>22 October</p>
-                    <h2>
-                      Small observations,
-                      <br />
-                      properly held.
-                    </h2>
-                    <span>Three things worth returning to.</span>
-                  </div>
-                  <footer>
-                    <button type="button">
-                      Open note <ArrowUpRight aria-hidden="true" />
-                    </button>
-                    <button type="button">Save</button>
-                  </footer>
-                </div>
-                <div className="interaction-sample interaction-sample--mustard">
-                  <header>
-                    <strong>Field notes</strong>
-                    <nav aria-label="Alternate sample interface navigation">
-                      <span>Archive</span>
-                      <span>About</span>
-                    </nav>
-                  </header>
-                  <div className="interface-copy">
-                    <p>22 October</p>
-                    <h2>
-                      Small observations,
-                      <br />
-                      properly held.
-                    </h2>
-                    <span>Three things worth returning to.</span>
-                  </div>
-                  <footer>
-                    <button type="button">
-                      Open note <ArrowUpRight aria-hidden="true" />
-                    </button>
-                    <button type="button">Save</button>
-                  </footer>
-                </div>
+                <InterfaceConcept />
+                <InterfaceConcept mustard />
               </div>
             </article>
-          )}
-          {show("Objects & inspiration") && (
             <article className="curiosity-card photo-study">
               <div className="photo-study-image">
-                <img src={designInspo} alt="Design inspiration reference" />
+                <img src={designInspo} alt="A wet road with yellow lane markings curving between trees beneath an overcast sky" />
               </div>
 
               <div className="curiosity-card-caption">
                 <h2>Everyday inspirations</h2>
-                <p>Collected ideas for future projects.</p>
+                <p className="inspiration-note">
+                  I’m drawn to minimalism, in design and in life. Leaving a
+                  little room makes it easier to notice what’s around me.
+                  Color palettes are already there: in a road, the weather, a
+                  line of trees. Sometimes it’s just a matter of paying
+                  attention and saving the combination.
+                </p>
               </div>
             </article>
-          )}
         </section>
       </main>
     </div>

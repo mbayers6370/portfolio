@@ -1,4 +1,6 @@
 .curiosities-page {
+  --study-paper: #f7f6f1;
+  --study-ink: #20323a;
   background: #ebeae3;
   color: #20323a;
   min-height: 100vh;
@@ -8,10 +10,9 @@
   padding-top: calc(58px + clamp(4rem, 8vw, 8rem));
 }
 
-.curiosities-note,
 .curiosity-card-index,
 .curiosity-card-caption p {
-  color: #687a79;
+  color: var(--study-ink);
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 700;
@@ -20,59 +21,34 @@
 }
 .curiosities-intro h1 {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6.3vw, 6.2rem);
+  font-size: clamp(3.5rem, 8vw, 8rem);
   font-weight: 700;
   letter-spacing: -0.065em;
   line-height: 0.9;
-  margin-top: 1.6rem;
+  margin-top: 0;
 }
 .curiosities-intro > p:last-child {
   color: #637477;
+  font-family: var(--font-body);
   font-size: clamp(1.15rem, 2vw, 1.7rem);
+  font-weight: 400;
   line-height: 1.45;
   margin-top: 1.7rem;
   margin-bottom: clamp(2rem, 3vw, 5rem);
   max-width: 55rem;
 }
-.curiosity-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: clamp(3.5rem, 7vw, 6.5rem) 0 1.4rem;
-}
-.curiosity-filters button {
-  background: #f5f4ee;
-  border: 1.5px solid #cfd3c9;
-  border-radius: 999px;
-  color: #526567;
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 0.7rem 1.25rem;
-}
-.curiosity-filters button.is-active {
-  background: #20323a;
-  border-color: #20323a;
-  color: #fff;
-}
-.curiosity-filters button:focus-visible,
-.interaction-sample button:focus-visible {
-  outline: 3px solid #c47a5f;
-  outline-offset: 3px;
-}
 .curiosities-grid {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .curiosity-card {
   border-radius: 1rem;
-  min-height: clamp(24rem, 36vw, 37rem);
+  min-width: 0;
   overflow: hidden;
 }
 .color-study {
-  background: #f7f6f1;
+  background: var(--study-paper);
   display: grid;
   grid-template-rows: 1fr auto;
 }
@@ -81,20 +57,16 @@
   grid-template-columns: repeat(3, 1fr);
   min-height: 19rem;
 }
-.color-study-swatches span:nth-child(1) {
-  background: #d3ad36;
-}
-.color-study-swatches span:nth-child(2) {
-  background: #3d5060;
-}
-.color-study-swatches span:nth-child(3) {
-  background: #b5b4a9;
-}
+.palette-swatch { align-items: end; display: flex; min-width: 0; padding: clamp(.5rem, 1.2vw, 1rem); position: relative; }
+.palette-copy { align-items: center; background: transparent; border: 0; border-radius: .25rem; color: inherit; cursor: pointer; display: inline-flex; flex-wrap: wrap; gap: .4rem; min-height: 2.75rem; padding: .25rem 0; text-align: left; }
+.palette-copy code { font-family: var(--font-mono); font-size: clamp(.65rem, 1vw, .85rem); font-weight: 500; user-select: all; }
+.palette-copy svg { height: .85rem; width: .85rem; }
+.palette-copy:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.palette-copy-status { clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
 .curiosity-card-caption {
   padding: clamp(1.4rem, 3vw, 2.5rem);
 }
-.curiosity-card-caption h2,
-.interaction-study h2 {
+.curiosity-card-caption h2 {
   font-family: var(--font-display);
   font-size: clamp(1.7rem, 2.5vw, 2.5rem);
   font-weight: 700;
@@ -104,27 +76,33 @@
 .curiosity-card-caption p {
   margin-top: 1rem;
 }
+.curiosity-card-caption .color-study-note,
+.curiosity-card-caption .inspiration-note {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.6;
+  text-transform: none;
+}
 .type-study {
   background: #3d5060;
-  color: #f7f6f1;
+  color: var(--study-paper);
   padding: clamp(1.5rem, 3vw, 2.5rem);
 }
-.type-study .curiosity-card-index {
-  color: #d3ad36;
-}
+.type-study-heading { align-items: center; display: flex; gap: 1.5rem; }
+.type-study-heading p { font-size: .8rem; margin-top: .5rem; }
 .type-study-letter {
   color: #d3ad36;
   font-family: "Caudex", Georgia, serif;
-  font-size: clamp(4rem, 8vw, 8rem);
+  font-size: clamp(4rem, 6vw, 5.5rem);
   line-height: 0.8;
-  margin-top: clamp(2.5rem, 5vw, 5rem);
 }
 .type-study h2 {
   font-family: "Caudex", Georgia, serif;
-  font-size: clamp(2.4rem, 4vw, 4.25rem);
+  font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.9;
-  margin-top: 1.6rem;
 }
 .type-guidelines {
   margin-top: 1.8rem;
@@ -132,30 +110,28 @@
 .type-guidelines > div {
   display: grid;
   gap: 0.28rem;
-  grid-template-columns: 5.25rem 1fr;
+  grid-template-columns: minmax(0, 1fr);
   padding: 1rem 0;
 }
 
 .type-guidelines span,
 .type-guidelines small {
-  color: #b5c0be;
-  font-size: 0.66rem;
+  color: var(--study-paper);
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
 }
-.type-guidelines strong,
-.type-guidelines em {
-  font-family: "Caudex", Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1;
+.type-guideline-specimen {
+  display: block;
+  min-width: 0;
+  margin: 0.5rem 0;
 }
 .type-guidelines small {
   align-self: end;
-  grid-column: 2;
 }
 .interaction-study {
   background: #b5b4a9;
   padding: clamp(1.5rem, 3vw, 2.5rem);
+  min-height: 0;
 }
 .interface-variations {
   display: grid;
@@ -163,113 +139,108 @@
   margin-top: 1.5rem;
 }
 .interaction-sample {
+  --concept-surface: #3d5060;
+  --concept-text: var(--study-paper);
+  --concept-action: #d3ad36;
+  --concept-action-text: #3d5060;
   background: #b5b4a9;
-  border: 1.5px solid #3d5060;
-  border-radius: 0.75rem;
-  color: #3d5060;
+  border: 1px solid #3d5060;
+  border-radius: 1rem;
+  color: var(--study-ink);
   overflow: hidden;
 }
-.interaction-sample > header {
+.concept-header {
   align-items: center;
-  border-bottom: 1px solid #3d5060;
   display: flex;
-  font-size: 0.75rem;
-  justify-content: space-between;
-  padding: 0.8rem 1rem;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
 }
-.interaction-sample > header strong {
+.concept-header strong {
   font-family: "Caudex", Georgia, serif;
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 700;
 }
-.interaction-sample nav {
-  display: flex;
-  gap: 0.8rem;
-}
-.interaction-sample nav span {
-  color: #3d5060;
-}
-.interface-copy {
-  background: #3d5060;
-  padding: clamp(1.35rem, 2.6vw, 2.25rem) 1rem;
-}
-.interface-copy > p {
-  color: #b5b4a9;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.interface-copy h2 {
-  color: #b5b4a9;
-  font-family: "Caudex", Georgia, serif;
-  font-size: clamp(1.6rem, 2.8vw, 2.55rem);
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 0.93;
-  margin-top: 0.8rem;
-}
-.interface-copy > span {
-  color: #b5b4a9;
-  display: block;
-  font-size: 0.8rem;
-  margin-top: 0.8rem;
-}
-.interaction-sample footer {
-  border-top: 1px solid #3d5060;
-  display: flex;
-  gap: 0.6rem;
-  padding: 0.8rem 1rem;
-}
+.concept-header strong span { margin-left: .08em; }
 .interaction-sample button {
   align-items: center;
-  background: #d3ad36;
-  border: 1.5px solid #d3ad36;
-  border-radius: 999px;
-  color: #3d5060;
   cursor: pointer;
   display: inline-flex;
   font: inherit;
-  font-size: 0.76rem;
-  font-weight: 700;
-  gap: 0.4rem;
-  padding: 0.55rem 0.85rem;
+  justify-content: center;
 }
-.interaction-sample button svg {
-  height: 0.9rem;
-  width: 0.9rem;
+.interaction-sample button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
-.interaction-sample button + button {
+.concept-bookmark {
   background: transparent;
-  border-color: #3d5060;
-  color: #3d5060;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: inherit;
+  height: 2.75rem;
+  width: 2.75rem;
+  margin-left: auto;
 }
+.concept-bookmark svg { height: .9rem; width: .9rem; }
+.concept-body {
+  background: var(--concept-surface);
+  color: var(--concept-text);
+  margin: 0 .5rem;
+  border-radius: .65rem;
+  padding: 1.25rem;
+}
+.concept-feature { align-items: center; display: flex; gap: 1rem; }
+.interface-copy { flex: 1; min-width: 0; }
+.interface-copy h2 {
+  color: inherit;
+  font-family: "Caudex", Georgia, serif;
+  font-size: clamp(1.6rem, 2.3vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+.interface-copy p { font-size: .8rem; line-height: 1.5; margin-top: .9rem; }
+.concept-open {
+  background: var(--concept-action);
+  border: 0;
+  border-radius: 50%;
+  color: var(--concept-action-text);
+  flex: 0 0 2.6rem;
+  height: 2.6rem;
+}
+.concept-open svg { height: 1.25rem; width: 1.25rem; }
+.concept-bottom { font-size: .75rem; margin-top: 1.25rem; }
+.concept-excerpt { font-family: "Caudex", Georgia, serif; font-size: 1rem; line-height: 1.6; margin-top: 1.25rem; max-width: 45ch; }
+.concept-footer { align-items: center; display: flex; gap: 1.25rem; padding: .5rem 1.25rem; font-size: .8rem; }
+.concept-footer button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  gap: .5rem;
+  min-height: 2.75rem;
+  padding: .45rem .15rem;
+}
+.concept-footer button[aria-pressed="true"] { font-weight: 700; text-decoration: underline; text-underline-offset: .4rem; }
+.concept-footer button span { font-size: .7rem; }
 .interaction-sample--mustard {
+  --concept-surface: #d3ad36;
+  --concept-text: var(--study-ink);
+  --concept-action: #3d5060;
+  --concept-action-text: var(--study-paper);
   background: #d3ad36;
 }
-.interaction-sample--mustard .interface-copy {
-  background: #d3ad36;
-}
-.interaction-sample--mustard .interface-copy > p,
-.interaction-sample--mustard .interface-copy h2,
-.interaction-sample--mustard .interface-copy > span {
-  color: #3d5060;
-}
-.interaction-sample--mustard button {
-  background: #3d5060;
-  border-color: #3d5060;
-  color: #b5b4a9;
-}
-.interaction-sample--mustard button + button {
-  background: transparent;
-  color: #3d5060;
+.interaction-sample--mustard .concept-body { margin: 0; padding: 1.4rem 1.25rem; }
+@media (max-width: 420px) {
+  .concept-feature { gap: .65rem; }
+  .concept-footer { gap: .8rem; }
 }
 .photo-study {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
-  height: 100%;
+  /* Its sibling's content sets the shared desktop row height. */
+  contain: size;
   min-height: 0;
-  background-color: white;
+  background-color: var(--study-paper);
 }
 
 .photo-study-image {
@@ -289,20 +260,6 @@
 .photo-study .curiosity-card-caption {
   padding-top: 1.5rem;
 }
-.curiosities-signoff {
-  color: #718080;
-  font-size: 1.1rem;
-  margin-top: clamp(3.5rem, 7vw, 7rem);
-  text-align: center;
-}
-@media (min-width: 761px) {
-  .interaction-study {
-    min-height: clamp(29rem, 42vw, 43rem);
-  }
-  .photo-study {
-    min-height: clamp(29rem, 42vw, 43rem);
-  }
-}
 @media (max-width: 760px) {
   .curiosities-main {
     padding-top: calc(58px + 3rem);
@@ -313,35 +270,15 @@
   .curiosities-grid {
     grid-template-columns: 1fr;
   }
-  .curiosity-card {
-    min-height: 28rem;
-  }
   .color-study-swatches {
     min-height: 15rem;
   }
-  .type-study-letter {
-    margin-top: 3rem;
-  }
-  .interaction-study {
-    min-height: 25rem;
-  }
   .photo-study {
-    min-height: 30rem;
+    contain: none;
+    grid-template-rows: auto auto;
   }
-  .photo-study img {
-    min-height: 22rem;
-  }
-  .curiosity-filters {
-    margin-top: 3rem;
-  }
-}
-.interaction-study {
-  align-self: start;
-  min-height: 0;
-}
-@media (min-width: 761px) {
-  .interaction-study {
-    min-height: 0;
+  .photo-study-image {
+    aspect-ratio: 4 / 3;
   }
 }
 
