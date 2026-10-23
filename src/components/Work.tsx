@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import ProjectTitle from './ProjectTitle'
 import projects from '../content/projects'
 import { workContent } from '../content/work'
+import TravlrPreview from './TravlrPreview'
 
 const sortedProjects = [...projects].sort((a, b) => Number(a.num) - Number(b.num))
 
@@ -39,6 +40,7 @@ export default function Work() {
             <h3 className="project-title">
               <ProjectTitle title={p.title} />
             </h3>
+            {p.slug === 'travlr' && <TravlrPreview />}
             <p className="project-desc">{p.desc}</p>
             <div className="project-tags">
               {p.tags.map((tag) => (

@@ -1,0 +1,51 @@
+.travlr-preview {
+  background: #286153;
+  border-radius: .6rem;
+  isolation: isolate;
+  margin: 0;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+.travlr-preview-photo {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+.travlr-preview-signature {
+  align-items: center;
+  bottom: 1rem;
+  color: #fff;
+  display: flex;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  gap: .65rem;
+  left: 1rem;
+  padding: 0;
+  position: absolute;
+}
+.travlr-preview-mark {
+  display: block;
+  flex: 0 0 2rem;
+  height: 2rem;
+  overflow: hidden;
+  position: relative;
+  width: 2rem;
+}
+.travlr-preview-mark img {
+  height: auto;
+  left: -79%;
+  max-width: none;
+  position: absolute;
+  top: -102%;
+  width: 184%;
+}
+.home-mobile .travlr-preview { aspect-ratio: 3 / 2; margin-bottom: 1.75rem; }
+.home-mobile .travlr-preview-photo { position: absolute; inset: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .desktop-home .desktop-showcase-card--travlr { transition: none; }
+  .desktop-home .desktop-showcase-card--travlr:is(:hover, :focus-visible) { transform: none; }
+}

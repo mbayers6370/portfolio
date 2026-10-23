@@ -4,8 +4,7 @@ import { Plane, TrainFront, Volume2 } from 'lucide-react'
 import headshot from '../assets/headshot-cutout.png'
 import nelaWorkPreview from '../assets/NELA_Work.png'
 import schedulerPreview from '../assets/Scheduler_Hero.png'
-import travlrWorkPreview from '../assets/Travlr_Work.png'
-import travlrLogos from '../assets/Travlr_Logos.png'
+import TravlrPreview from './TravlrPreview'
 import { aboutContent } from '../content/about'
 import { contactContent } from '../content/contact'
 import { heroContent } from '../content/hero'
@@ -42,7 +41,7 @@ export default function DesktopHome() {
   }
 
   return (
-    <main className="desktop-home">
+    <main className="desktop-home" data-section={activeTab}>
       <div className="desktop-home-shell">
         <aside className="desktop-profile">
           <div className="desktop-profile-photo"><img src={headshot} alt={heroContent.alt} /></div>
@@ -131,7 +130,6 @@ export default function DesktopHome() {
                     </div>
                   </div>
                   <div className="desktop-sonus-preview-copy">
-                    <p className="desktop-sonus-kicker">A learning experience built around focus, not distraction.</p>
                     <h3>Language learning,<br />without the noise.</h3>
                     <p>Structured lessons, meaningful practice, and practical language use take priority over points and streaks.</p>
                     <div className="desktop-sonus-paths"><span>Learn</span><span>Practice</span><span>Travel</span></div>
@@ -154,24 +152,16 @@ export default function DesktopHome() {
                   <span aria-hidden="true">↗</span>
                 </div>
                 <div className="desktop-showcase-visual desktop-showcase-visual--travlr">
-                  <div className="desktop-travlr-image-slot">
-                    <img className="desktop-travlr-work-preview" src={travlrWorkPreview} alt="Travlr visual system preview" />
-                    <img className="desktop-travlr-logos" src={travlrLogos} alt="Travlr logo variations" />
-                  </div>
                   <div className="desktop-travlr-preview-copy">
-                    <h3>Travel<br />beautifully<br />arranged.</h3>
-                    <p>Reimagined a travel website with clearer navigation, stronger visual hierarchy, and a cohesive editorial identity across the experience.</p>
-                    <div className="desktop-travlr-preview-labels">
-                      <span>01 / Typography</span>
-                      <span>02 / Components</span>
-                      <span>03 / Visual system</span>
-                      <span>04 / Full site redesign</span>
-                    </div>
+                    <h3>A new outlook<br />on getting away.</h3>
+                    <p>From a working travel site to a cohesive experience. A closer look at how identity, navigation, and page design changed the journey.</p>
+                    <span className="desktop-travlr-invitation">See what changed</span>
                   </div>
+                  <TravlrPreview />
                   <div className="desktop-project-spec">
                     <span>Independent redesign</span>
-                    <span>Full-stack developer &amp; UI/UX designer</span>
-                    <span>Responsive design · UX design · Development</span>
+                    <span>Visual identity / UI &amp; UX</span>
+                    <span>Design through development</span>
                   </div>
                 </div>
               </Link>

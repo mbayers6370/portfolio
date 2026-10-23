@@ -6,16 +6,16 @@ export default function Books() {
   return (
     <div className="page-books">
       <header className="books-hero">
-        <div className="container">
-          <span className="books-hero-label">{booksPageContent.pageLabel} / Fiction</span>
-          <div className="books-hero-layout">
+        <div className="container books-hero-layout">
+          <div>
+            <span className="books-hero-label">{booksPageContent.pageLabel} / Fiction</span>
             <h1 className="books-hero-title">
               {booksPageContent.title[0]}
               <br />
               <em>{booksPageContent.title[1]}</em>
             </h1>
-            <p className="books-hero-sub">{booksPageContent.subtitle}</p>
           </div>
+          <p className="books-hero-sub">{booksPageContent.subtitle}</p>
         </div>
       </header>
 

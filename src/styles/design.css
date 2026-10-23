@@ -7,7 +7,12 @@
 }
 .curiosities-main {
   padding-bottom: clamp(4.5rem, 8vw, 8rem);
-  padding-top: calc(58px + clamp(4rem, 8vw, 8rem));
+  padding-top: 0;
+}
+.curiosities-intro {
+  display: grid;
+  gap: 2.25rem;
+  padding: calc(58px + clamp(3.5rem, 9vw, 8rem)) 0 clamp(3.5rem, 7vw, 6rem);
 }
 
 .curiosity-card-index,
@@ -21,21 +26,30 @@
 }
 .curiosities-intro h1 {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 8vw, 8rem);
-  font-weight: 700;
-  letter-spacing: -0.065em;
-  line-height: 0.9;
+  font-size: clamp(3.4rem, 13vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
   margin-top: 0;
+  /* Align with the title below the label on Art and Books. */
+  padding-top: calc(.65rem * 1.6 + 1.25rem);
 }
 .curiosities-intro > p:last-child {
   color: #637477;
   font-family: var(--font-body);
-  font-size: clamp(1.15rem, 2vw, 1.7rem);
+  font-size: clamp(1rem, 3.8vw, 1.25rem);
   font-weight: 400;
   line-height: 1.45;
-  margin-top: 1.7rem;
-  margin-bottom: clamp(2rem, 3vw, 5rem);
-  max-width: 55rem;
+  margin: 0;
+  max-width: 25ch;
+}
+@media (min-width: 701px) {
+  .curiosities-intro {
+    align-items: end;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 25ch);
+    justify-content: space-between;
+  }
+  .curiosities-intro > p:last-child { text-align: right; }
 }
 .curiosities-grid {
   display: grid;
@@ -129,9 +143,17 @@
   align-self: end;
 }
 .interaction-study {
-  background: #b5b4a9;
+  background: var(--study-paper);
   padding: clamp(1.5rem, 3vw, 2.5rem);
   min-height: 0;
+}
+.interface-section-title {
+  color: var(--study-ink);
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
 }
 .interface-variations {
   display: grid;
@@ -141,12 +163,10 @@
 .interaction-sample {
   --concept-surface: #3d5060;
   --concept-text: var(--study-paper);
-  --concept-action: #d3ad36;
-  --concept-action-text: #3d5060;
   background: #b5b4a9;
-  border: 1px solid #3d5060;
+  border: 0;
   border-radius: 1rem;
-  color: var(--study-ink);
+  color: #3d5060;
   overflow: hidden;
 }
 .concept-header {
@@ -174,15 +194,25 @@
 }
 .concept-bookmark {
   background: transparent;
-  border: 1px solid currentColor;
+  border: 1px solid #3d5060;
   border-radius: 50%;
-  color: inherit;
+  color: #3d5060;
   height: 2.75rem;
   width: 2.75rem;
   margin-left: auto;
 }
 .concept-bookmark svg { height: .9rem; width: .9rem; }
+.concept-bookmark[aria-pressed="true"] {
+  background: #3d5060;
+  color: var(--study-paper);
+}
+.interaction-sample--mustard .concept-bookmark[aria-pressed="true"] {
+  background: transparent;
+  color: #3d5060;
+}
 .concept-body {
+  font-family: var(--font-body);
+  font-weight: 400;
   background: var(--concept-surface);
   color: var(--concept-text);
   margin: 0 .5rem;
@@ -200,19 +230,23 @@
   line-height: 1.05;
 }
 .interface-copy p { font-size: .8rem; line-height: 1.5; margin-top: .9rem; }
-.concept-open {
-  background: var(--concept-action);
-  border: 0;
-  border-radius: 50%;
-  color: var(--concept-action-text);
-  flex: 0 0 2.6rem;
-  height: 2.6rem;
+.interaction-sample:not(.interaction-sample--mustard) .interface-copy h2 {
+  color: #d3ad36;
 }
-.concept-open svg { height: 1.25rem; width: 1.25rem; }
+.concept-read-more {
+  background: transparent;
+  border: 0;
+  border-radius: .2rem;
+  color: inherit;
+  min-height: 2.75rem;
+  padding: .5rem 0;
+  text-decoration: underline;
+  text-underline-offset: .25rem;
+}
 .concept-bottom { font-size: .75rem; margin-top: 1.25rem; }
-.concept-excerpt { font-family: "Caudex", Georgia, serif; font-size: 1rem; line-height: 1.6; margin-top: 1.25rem; max-width: 45ch; }
+.concept-excerpt { font-family: var(--font-body); font-size: 1rem; line-height: 1.6; margin-top: 1.25rem; max-width: 45ch; }
 .concept-footer { align-items: center; display: flex; gap: 1.25rem; padding: .5rem 1.25rem; font-size: .8rem; }
-.concept-footer button {
+.concept-footer > button {
   background: transparent;
   border: 0;
   color: inherit;
@@ -224,12 +258,14 @@
 .concept-footer button span { font-size: .7rem; }
 .interaction-sample--mustard {
   --concept-surface: #d3ad36;
-  --concept-text: var(--study-ink);
-  --concept-action: #3d5060;
-  --concept-action-text: var(--study-paper);
+  --concept-text: #3d5060;
   background: #d3ad36;
 }
 .interaction-sample--mustard .concept-body { margin: 0; padding: 1.4rem 1.25rem; }
+.interaction-sample--mustard .concept-footer {
+  background: #3d5060;
+  color: var(--study-paper);
+}
 @media (max-width: 420px) {
   .concept-feature { gap: .65rem; }
   .concept-footer { gap: .8rem; }
@@ -261,12 +297,6 @@
   padding-top: 1.5rem;
 }
 @media (max-width: 760px) {
-  .curiosities-main {
-    padding-top: calc(58px + 3rem);
-  }
-  .curiosities-intro {
-    padding-top: 3.5rem;
-  }
   .curiosities-grid {
     grid-template-columns: 1fr;
   }

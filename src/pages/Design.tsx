@@ -1,7 +1,7 @@
 import "../styles/design.css";
-import { ArrowUpRight, Bookmark, Copy, Check } from "lucide-react";
+import { Bookmark, Copy, Check } from "lucide-react";
 import designInspo from "../assets/design-inspo.jpg";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 const palette = [
   { hex: "#D3AD36", ink: "#20323A" },
@@ -47,6 +47,7 @@ const typeSpecimens = [
 ] as const;
 
 function InterfaceConcept({ mustard = false }: { mustard?: boolean }) {
+  const excerptId = useId();
   const [saved, setSaved] = useState(false);
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<"journal" | "saved">("journal");
@@ -66,12 +67,11 @@ function InterfaceConcept({ mustard = false }: { mustard?: boolean }) {
             <h2>{showNote ? "Small observations, properly held." : "Nothing saved yet."}</h2>
             <p>{showNote ? "Three things worth returning to." : "Use the bookmark to keep this note here."}</p>
           </div>
-          {showNote && <button className="concept-open" type="button" aria-label={open ? "Close note" : "Read note"} aria-expanded={open} onClick={() => setOpen(!open)}>
-            <ArrowUpRight aria-hidden="true" />
-          </button>}
         </div>
-        {open && showNote && <p className="concept-excerpt">The color of the road after rain. A line of trees against the sky. The small details that stay with us on the way home.</p>}
-        <div className="concept-bottom"><span>{showNote ? "A short read" : "No saved notes"}</span></div>
+        <p id={excerptId} className="concept-excerpt" hidden={!open || !showNote}>The color of the road after rain. A line of trees against the sky. The small details that stay with us on the way home.</p>
+        <div className="concept-bottom">
+          {showNote ? <button className="concept-read-more" type="button" aria-expanded={open} aria-controls={excerptId} onClick={() => setOpen(!open)}>{open ? "Read Less" : "Read More"}</button> : <span>No saved notes</span>}
+        </div>
       </div>
       <nav className="concept-footer" aria-label={mustard ? "Mustard concept views" : "Slate concept views"}>
         <button type="button" aria-pressed={view === "journal"} onClick={() => setView("journal")}>Journal</button>
@@ -86,7 +86,7 @@ export default function Design() {
     <div className="curiosities-page">
       <main className="curiosities-main container">
         <header className="curiosities-intro">
-          <h1>Collected Curiosities.</h1>
+          <h1>Collected<br />Curiosities.</h1>
           <p>
             Some things are simply worth a closer look.
           </p>
@@ -135,7 +135,7 @@ export default function Design() {
               </div>
             </article>
             <article className="curiosity-card interaction-study">
-              <p className="curiosity-card-index">Interface Concepts</p>
+              <h2 className="interface-section-title">Interface concepts</h2>
               <div className="interface-variations">
                 <InterfaceConcept />
                 <InterfaceConcept mustard />
