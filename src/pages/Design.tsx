@@ -135,7 +135,7 @@ export default function Design() {
               </div>
             </article>
             <article className="curiosity-card interaction-study">
-              <h2 className="interface-section-title">Interface concepts</h2>
+              <h2 className="interface-section-title">INTERFACE CONCEPTS</h2>
               <div className="interface-variations">
                 <InterfaceConcept />
                 <InterfaceConcept mustard />
