@@ -40,6 +40,9 @@
   --section-pad: clamp(5rem, 9vw, 10rem);
   --container-max: 1400px;
   --gutter: clamp(1.5rem, 4vw, 4rem);
+  --reading-measure: 65ch;
+  --reading-size: clamp(1rem, calc(.95rem + .25vw), 1.125rem);
+  --reading-leading: 1.8;
   --radius-card: 0.75rem;
   --radius-control: 0.5rem;
   --radius-round: 999px;
@@ -119,6 +122,21 @@ button,
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transform: translateY(0);
+  transition: transform 220ms ease;
+}
+
+.nav--hidden {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .nav {
+    transition: none;
+  }
 }
 
 .nav--scrolled {
@@ -164,6 +182,19 @@ button,
 .nav-links .nav-link--secondary:hover,
 .nav-links .nav-link--secondary:focus-visible {
   opacity: 1;
+}
+
+.nav-links a[aria-current] {
+  font-weight: 500;
+  opacity: 1;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: .6em;
+}
+.nav-mobile a[aria-current] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: .3em;
 }
 
 .nav-links a:hover,
@@ -287,6 +318,22 @@ button,
 
 .nav--project .nav-hamburger span {
   background: #283113;
+}
+
+.nav--nelaride,
+.nav--nelaride.nav--scrolled,
+.nav-mobile--nelaride {
+  background: var(--nela-gold, #e9d7a6);
+  border-color: var(--nela-rule, rgba(51, 51, 51, .2));
+}
+.nav--nelaride .nav-logo,
+.nav--nelaride .nav-links a,
+.nav--nelaride .nav-linkedin,
+.nav-mobile--nelaride a {
+  color: var(--nela-ink, #333333);
+}
+.nav--nelaride .nav-hamburger span {
+  background: var(--nela-ink, #333333);
 }
 
 /* The scheduler case study starts on a dark hero, so its fixed navigation
@@ -547,6 +594,9 @@ button,
 }
 
 .books-back {
+  align-items: center;
+  display: inline-flex;
+  gap: .5rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
@@ -554,6 +604,14 @@ button,
   color: var(--mid);
   text-decoration: none;
   transition: color 0.2s;
+}
+
+.link-chevron {
+  display: inline-block;
+  flex-shrink: 0;
+  height: 1em;
+  vertical-align: middle;
+  width: 1em;
 }
 
 .books-back:hover {

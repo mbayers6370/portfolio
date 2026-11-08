@@ -3,13 +3,12 @@ import cover02 from '../assets/The Shape that Breaks - Kindle.png'
 import type { Book } from '../types/content'
 
 export const booksPageContent = {
-  pageLabel: 'Writing',
-  title: ['The Shape', 'Sequence.'],
+  title: 'The Shape Sequence',
   subtitle: 'A series about the architecture of a world meant to make you forget.',
   authorQuote: 'I am interested in what makes us human. And what happens when we start changing the definition.',
   authorBio:
-    "Matthew Bayers is a self-published author, full-stack developer, and painter. His fiction explores queer identity, memory, and the architecture of worlds that feel just slightly out of reach, built for anyone who has ever felt like they didn't quite fit.",
-  backLabel: '← Back to portfolio',
+    "Matthew Bayers is a self-published author, frontend developer, and painter. His fiction explores queer identity, memory, and the architecture of worlds that feel just slightly out of reach, built for anyone who has ever felt like they didn't quite fit.",
+  backLabel: 'Back to portfolio',
 }
 
 export const books: Book[] = [
@@ -21,7 +20,7 @@ export const books: Book[] = [
     description:
       'A story of memory, identity, and what gets left behind when the world resets around you. Book one of The Shape Sequence.',
     link: 'https://www.amazon.com/Shape-Echo-Matthew-Bayers/dp/B0GDQGP5C3/ref=tmm_pap_swatch_0',
-    linkLabel: 'Buy on Amazon →',
+    linkLabel: 'Buy on Amazon',
     cover: cover01,
   },
   {
@@ -32,7 +31,7 @@ export const books: Book[] = [
     description:
       "Lucian's reset comes with memories marked into his skin. He wakes in the city of Vaelor with a new promotion and an Engine that is on the brink of total control.",
     link: 'https://www.amazon.com/dp/B0GJ5FG1L4',
-    linkLabel: 'Buy on Amazon →',
+    linkLabel: 'Buy on Amazon',
     cover: cover02,
   },
 ]

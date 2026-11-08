@@ -1,53 +1,39 @@
 import '../styles/art.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { X } from 'lucide-react'
+import { ChevronLeft, X } from 'lucide-react'
 import { artPageContent } from '../content/art'
 import artworks from '../content/artworks'
+import PageHero from '../components/PageHero'
 
 export default function Art() {
   const [expandedArtwork, setExpandedArtwork] = useState<(typeof artworks)[number] | null>(null)
+  const dialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
-    if (!expandedArtwork) return
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setExpandedArtwork(null)
-    }
-
-    document.addEventListener('keydown', closeOnEscape)
-    return () => document.removeEventListener('keydown', closeOnEscape)
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (expandedArtwork && !dialog.open) dialog.showModal()
+    else if (!expandedArtwork && dialog.open) dialog.close()
   }, [expandedArtwork])
 
   const renderArtwork = (artwork: (typeof artworks)[number]) => (
-    <div className="art-tile" key={artwork.title}>
-      <button className="art-tile-img" type="button" onClick={() => setExpandedArtwork(artwork)} aria-label={`Expand ${artwork.title}`}>
-        <img src={artwork.src} alt={artwork.title} style={artwork.pos ? { objectPosition: artwork.pos } : undefined} />
+    <figure className="art-tile" key={artwork.title}>
+      <button className="art-tile-img" type="button" onClick={() => setExpandedArtwork(artwork)} aria-label={`Expand ${artwork.title}`} aria-haspopup="dialog">
+        <img src={artwork.src} alt={artwork.title} loading="lazy" />
       </button>
-      <div className="art-tile-meta">
+      <figcaption className="art-tile-meta">
         <span className="art-tile-title">{artwork.title}</span>
         <span className="art-tile-medium">{artwork.medium}</span>
-      </div>
-    </div>
+      </figcaption>
+    </figure>
   )
 
   return (
     <div className="page-art">
-      <header className="art-header">
-        <div className="container art-header-inner">
-          <div>
-            <span className="art-header-label">{artPageContent.pageLabel}</span>
-            <h1 className="art-header-title">
-            {artPageContent.title[0]}
-            <br />
-              {artPageContent.title[1]}
-            </h1>
-          </div>
-          <p>{artPageContent.tagline}</p>
-        </div>
-      </header>
+      <PageHero title={artPageContent.title} description={artPageContent.tagline} />
 
-      <main className="art-gallery">
+      <div className="art-gallery">
         <section className="art-works art-works--dark">
           <div className="container art-grid art-grid--pair">
             {artworks.slice(0, 2).map(renderArtwork)}
@@ -69,11 +55,13 @@ export default function Art() {
 
         <section className="art-enquire">
           <div className="container">
-            <Link to="/" className="books-back">{artPageContent.backLabel}</Link>
+            <Link to="/" className="books-back"><ChevronLeft className="link-chevron" aria-hidden="true" />{artPageContent.backLabel}</Link>
           </div>
         </section>
-      </main>
-      {expandedArtwork && <div className="art-modal" role="presentation" onMouseDown={() => setExpandedArtwork(null)}><div className="art-modal-content" role="dialog" aria-modal="true" aria-label={expandedArtwork.title} onMouseDown={(event) => event.stopPropagation()}><button type="button" className="art-modal-close" onClick={() => setExpandedArtwork(null)} aria-label="Close artwork preview"><X aria-hidden="true" /></button><img src={expandedArtwork.src} alt={expandedArtwork.title} /><p>{expandedArtwork.title}</p></div></div>}
+      </div>
+      <dialog ref={dialogRef} className="art-modal" aria-labelledby="art-modal-title" onCancel={() => setExpandedArtwork(null)} onClose={() => setExpandedArtwork(null)} onClick={(event) => { if (event.target === event.currentTarget) setExpandedArtwork(null) }}>
+        {expandedArtwork && <div className="art-modal-content"><button type="button" className="art-modal-close" onClick={() => setExpandedArtwork(null)} aria-label="Close artwork preview"><X aria-hidden="true" /></button><img src={expandedArtwork.src} alt={expandedArtwork.title} /><div className="art-modal-caption"><h2 id="art-modal-title">{expandedArtwork.title}</h2><p>{expandedArtwork.medium}</p></div></div>}
+      </dialog>
     </div>
   )
 }

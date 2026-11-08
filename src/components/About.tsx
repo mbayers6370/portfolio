@@ -8,7 +8,6 @@ export default function About() {
           <div className="about-left">
             <div className="about-left-header">
               <span className="label">{aboutContent.label}</span>
-              <div className="about-left-rule" />
               <h2 className="section-title">
                 {aboutContent.title[0]}
                 <br />
@@ -24,9 +23,9 @@ export default function About() {
 
             <div className="skills-header">{aboutContent.skillsHeader}</div>
             <div className="skills-grid">
-              {Object.values(aboutContent.skills).flatMap((groups) => Object.entries(groups)).map(([group, items]) => (
+              {Object.entries(aboutContent.skills).map(([group, items]) => (
                 <div className="skill-group" key={group}>
-                  <h4>{group}</h4>
+                  <h3>{group}</h3>
                   <ul>
                     {items.map((item) => <li key={item}>{item}</li>)}
                   </ul>

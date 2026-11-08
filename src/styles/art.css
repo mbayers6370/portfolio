@@ -1,71 +1,17 @@
-/* ========================================================================== */
-/* Art page                                                                   */
-/* ========================================================================== */
-
-/* Page header */
+/* A gallery that preserves the proportions of the original paintings. */
 .page-art {
   --art-bg: var(--olive);
   --art-text: #f8fbfd;
-  --art-muted: rgba(248, 251, 253, 0.7);
-  --art-rule: rgba(248, 251, 253, 0.22);
+  --art-muted: rgba(248, 251, 253, .75);
   background: var(--cream);
   color: var(--olive);
   min-height: 100vh;
 }
-
 body:has(.page-art) {
   background: var(--cream);
 }
-
-.art-header {
-  padding: calc(58px + clamp(3.5rem, 9vw, 8rem)) 0 clamp(3.5rem, 7vw, 6rem);
-}
-
-.art-header-inner {
-  display: grid;
-  gap: 2.25rem;
-}
-
-.art-header-label,
-.art-interlude p,
-.art-tile-medium {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.art-header-label {
-  color: var(--olive);
-  display: block;
-  margin-bottom: 1.25rem;
-}
-
-.art-header-title {
-  color: var(--olive);
-  font-family: var(--font-display);
-  font-size: clamp(3.4rem, 13vw, 7.5rem);
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  line-height: 0.95;
-}
-
-.art-header-inner > p {
-  color: color-mix(in srgb, var(--olive) 72%, transparent);
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 3.8vw, 1.25rem);
-  font-style: italic;
-  line-height: 1.45;
-  max-width: 25ch;
-  text-align: left;
-}
-
-/* Gallery */
-.art-gallery {
-  padding-bottom: 0;
-}
-
 .art-works {
+  --art-display-height: clamp(14rem, 32vw, 26rem);
   --section-text: var(--art-text);
   --section-muted: var(--art-muted);
 }
@@ -73,217 +19,185 @@ body:has(.page-art) {
   background: var(--olive);
 }
 .art-works--cream {
+  --art-display-height: clamp(11rem, 24vw, 19rem);
   --section-text: var(--olive);
-  --section-muted: color-mix(in srgb, var(--olive) 68%, transparent);
+  --section-muted: color-mix(in srgb, var(--olive) 80%, transparent);
   background: var(--cream);
 }
-
 .art-grid {
+  align-items: start;
   display: grid;
-  gap: clamp(2.5rem, 7vw, 5rem);
-  grid-template-columns: 1fr;
-  margin: 0 auto;
-  max-width: 68rem;
-  padding: clamp(4rem, 9vw, 8rem) 0;
+  gap: clamp(2rem, 4vw, 4rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 1000px;
+  padding-block: clamp(2.5rem, 6vw, 5rem);
 }
-
 .art-tile {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  width: 100%;
+  gap: 1rem;
+  min-width: 0;
 }
-
 .art-tile-img {
   appearance: none;
-  aspect-ratio: 4 / 5;
   background: transparent;
   border: 0;
   border-radius: 0;
   cursor: zoom-in;
-  display: block;
+  display: grid;
+  height: var(--art-display-height);
+  min-width: 0;
   overflow: hidden;
   padding: 0;
+  place-items: center;
   width: 100%;
 }
-
 .art-tile-img img {
   display: block;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.35s ease;
-  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  min-width: 0;
+  object-fit: contain;
+  width: auto;
 }
-
-.art-tile:hover .art-tile-img img {
-  transform: scale(1.02);
-}
-
 .art-tile-img:focus-visible {
-  outline: 2px solid var(--secondary);
-  outline-offset: 3px;
+  outline: 2px solid var(--section-text);
+  outline-offset: 6px;
 }
-
 .art-tile-meta {
-  align-items: baseline;
-  display: grid;
-  gap: 0.45rem 1rem;
-  grid-template-columns: minmax(0, 1fr) auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem 1rem;
+  justify-content: space-between;
 }
-
 .art-tile-title {
   color: var(--section-text);
   font-family: var(--font-display);
-  font-size: clamp(1rem, 1.6vw, 1.3rem);
-  font-weight: 600;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  font-weight: 500;
 }
-
 .art-tile-medium {
+  align-self: center;
   color: var(--section-muted);
-  text-align: right;
+  font-size: .8rem;
 }
-
-.art-interlude-section {
-  background: var(--cream);
-}
-
 .art-interlude {
-  padding: clamp(4rem, 8vw, 7rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 1200px;
+  padding-block: clamp(3rem, 6vw, 5rem) 1rem;
   text-align: center;
 }
-
 .art-interlude h2 {
   font-family: var(--font-display);
-  color: var(--olive);
-  font-size: clamp(2.2rem, 7vw, 4rem);
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: 1.2;
 }
-
 .art-interlude p {
-  color: color-mix(in srgb, var(--olive) 68%, transparent);
-  margin-top: 1rem;
+  color: color-mix(in srgb, var(--olive) 80%, transparent);
+  font-size: .85rem;
+  margin-top: .75rem;
 }
-
 .art-enquire {
   background: var(--olive);
-  padding: clamp(3rem, 7vw, 5rem) 0;
+  padding-block: 2.5rem;
 }
-
-.art-works--cream .art-grid {
-  padding-top: clamp(2.5rem, 4vw, 3.5rem);
-}
-
 .page-art .books-back {
-  color: var(--art-text);
-}
-
-/* Artwork modal */
-.art-modal {
   align-items: center;
-  background: rgba(9, 15, 22, 0.82);
-  display: flex;
-  inset: 0;
-  justify-content: center;
-  padding: clamp(1.25rem, 5vw, 4rem);
-  position: fixed;
-  z-index: 200;
+  color: var(--art-text);
+  display: inline-flex;
+  min-height: 44px;
+}
+.page-art a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
 }
 
+/* Native dialog supplies focus containment, Escape, and focus restoration. */
+body:has(.art-modal[open]) {
+  overflow: hidden;
+}
+.art-modal {
+  background: transparent;
+  border: 0;
+  color: var(--art-text);
+  height: 100dvh;
+  inset: 0;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  padding: clamp(1rem, 4vw, 3rem);
+  position: fixed;
+  width: 100vw;
+}
+.art-modal[open] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.art-modal::backdrop {
+  background: rgba(9, 15, 22, .9);
+}
 .art-modal-content {
   background: var(--art-bg);
-  border: 1px solid var(--art-rule);
-  border-radius: 0.5rem;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+  border-radius: .5rem;
   max-height: 100%;
-  max-width: min(48rem, 100%);
+  max-width: min(74rem, 100%);
   overflow: auto;
-  padding: 1rem;
+  padding: 3.5rem 1rem 1rem;
   position: relative;
+  width: 100%;
 }
-
-.art-modal-content img {
+.art-modal-content > img {
   display: block;
   height: auto;
-  max-height: calc(100dvh - 10rem);
+  max-height: calc(100dvh - 12rem);
   object-fit: contain;
   width: 100%;
 }
-
-.art-modal-content p {
-  color: var(--art-text);
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  margin: 0.8rem 0.2rem 0.2rem;
-  text-transform: uppercase;
+.art-modal-caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1rem;
+  justify-content: space-between;
+  padding: 1rem .5rem .25rem;
 }
-
+.art-modal-caption h2 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.art-modal-caption p {
+  font-size: .85rem;
+}
 .art-modal-close {
   align-items: center;
   background: transparent;
   border: 0;
-  color: var(--art-text);
+  color: inherit;
   cursor: pointer;
   display: flex;
-  font: 1.6rem/1 var(--font-body);
-  height: auto;
+  height: 44px;
   justify-content: center;
-  padding: 0.25rem;
   position: absolute;
-  right: 0.85rem;
-  top: 0.75rem;
-  width: auto;
-  z-index: 1;
-}
-
-.art-modal-close:hover {
-  color: var(--secondary);
+  right: .5rem;
+  top: .25rem;
+  width: 44px;
 }
 .art-modal-close svg {
-  height: 1em;
-  width: 1em;
+  height: 24px;
+  width: 24px;
 }
-
 .art-modal-close:focus-visible {
-  outline: 2px solid var(--art-text);
+  outline: 2px solid currentColor;
   outline-offset: 2px;
 }
-
-@media (min-width: 701px) {
-  .art-header-inner {
-    align-items: end;
-    grid-template-columns: minmax(0, 1fr) minmax(16rem, 25ch);
-    justify-content: space-between;
-  }
-
-  .art-header-inner > p {
-    text-align: right;
-  }
+@media (max-width: 760px) {
   .art-grid {
-    gap: clamp(2rem, 4vw, 4rem);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .art-interlude {
-    text-align: center;
-  }
-}
-
-@media (max-width: 700px) {
-  .art-grid {
-    padding-inline: var(--gutter);
-  }
-}
-
-@media (max-width: 380px) {
-  .art-tile-meta {
-    align-items: start;
     grid-template-columns: 1fr;
   }
-  .art-tile-medium {
-    text-align: left;
+  .art-grid {
+    gap: 2.5rem;
   }
 }

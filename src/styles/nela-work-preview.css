@@ -1,0 +1,184 @@
+/* Proportions follow the visible artwork in NELA_Work.png (878 by 669). */
+.nela-work-preview {
+  align-self: center;
+  aspect-ratio: 878 / 669;
+  color: #333;
+  container-type: inline-size;
+  font-family: var(--font-body);
+  margin-inline: auto;
+  min-width: 0;
+  position: relative;
+  width: min(94cqw, 28rem, calc(94cqh * 878 / 669));
+}
+.nela-work-rides {
+  background: #fafafa;
+  border: .23cqw solid #cececa;
+  border-radius: 2.05cqw;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 55.8%;
+}
+.nela-work-period {
+  border: .23cqw solid #e3e3e3;
+  border-radius: 999px;
+  height: 11.65%;
+  left: 4.69%;
+  position: absolute;
+  right: 4.69%;
+  top: 3.44%;
+}
+.nela-work-period > span {
+  border: .23cqw solid #e3e3e3;
+  border-radius: inherit;
+  height: 76%;
+  left: 2.3%;
+  position: absolute;
+  top: 11.5%;
+  width: 36.6%;
+}
+.nela-work-ride-total {
+  font-size: 4.78cqw;
+  font-weight: 600;
+  left: 0;
+  line-height: 1.25;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 19.4%;
+  white-space: nowrap;
+}
+.nela-work-chart-caption {
+  color: #626262;
+  font-size: 2.28cqw;
+  left: 0;
+  line-height: 1.5;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 27.6%;
+  white-space: nowrap;
+}
+.nela-work-chart {
+  border: .23cqw solid #e3e3e3;
+  border-radius: 2.05cqw;
+  bottom: 3.9%;
+  left: 4.69%;
+  overflow: hidden;
+  position: absolute;
+  right: 4.69%;
+  top: 33.18%;
+}
+.nela-work-chart-bars {
+  display: flex;
+  height: 31.5%;
+  justify-content: space-between;
+  left: 6.3%;
+  position: absolute;
+  right: 6.3%;
+  top: 10.5%;
+}
+.nela-work-chart-bars > span {
+  background: #f4f4f4;
+  border-radius: 999px;
+  width: 10.4%;
+}
+.nela-work-chart-bars > span:nth-child(5) {
+  background: transparent;
+  border: .23cqw dashed #e9d7a6;
+}
+.nela-work-chart-grid {
+  border-top: .34cqw solid #e3e3e3;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 56.4%;
+}
+.nela-work-chart-grid > span + span {
+  border-left: .34cqw solid #e3e3e3;
+}
+.nela-work-swatches {
+  display: grid;
+  gap: 3.65cqw;
+  left: 66.06%;
+  position: absolute;
+  top: 5.08%;
+  width: 11.16%;
+}
+.nela-work-swatches > span {
+  aspect-ratio: 98 / 104;
+  background: #d4b96a;
+  border-radius: 1.6cqw;
+}
+.nela-work-swatches > span:nth-child(2) {
+  background: #fafafa;
+  border: .23cqw solid #cececa;
+}
+.nela-work-swatches > span:nth-child(3) { background: #1e1d19; }
+.nela-work-search {
+  align-items: center;
+  background: #fafafa;
+  border: .23cqw solid #dededb;
+  border-radius: 1.6cqw;
+  box-shadow: 0 1.14cqw 1.6cqw rgba(0, 0, 0, .16);
+  display: flex;
+  gap: 3.2cqw;
+  height: 17.04%;
+  left: 35.42%;
+  min-width: 0;
+  padding-inline: 3.65cqw 4.9cqw;
+  position: absolute;
+  top: 67.41%;
+  width: 64.58%;
+}
+.nela-work-search > svg {
+  flex-shrink: 0;
+  height: 4.1cqw;
+  stroke-width: 2;
+  width: 4.1cqw;
+}
+.nela-work-destination {
+  flex: 1;
+  min-width: 0;
+}
+.nela-work-destination > strong {
+  display: block;
+  font-size: 3.65cqw;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.nela-work-address {
+  color: #626262;
+  display: block;
+  font-size: 2.28cqw;
+  line-height: 1.6;
+  margin-top: .9cqw;
+  min-height: 1.6em;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.nela-work-address[data-typing]::after {
+  border-right: 1px solid currentColor;
+  content: '';
+  margin-left: .1rem;
+}
+.nela-work-time {
+  align-items: center;
+  color: #555;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 1.94cqw;
+  gap: .8cqw;
+}
+.nela-work-time svg {
+  height: 1.82cqw;
+  width: 1.82cqw;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nela-work-address[data-typing]::after { display: none; }
+}

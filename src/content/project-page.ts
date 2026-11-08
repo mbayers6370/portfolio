@@ -1,7 +1,7 @@
 export const projectPageContent = {
   notFound: {
     message: 'Project not found.',
-    backLabel: '← Back to portfolio',
+    backLabel: 'Back to portfolio',
   },
   labels: {
     role: 'Role',
@@ -9,6 +9,6 @@ export const projectPageContent = {
     stack: 'Stack',
     overview: 'Overview',
     gallery: 'Guidelines',
-    allProjects: '← All Projects',
+    allProjects: 'All Projects',
   },
 }

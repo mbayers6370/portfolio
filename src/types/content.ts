@@ -18,6 +18,7 @@ export type Project = {
   tags: string[]
   link: string
   linkLabel?: string
+  sourceLink?: string
   details: ProjectDetail[]
   galleryLabel?: string
   gallery?: ProjectGalleryItem[]

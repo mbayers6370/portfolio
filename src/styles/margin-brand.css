@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Margin Aside';
+  src: url('../assets/margin/fonts/margin-aside-medium.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Margin Aside';
+  src: url('../assets/margin/fonts/margin-aside-bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Margin Inter';
+  src: url('../assets/margin/fonts/inter-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+.margin-brand {
+  --margin-paper: #eeede7;
+  --margin-ink: #282820;
+  --margin-olive: #777536;
+  --margin-cinnamon: #c99b61;
+  --margin-heading: 'Margin Aside', Georgia, serif;
+  --margin-body: 'Margin Inter', sans-serif;
+}

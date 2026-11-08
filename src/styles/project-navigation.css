@@ -1,0 +1,68 @@
+.project-navigation,
+.project-navigation-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.project-navigation {
+  justify-content: space-between;
+  width: 100%;
+}
+.project-navigation a {
+  align-items: center;
+  color: inherit;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: .85rem;
+  font-weight: 400;
+  gap: .65rem;
+  line-height: 1.75;
+  min-height: 44px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3em;
+}
+.project-navigation a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+.project-navigation svg {
+  flex-shrink: 0;
+  height: 1rem;
+  width: 1rem;
+}
+@media (max-width: 600px) {
+  .project-navigation {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .project-navigation > a {
+    align-self: flex-start;
+    text-decoration: none;
+  }
+  .project-navigation-links {
+    align-items: stretch;
+    flex-direction: column;
+    gap: .75rem;
+    width: 100%;
+  }
+  .project-navigation-links a {
+    border: 1px solid currentColor;
+    border-radius: var(--radius-control);
+    font-size: .9rem;
+    font-weight: 500;
+    justify-content: space-between;
+    min-height: 52px;
+    padding: .75rem 1rem;
+    text-decoration: none;
+    width: 100%;
+  }
+  .project-navigation-links a:first-child {
+    background: var(--project-navigation-action-bg, var(--near-black));
+    border-color: var(--project-navigation-action-bg, var(--near-black));
+    color: var(--project-navigation-action-fg, var(--cream));
+  }
+  .project-navigation .project-navigation-links a:focus-visible {
+    outline-color: var(--project-navigation-action-bg, var(--near-black));
+  }
+}

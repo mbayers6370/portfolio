@@ -1,6 +1,7 @@
 export const navContent = {
   logo: 'MB.',
   links: {
+    home: 'Home',
     work: 'Work',
     design: 'Design',
     about: 'About',
@@ -8,7 +9,7 @@ export const navContent = {
     art: 'Art',
     contact: 'Contact',
   },
-  mobileLinkedIn: 'LinkedIn ↗',
+  mobileLinkedIn: 'LinkedIn',
   toggleLabel: 'Toggle menu',
   socialLabels: {
     github: 'GitHub',

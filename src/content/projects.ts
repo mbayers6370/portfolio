@@ -12,12 +12,13 @@ import schedulerCollections from '../assets/eportfolio/scheduler-collections.png
 const projects: Project[] = [
   {
     slug: 'sonus',
-    num: '03',
+    num: '04',
     title: 'Sonus',
     type: 'Full-Stack Web Application',
     desc: 'Sonus is a language-learning app built for serious learners. It uses native-speaker standards for fluency, draws from country-of-origin vocabulary lists, and organizes study into units that build on each other over time. It is not perfect, but it is honest, a language lab for the serious learner.',
     tags: ['React', 'TypeScript', 'Fastify', 'Prisma', 'PostgreSQL', 'Vite'],
     link: 'https://sonuslearning.com/',
+    sourceLink: 'https://github.com/mbayers6370/Sonus',
     details: [
       {
         heading: 'The Problem',
@@ -37,7 +38,7 @@ const projects: Project[] = [
   },
   {
     slug: 'cs499-eportfolio',
-    num: '02',
+    num: '03',
     title: 'Android Scheduler',
     type: 'Android Application',
     desc: 'Redesigning a scheduling experience around clarity, hierarchy, and discoverability.',
@@ -139,34 +140,35 @@ const projects: Project[] = [
     role: 'Product Design Intern',
   },
   {
-    slug: 'travlr',
-    num: '04',
-    title: 'Travlr',
-    type: 'Independent UI/UX Redesign',
-    desc: 'A full-stack travel booking application independently redesigned to create a clearer, more cohesive booking experience.',
-    tags: ['UI/UX Design', 'Full-Stack Development', 'Responsive Design'],
-    link: 'https://github.com/mbayers6370/Travlr',
-    linkLabel: 'GitHub repository',
+    slug: 'margin',
+    num: '02',
+    title: 'Margin',
+    type: 'Social Web Application',
+    desc: 'Margin explores a simpler, more intentional social platform through a finite, chronological feed, intentional posting limits, mutual friendships, and smaller shared spaces. It is designed to make room for life outside the feed.',
+    tags: ['Product Design', 'UI/UX Design', 'Next.js', 'TypeScript', 'Prisma', 'PostgreSQL'],
+    link: 'https://social-8vx3.onrender.com',
+    linkLabel: 'Live demo',
+    sourceLink: 'https://github.com/mbayers6370/social',
     details: [
       {
-        heading: 'Starting with the foundation',
-        body: 'Travlr Getaways began as a full-stack application developed for a computer science course. The original work met the technical requirements of a travel booking site, but its older template did not provide the visual clarity or cohesion expected from a polished product experience.',
+        heading: 'The concept',
+        body: 'Margin began with minimalism. I wanted to explore what a social platform might look like if it were designed around simplicity, intentionality, and the idea that less could offer more. Technology should make room for life, not take up all of it.',
       },
       {
-        heading: 'Redesigning the experience',
-        body: 'I independently reimagined the interface with a modern visual identity, improved navigation, clearer content hierarchy, and more intuitive layouts. The redesign carried across travel packages, accommodations, dining, and contact pages so the application would feel like one connected experience rather than a collection of templates.',
+        heading: 'Designing a connected experience',
+        body: 'The interface carries a shared visual language across the feed, profiles, gallery, messaging, and Spaces. Warm paper tones, olive accents, the custom Margin Aside typeface, and the original Margin Editorial Geometry icon family give Margin its identity. Responsive navigation, adjustable reading sizes, and motion preferences support the same experience across desktop and mobile.',
       },
       {
-        heading: 'Using comparison with purpose',
-        body: 'The before-and-after work makes the redesign tangible. It shows how visual hierarchy, navigation, spacing, and page structure can shift an interface from technically complete to easier to understand, scan, and use.',
+        heading: 'From interface to full-stack application',
+        body: 'The original implementation connects the interface to authentication, invitation-based membership, PostgreSQL and Prisma, private media, and server-side authorization. Friendship boundaries, conversations, Spaces, and data lifecycle rules carry the product decisions into the application architecture.',
       },
       {
-        heading: 'Beyond the requirements',
-        body: 'This project demonstrates the ability to take a complete web application beyond its technical foundation and apply UI/UX principles across the whole experience. The independent redesign became an opportunity to practice systems thinking, visual consistency, and user-centered decision-making in a real product context.',
+        heading: 'An interactive portfolio demo',
+        body: 'The public demo lets visitors explore as Ines, a fictional member, without registering. Visitors can compose posts, try conversations, arrange photographs, and explore Spaces using sample content. Changes stay in memory within one tab and reset on refresh or exit. The full-stack implementation remains in the source, separate from the demo.',
       },
     ],
     year: '2026',
-    role: 'Full-Stack Developer & UI/UX Designer',
+    role: 'Product Design & Full-Stack Development',
   },
 ]
 

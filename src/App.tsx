@@ -9,18 +9,20 @@ import Design from "./pages/Design";
 import Project from "./pages/Project";
 
 function ScrollToRoutePosition() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
 
   useLayoutEffect(() => {
     if (hash) {
-      document
-        .getElementById(decodeURIComponent(hash.slice(1)))
-        ?.scrollIntoView();
+      const sectionId = decodeURIComponent(hash.slice(1));
+      const desktopSection = window.matchMedia("(min-width: 901px)").matches
+        ? document.getElementById(`desktop-${sectionId}`)
+        : null;
+      (desktopSection || document.getElementById(sectionId))?.scrollIntoView();
       return;
     }
 
     window.scrollTo(0, 0);
-  }, [pathname, hash]);
+  }, [pathname, hash, key]);
 
   return null;
 }

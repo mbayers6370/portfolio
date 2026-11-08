@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { ChevronRight } from 'lucide-react'
 import ProjectTitle from './ProjectTitle'
 import projects from '../content/projects'
 import { workContent } from '../content/work'
-import TravlrPreview from './TravlrPreview'
 
 const sortedProjects = [...projects].sort((a, b) => Number(a.num) - Number(b.num))
 
@@ -40,8 +40,8 @@ export default function Work() {
             <h3 className="project-title">
               <ProjectTitle title={p.title} />
             </h3>
-            {p.slug === 'travlr' && <TravlrPreview />}
-            <p className="project-desc">{p.desc}</p>
+            {p.slug === 'margin' && <p className="project-margin-hook"><strong>{workContent.marginCard.hook}</strong></p>}
+            <p className="project-desc">{p.slug === 'margin' ? workContent.marginCard.description : p.desc}</p>
             <div className="project-tags">
               {p.tags.map((tag) => (
                 <span key={tag} className="project-tag">{tag}</span>
@@ -49,10 +49,10 @@ export default function Work() {
             </div>
             <div className="project-actions">
               <a href={p.link} target="_blank" rel="noopener noreferrer" className="project-link project-link--ghost" onClick={(event) => event.stopPropagation()}>
-                {p.linkLabel || workContent.liveSiteLabel} <span>↗</span>
+                {p.linkLabel || workContent.liveSiteLabel} <ChevronRight className="link-chevron" aria-hidden="true" />
               </a>
               <Link to={`/work/${p.slug}`} className="project-link" onClick={(event) => event.stopPropagation()}>
-                {workContent.caseStudyLabel} <span>→</span>
+                {workContent.caseStudyLabel} <ChevronRight className="link-chevron" aria-hidden="true" />
               </Link>
             </div>
           </div>

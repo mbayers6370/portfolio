@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { ChevronRight } from 'lucide-react'
 import { booksArtContent } from '../content/books-art'
 
 export default function BooksArt() {
@@ -20,7 +21,7 @@ export default function BooksArt() {
                 </div>
                 <div className="beyond-card-title">{card.title}</div>
                 <div className="beyond-card-desc">{card.description}</div>
-                <span className="beyond-card-arrow" aria-hidden="true">↗︎</span>
+                <span className="beyond-card-chevron" aria-hidden="true"><ChevronRight className="link-chevron" aria-hidden="true" /></span>
               </Link>
             ))}
           </div>

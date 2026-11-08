@@ -1,35 +1,38 @@
 import { type ChangeEvent, type FormEvent, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Plane, TrainFront, Volume2 } from 'lucide-react'
+import { ChevronRight, Plane, TrainFront, Volume2 } from 'lucide-react'
 import headshot from '../assets/headshot-cutout.png'
-import nelaWorkPreview from '../assets/NELA_Work.png'
+import NelaWorkPreview from './NelaWorkPreview'
 import schedulerPreview from '../assets/Scheduler_Hero.png'
-import TravlrPreview from './TravlrPreview'
+import MarginWorkPreview from './margin/MarginWorkPreview'
+import useWorkEntrance from '../hooks/useWorkEntrance'
+import '../styles/margin-brand.css'
+import '../styles/nela-brand.css'
+import '../styles/scheduler-brand.css'
+import '../styles/sonus-brand.css'
+import '../styles/work-entrance.css'
+import '../styles/home-sections.css'
 import { aboutContent } from '../content/about'
 import { contactContent } from '../content/contact'
 import { heroContent } from '../content/hero'
+import { workContent } from '../content/work'
 import projects from '../content/projects'
 
-type DesktopSection = 'work' | 'about' | 'contact'
 type ContactForm = { name: string; email: string; message: string }
 
 const nelaRideProject = projects.find((project) => project.slug === 'nelaride')!
 const schedulerProject = projects.find((project) => project.slug === 'cs499-eportfolio')!
 const sonusProject = projects.find((project) => project.slug === 'sonus')!
-const travlrProject = projects.find((project) => project.slug === 'travlr')!
-const designSkills = {
-  'Experience Design': ['Interaction design', 'Information architecture', 'Wireframing & prototyping'],
-  'Evaluation': ['Usability evaluation', 'User flows', 'Design critique'],
-  'Visual Systems': ['Visual systems', 'Design systems', 'UI patterns'],
-  'Technical Foundation': ['Front-end implementation', 'React & TypeScript', 'HTML / CSS'],
-}
+const marginProject = projects.find((project) => project.slug === 'margin')!
 
 export default function DesktopHome() {
   const location = useLocation()
   const selectedHash = location.hash.slice(1)
-  const activeTab: DesktopSection = selectedHash === 'about' || selectedHash === 'contact' ? selectedHash : 'work'
+  const { phase: workLayout, shellRef } = useWorkEntrance(selectedHash === 'about' || selectedHash === 'contact')
   const [form, setForm] = useState<ContactForm>({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [nelaHovered, setNelaHovered] = useState(false)
+  const [nelaFocused, setNelaFocused] = useState(false)
 
   const updateForm = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const key = event.target.name as keyof ContactForm
@@ -41,33 +44,30 @@ export default function DesktopHome() {
   }
 
   return (
-    <main className="desktop-home" data-section={activeTab}>
-      <div className="desktop-home-shell">
+    <main className="desktop-home" data-section="work" data-work-layout={workLayout}>
+      <div className="desktop-home-shell" ref={shellRef}>
         <aside className="desktop-profile">
           <div className="desktop-profile-photo"><img src={headshot} alt={heroContent.alt} /></div>
           <div className="desktop-profile-copy">
             <h1>{heroContent.firstName}<br />{heroContent.lastName}</h1>
-            <p>UI/UX Designer</p>
+            <p>{heroContent.tagline}</p>
           </div>
         </aside>
 
-        {activeTab === 'work' ? (
-          <section className="desktop-panel desktop-panel--showcase" aria-label="Selected work">
+          <section id="desktop-work" className="desktop-panel desktop-panel--showcase" aria-label="Selected work">
             <div className="desktop-showcase-projects">
-              <Link to={`/work/${nelaRideProject.slug}`} className="desktop-showcase-card desktop-showcase-card--nela">
+              <Link to={`/work/${nelaRideProject.slug}`} className="desktop-showcase-card desktop-showcase-card--nela nela-brand" onPointerEnter={() => setNelaHovered(true)} onPointerLeave={() => setNelaHovered(false)} onFocus={() => setNelaFocused(true)} onBlur={() => setNelaFocused(false)}>
                 <div className="desktop-showcase-card-header">
                   <div>
                     <p>{nelaRideProject.type}</p>
                     <h2>{nelaRideProject.title}</h2>
                   </div>
-                  <span aria-hidden="true">↗</span>
+                  <span aria-hidden="true"><ChevronRight className="link-chevron" aria-hidden="true" /></span>
                 </div>
                 <div className="desktop-showcase-visual desktop-showcase-visual--nela">
-                  <div className="desktop-nela-preview-placeholder">
-                    <img src={nelaWorkPreview} alt="NELARide work preview" />
-                  </div>
+                  <div className="desktop-nela-preview-stage"><NelaWorkPreview active={nelaHovered || nelaFocused} /></div>
                   <div className="desktop-nela-preview-copy">
-                    <h3>Different platforms. One experience.</h3>
+                    <h3>Different platforms.<br />One experience.</h3>
                     <p>Brought NELA Ride&apos;s website into closer alignment with its existing mobile app, unifying typography, color, visual hierarchy, and interaction patterns to create a more recognizable product experience.</p>
                     <div className="desktop-nela-preview-labels">
                       <span>01 / Shared visual language</span>
@@ -83,16 +83,39 @@ export default function DesktopHome() {
                 </div>
               </Link>
 
-              <Link to={`/work/${schedulerProject.slug}`} className="desktop-showcase-card desktop-showcase-card--scheduler">
+              <Link to={`/work/${marginProject.slug}`} className="desktop-showcase-card desktop-showcase-card--margin margin-brand" aria-label="Explore Margin, a social feed with an ending">
+                <div className="desktop-showcase-card-header">
+                  <div>
+                    <p>{marginProject.type}</p>
+                    <h2>{marginProject.title}</h2>
+                  </div>
+                  <span aria-hidden="true"><ChevronRight className="link-chevron" aria-hidden="true" /></span>
+                </div>
+                <div className="desktop-showcase-visual desktop-showcase-visual--margin">
+                  <MarginWorkPreview />
+                  <div className="desktop-margin-preview-copy">
+                    <h3 className="desktop-margin-hook">{workContent.marginCard.hook}</h3>
+                    <p>{workContent.marginCard.description}</p>
+                    <p className="desktop-margin-craft">{workContent.marginCard.craft}</p>
+                  </div>
+                  <div className="desktop-project-spec">
+                    <span>Independent project</span>
+                    <span>Product design / full-stack development</span>
+                    <span>Next.js · TypeScript · PostgreSQL</span>
+                  </div>
+                </div>
+              </Link>
+
+              <Link to={`/work/${schedulerProject.slug}`} className="desktop-showcase-card desktop-showcase-card--scheduler scheduler-brand">
                 <div className="desktop-showcase-card-header">
                   <div>
                     <p>{schedulerProject.type}</p>
                     <h2>{schedulerProject.title}</h2>
                   </div>
-                  <span aria-hidden="true">↗</span>
+                  <span aria-hidden="true"><ChevronRight className="link-chevron" aria-hidden="true" /></span>
                 </div>
                 <div className="desktop-showcase-visual desktop-showcase-visual--scheduler">
-                  <img src={schedulerPreview} alt="Android Scheduler interface preview" />
+                  <div className="desktop-scheduler-preview-stage"><div className="desktop-scheduler-preview-crop"><img src={schedulerPreview} alt="Android Scheduler interface preview" /></div></div>
                   <div className="desktop-scheduler-preview-copy">
                     <h3>A clearer path through<br />the day.</h3>
                     <p>Reorganized the home screen to prioritize upcoming events, make search more accessible, and give collections a dedicated space. Simplified secondary controls and introduced persistent bottom navigation to make moving through the app more intuitive.</p>
@@ -109,13 +132,13 @@ export default function DesktopHome() {
                 </div>
               </Link>
 
-              <Link to={`/work/${sonusProject.slug}`} className="desktop-showcase-card desktop-showcase-card--sonus">
+              <Link to={`/work/${sonusProject.slug}`} className="desktop-showcase-card desktop-showcase-card--sonus sonus-brand">
                 <div className="desktop-showcase-card-header">
                   <div>
                     <p>{sonusProject.type}</p>
                     <h2>{sonusProject.title}</h2>
                   </div>
-                  <span aria-hidden="true">↗</span>
+                  <span aria-hidden="true"><ChevronRight className="link-chevron" aria-hidden="true" /></span>
                 </div>
                 <div className="desktop-showcase-visual desktop-showcase-visual--sonus">
                   <div className="desktop-sonus-preview-stage">
@@ -142,77 +165,58 @@ export default function DesktopHome() {
                   </div>
                 </div>
               </Link>
-
-              <Link to={`/work/${travlrProject.slug}`} className="desktop-showcase-card desktop-showcase-card--travlr">
-                <div className="desktop-showcase-card-header">
-                  <div>
-                    <p>{travlrProject.type}</p>
-                    <h2>{travlrProject.title}</h2>
-                  </div>
-                  <span aria-hidden="true">↗</span>
-                </div>
-                <div className="desktop-showcase-visual desktop-showcase-visual--travlr">
-                  <div className="desktop-travlr-preview-copy">
-                    <h3>A new outlook<br />on getting away.</h3>
-                    <p>From a working travel site to a cohesive experience. A closer look at how identity, navigation, and page design changed the journey.</p>
-                    <span className="desktop-travlr-invitation">See what changed</span>
-                  </div>
-                  <TravlrPreview />
-                  <div className="desktop-project-spec">
-                    <span>Independent redesign</span>
-                    <span>Visual identity / UI &amp; UX</span>
-                    <span>Design through development</span>
-                  </div>
-                </div>
-              </Link>
             </div>
           </section>
-        ) : (
-        <section className="desktop-panel desktop-panel--section" aria-label="Portfolio section">
-          <div className="desktop-panel-content">
-            {activeTab === 'about' && (
-              <section id="desktop-about" className="desktop-about">
-                <div><h2>{aboutContent.title[0]} {aboutContent.title[1]}</h2></div>
+      </div>
+      {workLayout === 'expanded' && (
+        <>
+          <div className="desktop-home-after-work">
+            <section id="desktop-about" className="desktop-panel desktop-home-about" aria-labelledby="desktop-about-title">
+              <div className="desktop-about">
+                <div><h2 id="desktop-about-title">{aboutContent.title[0]}<br />{aboutContent.title[1]}</h2></div>
                 <div className="desktop-about-copy">
-                  <p>I’m a UI/UX Designer who turns complex product needs into clear, useful digital experiences. I work across interaction design, visual systems, and front-end implementation, using my engineering background to make thoughtful ideas practical and durable.</p>
+                  {aboutContent.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   <div className="desktop-skills">
-                    {Object.entries(designSkills).map(([group, items]) => (
-                      <div key={group}><h3>{group}</h3><p>{items.slice(0, 3).join(' · ')}</p></div>
+                    {Object.entries(aboutContent.skills).map(([group, items]) => (
+                      <div key={group}><h3>{group}</h3><p>{items.join(' · ')}</p></div>
                     ))}
                   </div>
                 </div>
-              </section>
-            )}
-
-            {activeTab === 'contact' && (
-              <section id="desktop-contact" className="desktop-contact">
-                <div><h2>Let&apos;s Work<br />Together</h2></div>
-                {sent ? <div className="desktop-form-success"><strong>{contactContent.success.title}</strong><p>{contactContent.success.subtitle}</p></div> : (
-                  <form onSubmit={submitForm} name="desktop-contact" data-netlify="true">
-                    <input type="hidden" name="form-name" value="desktop-contact" />
-                    <div className="desktop-form-field">
-                      <label htmlFor="desktop-name">{contactContent.fields.name.label}</label>
-                      <input id="desktop-name" name="name" placeholder={contactContent.fields.name.placeholder} value={form.name} onChange={updateForm} required />
-                    </div>
-                    <div className="desktop-form-field">
-                      <label htmlFor="desktop-email">{contactContent.fields.email.label}</label>
-                      <input id="desktop-email" type="email" name="email" placeholder={contactContent.fields.email.placeholder} value={form.email} onChange={updateForm} required />
-                    </div>
-                    <div className="desktop-form-field desktop-form-field--message">
-                      <label htmlFor="desktop-message">{contactContent.fields.message.label}</label>
-                      <textarea id="desktop-message" name="message" placeholder={contactContent.fields.message.placeholder} value={form.message} onChange={updateForm} required />
-                    </div>
-                    <button type="submit">{contactContent.submitLabel}</button>
-                  </form>
-                )}
-                <p className="desktop-contact-availability">{contactContent.availability}</p>
-              </section>
-            )}
-
+              </div>
+            </section>
           </div>
-        </section>
-        )}
-      </div>
+          <section id="desktop-contact" className="desktop-home-contact" aria-labelledby="desktop-contact-title">
+            <div className="desktop-contact">
+              <div className="desktop-home-contact-intro">
+                <h2 id="desktop-contact-title">Let&apos;s Work<br />Together</h2>
+                <p>{contactContent.availability}</p>
+                <div className="desktop-home-contact-links">
+                  <a href="https://www.linkedin.com/in/matthew-bayers" target="_blank" rel="noopener noreferrer">LinkedIn <ChevronRight className="link-chevron" aria-hidden="true" /></a>
+                  <a href="https://github.com/mbayers6370" target="_blank" rel="noopener noreferrer">GitHub <ChevronRight className="link-chevron" aria-hidden="true" /></a>
+                </div>
+              </div>
+              {sent ? <div className="desktop-form-success"><strong>{contactContent.success.title}</strong><p>{contactContent.success.subtitle}</p></div> : (
+                <form onSubmit={submitForm} name="desktop-contact" data-netlify="true">
+                  <input type="hidden" name="form-name" value="desktop-contact" />
+                  <div className="desktop-form-field">
+                    <label htmlFor="desktop-name">{contactContent.fields.name.label}</label>
+                    <input id="desktop-name" name="name" placeholder={contactContent.fields.name.placeholder} value={form.name} onChange={updateForm} required />
+                  </div>
+                  <div className="desktop-form-field">
+                    <label htmlFor="desktop-email">{contactContent.fields.email.label}</label>
+                    <input id="desktop-email" type="email" name="email" placeholder={contactContent.fields.email.placeholder} value={form.email} onChange={updateForm} required />
+                  </div>
+                  <div className="desktop-form-field desktop-form-field--message">
+                    <label htmlFor="desktop-message">{contactContent.fields.message.label}</label>
+                    <textarea id="desktop-message" name="message" placeholder={contactContent.fields.message.placeholder} value={form.message} onChange={updateForm} required />
+                  </div>
+                  <button type="submit">{contactContent.submitLabel}</button>
+                </form>
+              )}
+            </div>
+          </section>
+        </>
+      )}
     </main>
   )
 }

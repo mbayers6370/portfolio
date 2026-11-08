@@ -1,0 +1,24 @@
+/* Fonts and colors from NELARide's local website and design tokens. */
+@font-face {
+  font-family: 'NELARide Sora';
+  src: url('../assets/nelaride/fonts/sora-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NELARide Inter';
+  src: url('../assets/nelaride/fonts/inter-latin.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+.nela-brand {
+  --nela-gold: #e9d7a6;
+  --nela-ink: #333333;
+  --nela-rule: rgba(51, 51, 51, .2);
+  --font-display: 'NELARide Sora', sans-serif;
+  --font-body: 'NELARide Inter', sans-serif;
+  font-family: var(--font-body);
+  font-weight: 400;
+}

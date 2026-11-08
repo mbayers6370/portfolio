@@ -3,4 +3,5 @@ export const heroContent = {
   firstName: 'Matthew',
   lastName: 'Bayers.',
   tagline: 'Frontend Developer',
+  workLabel: 'View selected work',
 }
