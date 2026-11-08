@@ -8,6 +8,7 @@ Change the rule that owns a component. Before adding a selector, search `src/sty
 | --- | --- |
 | `globals.css` | Reset, site tokens, shared text/layout primitives, document motion preference |
 | `nav.css`, `footer.css` | Shared navigation and footer; navigation themes and breakpoints stay with navigation |
+| `contact-form.css` | Shared contact submission feedback and disabled controls; layout remains with the home variant |
 | `page-hero.css`, `project-navigation.css` | Shared page heroes and project navigation |
 | `home.css` | Mobile/tablet home sections |
 | `home-desktop.css` | Desktop shell, project showcases, about, contact |

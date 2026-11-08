@@ -22,12 +22,6 @@
   transform: translateY(-100%);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .nav {
-    transition: none;
-  }
-}
-
 .nav--scrolled {
   background: color-mix(in srgb, var(--cream) 96%, transparent);
   backdrop-filter: blur(8px);
@@ -418,5 +412,12 @@
 
   .nav-hamburger {
     display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .nav-hamburger span {
+    transition: none;
   }
 }

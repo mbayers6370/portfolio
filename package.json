@@ -8,12 +8,13 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "format:css": "prettier --write \"src/styles/**/*.css\" stylelint.config.mjs \"scripts/*.mjs\"",
-    "format:check": "prettier --check \"src/styles/**/*.css\" stylelint.config.mjs \"scripts/*.mjs\"",
+    "format:css": "prettier --write \"src/styles/**/*.css\" stylelint.config.mjs \"scripts/*.mjs\" \"checks/**/*.{mjs,html}\"",
+    "format:check": "prettier --check \"src/styles/**/*.css\" stylelint.config.mjs \"scripts/*.mjs\" \"checks/**/*.{mjs,html}\"",
     "lint:css": "stylelint \"src/styles/**/*.css\" && node scripts/check-css-ownership.mjs",
     "lint": "npm run lint:css",
     "test:css": "node --test scripts/css-checks.test.mjs",
-    "check": "npm run format:check && npm run lint && npm run test:css && npm run typecheck && npm run build"
+    "check": "npm run format:check && npm run lint && npm run test:css && npm run typecheck && npm run build",
+    "test:browser": "node scripts/serve-browser-checks.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.60.0",

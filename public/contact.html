@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="portfolio-form-definition" content="contact" />
+    <title>Contact form</title>
+  </head>
+  <body>
+    <!-- Netlify discovers React-rendered forms from these static definitions. -->
+    <form name="contact" method="POST" data-netlify="true" hidden>
+      <input name="name" type="text" />
+      <input name="email" type="email" />
+      <textarea name="message"></textarea>
+    </form>
+    <form name="desktop-contact" method="POST" data-netlify="true" hidden>
+      <input name="name" type="text" />
+      <input name="email" type="email" />
+      <textarea name="message"></textarea>
+    </form>
+    <p><a href="/#contact">Return to the contact form</a></p>
+  </body>
+</html>

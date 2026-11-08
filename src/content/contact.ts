@@ -20,6 +20,8 @@ export const contactContent = {
     },
   },
   submitLabel: 'Send Message',
+  pendingLabel: 'Sending…',
+  errorLabel: 'Your message could not be sent. Please try again.',
   socialsLabel: 'Find me on',
   availability:
     'Currently available for full-time roles and select freelance projects. Open to remote.',

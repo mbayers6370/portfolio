@@ -11,20 +11,36 @@ export default function NelaWorkPreview({ active }: { active: boolean }) {
   useEffect(() => {
     setTypedAddress('')
     if (!active) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setTypedAddress(sampleAddress)
-      return
-    }
-
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const desktop = window.matchMedia('(min-width: 901px)')
     let nextCharacter = 0
-    let timer: ReturnType<typeof setTimeout>
+    let timer: ReturnType<typeof setTimeout> | undefined
+    const finish = () => {
+      clearTimeout(timer)
+      setTypedAddress(sampleAddress)
+    }
+    const onPreferenceChange = () => {
+      if (reducedMotion.matches || !desktop.matches) finish()
+    }
+    const onVisibilityChange = () => {
+      if (document.hidden) finish()
+    }
     const typeNext = () => {
       nextCharacter += 1
       setTypedAddress(sampleAddress.slice(0, nextCharacter))
       if (nextCharacter < sampleAddress.length) timer = setTimeout(typeNext, 85)
     }
-    timer = setTimeout(typeNext, 250)
-    return () => clearTimeout(timer)
+    if (reducedMotion.matches || !desktop.matches || document.hidden) finish()
+    else timer = setTimeout(typeNext, 250)
+    reducedMotion.addEventListener('change', onPreferenceChange)
+    desktop.addEventListener('change', onPreferenceChange)
+    document.addEventListener('visibilitychange', onVisibilityChange)
+    return () => {
+      clearTimeout(timer)
+      reducedMotion.removeEventListener('change', onPreferenceChange)
+      desktop.removeEventListener('change', onPreferenceChange)
+      document.removeEventListener('visibilitychange', onVisibilityChange)
+    }
   }, [active])
 
   return (

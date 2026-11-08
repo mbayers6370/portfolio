@@ -58,6 +58,16 @@ export default function Nav() {
     setMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 901px)");
+    const onResize = () => {
+      if (desktop.matches) setMenuOpen(false);
+      setHidden(false);
+    };
+    desktop.addEventListener("change", onResize);
+    return () => desktop.removeEventListener("change", onResize);
+  }, []);
+
   const close = () => setMenuOpen(false);
   const homeHref = (hash: string) => (isHome ? hash : `/${hash}`);
 

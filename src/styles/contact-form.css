@@ -1,0 +1,10 @@
+.contact-form-error {
+  color: inherit;
+  font-size: 1rem;
+  grid-column: 1 / -1;
+}
+.contact form button:disabled,
+.desktop-contact form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}

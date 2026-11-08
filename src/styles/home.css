@@ -635,7 +635,7 @@
   margin-top: 0.5rem;
 }
 
-.form-submit:hover {
+.form-submit:enabled:hover {
   background: var(--on-dark);
   border-color: var(--on-dark);
   color: var(--near-black);

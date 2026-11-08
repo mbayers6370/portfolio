@@ -1,29 +1,7 @@
-import { type ChangeEvent, type FormEvent, useState } from 'react'
+import ContactForm from './ContactForm'
 import { contactContent } from '../content/contact'
 
-type ContactForm = {
-  name: string
-  email: string
-  message: string
-}
-
 export default function Contact() {
-  const [form, setForm] = useState<ContactForm>({ name: '', email: '', message: '' })
-  const [sent, setSent] = useState(false)
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target
-    const field = name as keyof ContactForm
-    setForm((current) => ({ ...current, [field]: value }))
-  }
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setSent(true)
-  }
-
   return (
     <section className="contact" id="contact">
       <div className="container">
@@ -34,54 +12,7 @@ export default function Contact() {
         <h3 className="contact-heading">{contactContent.heading}</h3>
 
         <div className="contact-inner">
-          {sent ? (
-            <div className="form-success">
-              <p className="form-success-title">{contactContent.success.title}</p>
-              <p className="form-success-sub">{contactContent.success.subtitle}</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true">
-              <input type="hidden" name="form-name" value="contact" />
-              <div className="form-group">
-                <label htmlFor="name">{contactContent.fields.name.label}</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder={contactContent.fields.name.placeholder}
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">{contactContent.fields.email.label}</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder={contactContent.fields.email.placeholder}
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">{contactContent.fields.message.label}</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder={contactContent.fields.message.placeholder}
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <button type="submit" className="form-submit">
-                {contactContent.submitLabel}
-              </button>
-            </form>
-          )}
+          <ContactForm />
 
           <div className="contact-info">
             <div className="contact-info-label">{contactContent.socialsLabel}</div>

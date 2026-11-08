@@ -38,3 +38,11 @@ npm run preview
 ## CSS maintenance
 
 [CSS ownership and conventions](src/styles/README.md) describes stylesheet responsibilities, responsive/state variants, and visual verification. Use `npm run format:css` to format styles. `npm run check` also rejects duplicate declarations, competing stylesheet owners, specificity creep, and unexplained `!important` usage.
+
+## Animation and submission checks
+
+Run `npm run test:browser`, then open `http://localhost:5188/checks/browser.html` in Safari or Chrome. The suite exercises the real components in a resizable iframe: interrupted entrances, breakpoint crossings, navigation reversals, typing cancellation, live motion-preference changes, and 3D front/back hit testing. It reports results as text and takes no screenshots. Visibility and reduced-motion change events are controlled within the tests; viewport changes and CSS compositing run in the browser engine.
+
+Contact tests use local HTTP fixtures for delayed acknowledgement, rejection, disconnection, timeout, retry, and duplicate submission. They send no messages to a real recipient. The fixture endpoint exists only in this check server; the check page is excluded from the production build.
+
+The live contact forms use Netlify Forms. `public/contact.html` supplies the static definitions Netlify needs to discover both React forms. Enable form detection in the site's Netlify settings before deploying. A successful HTTP acknowledgement from the handler is required before showing success; static HTML fallback, rejected requests, network failures, and timeouts show an error and retain the message. Receiving the message in Netlify or by email still needs a deployed end-to-end check.

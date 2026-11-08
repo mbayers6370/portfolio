@@ -860,7 +860,7 @@
     min-height: 52px;
     text-transform: none;
   }
-  .desktop-contact button:hover {
+  .desktop-contact button:enabled:hover {
     border-color: var(--cream);
     background: var(--cream);
     color: var(--olive);

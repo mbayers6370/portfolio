@@ -1,4 +1,5 @@
-import { type ChangeEvent, type FormEvent, useState } from 'react'
+import { useState } from 'react'
+import ContactForm from './ContactForm'
 import { Link, useLocation } from 'react-router-dom'
 import { ChevronRight, Plane, TrainFront, Volume2 } from 'lucide-react'
 import headshot from '../assets/headshot-cutout.png'
@@ -18,8 +19,6 @@ import { heroContent } from '../content/hero'
 import { workContent } from '../content/work'
 import projects from '../content/projects'
 
-type ContactForm = { name: string; email: string; message: string }
-
 const nelaRideProject = projects.find((project) => project.slug === 'nelaride')!
 const schedulerProject = projects.find((project) => project.slug === 'cs499-eportfolio')!
 const sonusProject = projects.find((project) => project.slug === 'sonus')!
@@ -29,19 +28,8 @@ export default function DesktopHome() {
   const location = useLocation()
   const selectedHash = location.hash.slice(1)
   const { phase: workLayout, shellRef } = useWorkEntrance(selectedHash === 'about' || selectedHash === 'contact')
-  const [form, setForm] = useState<ContactForm>({ name: '', email: '', message: '' })
-  const [sent, setSent] = useState(false)
   const [nelaHovered, setNelaHovered] = useState(false)
   const [nelaFocused, setNelaFocused] = useState(false)
-
-  const updateForm = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const key = event.target.name as keyof ContactForm
-    setForm((current) => ({ ...current, [key]: event.target.value }))
-  }
-  const submitForm = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setSent(true)
-  }
 
   return (
     <main className="desktop-home" data-section="work" data-work-layout={workLayout}>
@@ -195,24 +183,7 @@ export default function DesktopHome() {
                   <a href="https://github.com/mbayers6370" target="_blank" rel="noopener noreferrer">GitHub <ChevronRight className="link-chevron" aria-hidden="true" /></a>
                 </div>
               </div>
-              {sent ? <div className="desktop-form-success"><strong>{contactContent.success.title}</strong><p>{contactContent.success.subtitle}</p></div> : (
-                <form onSubmit={submitForm} name="desktop-contact" data-netlify="true">
-                  <input type="hidden" name="form-name" value="desktop-contact" />
-                  <div className="desktop-form-field">
-                    <label htmlFor="desktop-name">{contactContent.fields.name.label}</label>
-                    <input id="desktop-name" name="name" placeholder={contactContent.fields.name.placeholder} value={form.name} onChange={updateForm} required />
-                  </div>
-                  <div className="desktop-form-field">
-                    <label htmlFor="desktop-email">{contactContent.fields.email.label}</label>
-                    <input id="desktop-email" type="email" name="email" placeholder={contactContent.fields.email.placeholder} value={form.email} onChange={updateForm} required />
-                  </div>
-                  <div className="desktop-form-field desktop-form-field--message">
-                    <label htmlFor="desktop-message">{contactContent.fields.message.label}</label>
-                    <textarea id="desktop-message" name="message" placeholder={contactContent.fields.message.placeholder} value={form.message} onChange={updateForm} required />
-                  </div>
-                  <button type="submit">{contactContent.submitLabel}</button>
-                </form>
-              )}
+              <ContactForm desktop />
             </div>
           </section>
         </>

@@ -695,9 +695,11 @@
 .margin-snippet .margin-icon[data-paused="true"] * {
   /* stylelint-disable-next-line declaration-no-important -- Motion-off must outrank animated SVG descendants. */
   animation: none !important;
+  transition: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .margin-snippet * {
+  .margin-snippet *,
+  .margin-feed-end * {
     /* stylelint-disable-next-line declaration-no-important -- System reduced motion must outrank animated SVG descendants. */
     animation: none !important;
     /* stylelint-disable-next-line declaration-no-important -- System reduced motion must override embedded preview transitions. */
