@@ -7,7 +7,13 @@
     "dev:clean": "for p in 5173 5174 5175 5176 5177 5178 5179 5180; do lsof -ti tcp:$p | xargs kill -9 2>/dev/null || true; done && vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format:css": "prettier --write \"src/styles/**/*.css\" stylelint.config.mjs \"scripts/*.mjs\"",
+    "format:check": "prettier --check \"src/styles/**/*.css\" stylelint.config.mjs \"scripts/*.mjs\"",
+    "lint:css": "stylelint \"src/styles/**/*.css\" && node scripts/check-css-ownership.mjs",
+    "lint": "npm run lint:css",
+    "test:css": "node --test scripts/css-checks.test.mjs",
+    "check": "npm run format:check && npm run lint && npm run test:css && npm run typecheck && npm run build"
   },
   "dependencies": {
     "lucide-react": "^1.60.0",
@@ -19,6 +25,9 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.1",
+    "postcss": "^8.5.32",
+    "prettier": "^3.9.10",
+    "stylelint": "^16.26.1",
     "typescript": "^5.6.3",
     "vite": "^5.4.0"
   }

@@ -4,7 +4,7 @@ This is my personal portfolio site, built with React, TypeScript, and Vite.
 
 ## Running it locally
 
-I use Node.js 18 or newer. After cloning the project, I install the dependencies and start the development server:
+I use Node.js 22 or newer. After cloning the project, I install the dependencies and start the development server:
 
 ```bash
 npm install
@@ -15,11 +15,10 @@ Vite will print a local URL in the terminal (usually `http://localhost:5173`). I
 
 ## Checking a production build
 
-Before deploying, I make sure the project type-checks and builds successfully:
+Before deploying, I run the same verification used in GitHub Actions:
 
 ```bash
-npm run typecheck
-npm run build
+npm run check
 ```
 
 The production-ready files are generated in `dist/`. To preview that build locally, I run:
@@ -35,3 +34,7 @@ npm run preview
 - `src/content/` contains the portfolio copy and project data.
 - `src/styles/` contains the global styles and page-specific CSS.
 - `src/assets/` contains images and other visual assets.
+
+## CSS maintenance
+
+[CSS ownership and conventions](src/styles/README.md) describes stylesheet responsibilities, responsive/state variants, and visual verification. Use `npm run format:css` to format styles. `npm run check` also rejects duplicate declarations, competing stylesheet owners, specificity creep, and unexplained `!important` usage.

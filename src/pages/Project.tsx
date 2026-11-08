@@ -1,4 +1,7 @@
 import '../styles/project.css'
+import '../styles/project-scheduler.css'
+import '../styles/project-sonus.css'
+import '../styles/project-nela.css'
 import '../styles/nela-brand.css'
 import '../styles/scheduler-brand.css'
 import '../styles/sonus-brand.css'

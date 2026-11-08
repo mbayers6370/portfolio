@@ -1,0 +1,356 @@
+.nela-guideline-modal-close svg {
+  height: 1em;
+  width: 1em;
+}
+body:has(.nela-case-study) {
+  --nela-gold: #e9d7a6;
+  --nela-ink: #333333;
+  --nela-paper: #f7f7f2;
+  --nela-accent: #795b23;
+  --nela-rule: rgba(51, 51, 51, 0.2);
+  --olive: var(--nela-ink);
+  --secondary: var(--nela-gold);
+  --cream: var(--nela-paper);
+  --forest: var(--nela-ink);
+  background: var(--nela-paper);
+}
+.nela-case-study {
+  --bg: var(--nela-paper);
+  --olive: var(--nela-ink);
+  --secondary: var(--nela-gold);
+  --cream: var(--nela-paper);
+  --warm-white: var(--nela-paper);
+  --near-black: var(--nela-ink);
+  --mid: var(--nela-ink);
+  --faded: var(--nela-ink);
+  --forest: var(--nela-ink);
+  --sage: var(--nela-gold);
+  --teal: var(--nela-ink);
+  --hairline: var(--nela-rule);
+  background: var(--nela-paper);
+  color: var(--nela-ink);
+}
+.nela-case-study .project-page-header {
+  --project-text: var(--nela-ink);
+  --project-mid: rgba(51, 51, 51, 0.72);
+  --project-faded: rgba(51, 51, 51, 0.58);
+  --project-line: rgba(51, 51, 51, 0.22);
+  background: var(--nela-gold);
+  color: var(--project-text);
+  padding-top: calc(58px + clamp(2.5rem, 4vw, 4.5rem));
+}
+.nela-section {
+  padding: clamp(4rem, 8vw, 7.5rem) 0;
+}
+.nela-case-study h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.nela-kicker {
+  color: var(--nela-accent);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+.nela-copy,
+.nela-website p:not(.nela-kicker),
+.nela-ecosystem p:not(.nela-kicker) {
+  font-family: var(--font-body);
+  font-size: var(--reading-size);
+  font-weight: 400;
+  line-height: var(--reading-leading);
+  max-width: var(--reading-measure);
+}
+.nela-project {
+  background: var(--nela-ink);
+  color: #fff;
+}
+.nela-project .nela-kicker {
+  color: rgba(255, 255, 255, 0.68);
+}
+.nela-project .nela-copy {
+  color: rgba(255, 255, 255, 0.82);
+}
+.nela-project-layout {
+  display: grid;
+  gap: clamp(2.5rem, 4vw, 4rem);
+}
+.nela-section-intro {
+  max-width: var(--reading-measure);
+  min-width: 0;
+}
+.nela-section-intro h2 {
+  line-height: 1.1;
+}
+.nela-section-intro .nela-copy {
+  margin-top: 1.5rem;
+}
+.nela-scope {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.nela-scope > div {
+  min-width: 0;
+}
+.nela-scope dt {
+  color: var(--nela-gold);
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+.nela-scope dd {
+  color: rgba(255, 255, 255, 0.82);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+.nela-website {
+  background: var(--nela-paper);
+  color: var(--nela-ink);
+}
+.nela-website .nela-kicker {
+  color: var(--nela-accent);
+}
+.nela-website-grid {
+  display: grid;
+  gap: clamp(2.5rem, 4vw, 4rem);
+  grid-template-columns: minmax(0, 1fr);
+}
+.nela-website p:not(.nela-kicker) {
+  color: rgba(51, 51, 51, 0.82);
+}
+.nela-website a {
+  align-items: center;
+  color: var(--nela-accent);
+  display: inline-flex;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  gap: 0.7rem;
+  margin-top: 1.25rem;
+  min-height: 44px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+.nela-website a:focus-visible {
+  outline: 2px solid var(--nela-accent);
+  outline-offset: 5px;
+}
+.nela-guideline-cards {
+  align-items: start;
+  display: grid;
+  gap: clamp(1rem, 2vw, 2rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.nela-guideline-card {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--nela-ink);
+  cursor: zoom-in;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+}
+.nela-guideline-card:focus-visible {
+  outline: 2px solid var(--nela-accent);
+  outline-offset: 6px;
+}
+.nela-guideline-card img {
+  aspect-ratio: 16 / 9;
+  background: #fff;
+  border: 1px solid var(--nela-rule);
+  border-radius: 0.3rem;
+  display: block;
+  height: auto;
+  object-fit: contain;
+  width: 100%;
+}
+.nela-guideline-card:hover img {
+  border-color: var(--nela-accent);
+}
+.nela-guideline-caption {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--font-body);
+  gap: 0.4rem 1rem;
+  justify-content: space-between;
+  padding-top: 0.85rem;
+}
+.nela-guideline-caption strong {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.nela-guideline-caption > span {
+  color: var(--nela-accent);
+  font-size: 0.8rem;
+}
+.nela-guideline-modal {
+  align-items: center;
+  background: rgba(20, 20, 20, 0.72);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: clamp(1.25rem, 5vw, 4rem);
+  position: fixed;
+  z-index: 200;
+}
+.nela-guideline-modal-content {
+  background: var(--nela-paper);
+  border-radius: var(--radius-card);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
+  max-height: 100%;
+  max-width: min(62rem, 100%);
+  overflow: auto;
+  padding: 1rem;
+  position: relative;
+}
+.nela-guideline-modal-content img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+.nela-guideline-modal-content p {
+  color: var(--nela-ink);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  margin: 0.8rem 0.2rem 0.2rem;
+  text-transform: uppercase;
+}
+.nela-guideline-modal-close {
+  align-items: center;
+  background: var(--nela-ink);
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font: 1.5rem/1 var(--font-body);
+  height: 2.25rem;
+  justify-content: center;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  width: 2.25rem;
+  z-index: 1;
+}
+.nela-guideline-modal-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+.nela-evolution {
+  background: var(--nela-ink);
+  color: #fff;
+}
+.nela-evolution .nela-kicker {
+  color: rgba(255, 255, 255, 0.68);
+}
+.nela-evolution-grid {
+  align-items: center;
+  display: grid;
+  gap: clamp(3rem, 8vw, 10rem);
+  grid-template-columns: minmax(16rem, 0.75fr) minmax(0, 1.25fr);
+}
+.nela-evolution-grid .nela-copy {
+  color: rgba(255, 255, 255, 0.82);
+  margin-top: 1.7rem;
+  max-width: 38ch;
+}
+.nela-comparison {
+  align-items: center;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+.nela-comparison figure {
+  margin: 0;
+}
+.nela-comparison img {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 1.2rem;
+  display: block;
+  height: clamp(22rem, 34vw, 34rem);
+  margin: 0 auto;
+  object-fit: cover;
+  object-position: top;
+  width: auto;
+  max-width: 100%;
+}
+.nela-comparison > span {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+}
+.nela-comparison figcaption {
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  margin-top: 0.65rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.nela-ecosystem {
+  background: var(--nela-paper);
+  color: var(--nela-ink);
+}
+.nela-ecosystem .nela-kicker {
+  color: var(--nela-accent);
+}
+.nela-ecosystem p {
+  color: rgba(51, 51, 51, 0.78);
+  margin-top: 1.7rem;
+  max-width: 62ch;
+}
+@media (max-width: 800px) {
+  .nela-evolution-grid {
+    grid-template-columns: 1fr;
+  }
+  .nela-comparison {
+    max-width: 34rem;
+  }
+}
+@media (max-width: 520px) {
+  .nela-comparison {
+    gap: 0.45rem;
+  }
+  .nela-comparison > span {
+    font-size: 1.2rem;
+  }
+  .nela-comparison img {
+    border-radius: 0.8rem;
+    height: 18rem;
+  }
+}
+@media (max-width: 760px) {
+  .nela-guideline-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .nela-scope {
+    gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .nela-scope > div {
+    align-items: baseline;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 7rem minmax(0, 1fr);
+  }
+  .nela-scope dd {
+    margin-top: 0;
+  }
+}

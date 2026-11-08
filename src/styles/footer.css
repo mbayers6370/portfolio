@@ -1,0 +1,20 @@
+/* -------------------------------------------------------------------------- */
+/* Shared footer                                                              */
+/* -------------------------------------------------------------------------- */
+.footer {
+  background: var(--olive);
+  border-top: 1px solid var(--hairline-dark);
+  padding: 1.5rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-left,
+.footer-right {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-dark-mid);
+}

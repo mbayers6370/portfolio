@@ -12,7 +12,7 @@
 }
 .nela-work-rides {
   background: #fafafa;
-  border: .23cqw solid #cececa;
+  border: 0.23cqw solid #cececa;
   border-radius: 2.05cqw;
   height: 100%;
   left: 0;
@@ -21,8 +21,8 @@
   width: 55.8%;
 }
 .nela-work-period {
-  border: .23cqw solid #e3e3e3;
-  border-radius: 999px;
+  border: 0.23cqw solid #e3e3e3;
+  border-radius: var(--radius-round);
   height: 11.65%;
   left: 4.69%;
   position: absolute;
@@ -30,7 +30,7 @@
   top: 3.44%;
 }
 .nela-work-period > span {
-  border: .23cqw solid #e3e3e3;
+  border: 0.23cqw solid #e3e3e3;
   border-radius: inherit;
   height: 76%;
   left: 2.3%;
@@ -61,7 +61,7 @@
   white-space: nowrap;
 }
 .nela-work-chart {
-  border: .23cqw solid #e3e3e3;
+  border: 0.23cqw solid #e3e3e3;
   border-radius: 2.05cqw;
   bottom: 3.9%;
   left: 4.69%;
@@ -81,15 +81,15 @@
 }
 .nela-work-chart-bars > span {
   background: #f4f4f4;
-  border-radius: 999px;
+  border-radius: var(--radius-round);
   width: 10.4%;
 }
 .nela-work-chart-bars > span:nth-child(5) {
   background: transparent;
-  border: .23cqw dashed #e9d7a6;
+  border: 0.23cqw dashed #e9d7a6;
 }
 .nela-work-chart-grid {
-  border-top: .34cqw solid #e3e3e3;
+  border-top: 0.34cqw solid #e3e3e3;
   bottom: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -99,7 +99,7 @@
   top: 56.4%;
 }
 .nela-work-chart-grid > span + span {
-  border-left: .34cqw solid #e3e3e3;
+  border-left: 0.34cqw solid #e3e3e3;
 }
 .nela-work-swatches {
   display: grid;
@@ -116,15 +116,17 @@
 }
 .nela-work-swatches > span:nth-child(2) {
   background: #fafafa;
-  border: .23cqw solid #cececa;
+  border: 0.23cqw solid #cececa;
 }
-.nela-work-swatches > span:nth-child(3) { background: #1e1d19; }
+.nela-work-swatches > span:nth-child(3) {
+  background: #1e1d19;
+}
 .nela-work-search {
   align-items: center;
   background: #fafafa;
-  border: .23cqw solid #dededb;
+  border: 0.23cqw solid #dededb;
   border-radius: 1.6cqw;
-  box-shadow: 0 1.14cqw 1.6cqw rgba(0, 0, 0, .16);
+  box-shadow: 0 1.14cqw 1.6cqw rgba(0, 0, 0, 0.16);
   display: flex;
   gap: 3.2cqw;
   height: 17.04%;
@@ -157,15 +159,15 @@
   display: block;
   font-size: 2.28cqw;
   line-height: 1.6;
-  margin-top: .9cqw;
+  margin-top: 0.9cqw;
   min-height: 1.6em;
   overflow: hidden;
   white-space: nowrap;
 }
 .nela-work-address[data-typing]::after {
   border-right: 1px solid currentColor;
-  content: '';
-  margin-left: .1rem;
+  content: "";
+  margin-left: 0.1rem;
 }
 .nela-work-time {
   align-items: center;
@@ -173,12 +175,14 @@
   display: inline-flex;
   flex-shrink: 0;
   font-size: 1.94cqw;
-  gap: .8cqw;
+  gap: 0.8cqw;
 }
 .nela-work-time svg {
   height: 1.82cqw;
   width: 1.82cqw;
 }
 @media (prefers-reduced-motion: reduce) {
-  .nela-work-address[data-typing]::after { display: none; }
+  .nela-work-address[data-typing]::after {
+    display: none;
+  }
 }

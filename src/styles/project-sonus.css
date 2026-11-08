@@ -1,0 +1,728 @@
+.sonus-case-study {
+  --project-navigation-action-bg: var(--sonus-blue);
+  --project-navigation-action-fg: var(--sonus-paper);
+  --font-display: "Tenor Sans", "Jost", sans-serif;
+  --font-body: "Source Sans 3", "Inter", sans-serif;
+  --font-mono: "Monoist", "DM Mono", monospace;
+  background: var(--sonus-paper);
+  color: var(--sonus-ink);
+}
+body:has(.sonus-case-study) {
+  background: var(--sonus-paper);
+}
+.sonus-hero {
+  background: var(--sonus-ink);
+  color: #f8fbfd;
+  padding: calc(58px + clamp(1.5rem, 2vw, 2.5rem)) 0 0;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+.sonus-hero > .container {
+  position: relative;
+  z-index: 1;
+}
+.sonus-hero-topographic {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  opacity: 0.22;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+.sonus-hero-meta,
+.sonus-hero-spec {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  color: #b9cad5;
+}
+.sonus-hero-intro {
+  padding: clamp(1.75rem, 2.5vw, 2.75rem) 0 clamp(1.5rem, 2vw, 2rem);
+}
+.sonus-hero h1,
+.sonus-case-study h2,
+.sonus-case-study h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.sonus-hero h1 {
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  line-height: 0.95;
+}
+.sonus-hero-intro p {
+  color: #d0dce3;
+  font-family: var(--font-body);
+  font-size: var(--reading-size);
+  font-weight: 400;
+  line-height: var(--reading-leading);
+  margin-top: 0.85rem;
+  max-width: var(--reading-measure);
+}
+.sonus-hero-spec {
+  padding: 0.5rem 0 clamp(1.75rem, 3vw, 3rem);
+}
+.sonus-section {
+  padding: clamp(4rem, 7vw, 6.5rem) 0;
+}
+.sonus-kicker,
+.sonus-type-sample span,
+.sonus-component span {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.sonus-kicker {
+  color: var(--sonus-blue);
+  margin-bottom: 1.8rem;
+}
+.sonus-section h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+.sonus-lead {
+  color: var(--sonus-muted);
+  font-family: var(--font-body);
+  font-size: var(--reading-size);
+  font-weight: 400;
+  line-height: var(--reading-leading);
+  margin-top: 2rem;
+  max-width: 62ch;
+}
+.sonus-challenge {
+  margin-top: 2.7rem;
+  padding-top: 2.3rem;
+}
+.sonus-challenge .sonus-kicker {
+  margin-bottom: 1.5rem;
+}
+.sonus-challenge h3 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.3;
+}
+.sonus-challenge-copy {
+  color: var(--sonus-muted);
+  font-family: var(--font-body);
+  font-size: var(--reading-size);
+  font-weight: 400;
+  line-height: var(--reading-leading);
+  margin-top: 1.25rem;
+  max-width: 58ch;
+}
+.sonus-product {
+  background: var(--sonus-teal);
+  color: #f9fbfa;
+}
+.sonus-product .sonus-kicker {
+  color: #b6cac7;
+}
+.sonus-paths {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+.sonus-paths article {
+  align-items: center;
+  background: linear-gradient(
+    160deg,
+    #315752 0%,
+    var(--sonus-panel) 54%,
+    #183a38 100%
+  );
+  border: 1px solid rgba(215, 236, 231, 0.11);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  padding: 1.5rem 1.5rem 0;
+  position: relative;
+}
+.sonus-paths article::before {
+  background: radial-gradient(
+    circle,
+    rgba(135, 204, 198, 0.28) 0 1px,
+    transparent 1.5px
+  );
+  background-size: 12px 12px;
+  content: "";
+  inset: 0;
+  opacity: 0.24;
+  pointer-events: none;
+  position: absolute;
+}
+.sonus-paths article > div {
+  align-self: stretch;
+  position: relative;
+  z-index: 1;
+}
+.sonus-paths h3 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.3;
+  margin: 0 0 0.7rem;
+}
+.sonus-paths p {
+  color: #d1dcd9;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 23ch;
+}
+.sonus-phone-frame {
+  aspect-ratio: 4 / 5;
+  background: #101d26;
+  border: 5px solid #101d26;
+  border-radius: 1.65rem 1.65rem 0 0;
+  box-shadow:
+    0 1.5rem 2.5rem rgba(4, 15, 18, 0.38),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.24);
+  margin: 1.25rem auto 0;
+  max-width: 12.8rem;
+  overflow: hidden;
+  position: relative;
+  transform: translateY(0.15rem);
+  width: 78%;
+  z-index: 1;
+}
+.sonus-phone-frame img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+.sonus-home-showcase {
+  background: #102933;
+  border: 1px solid rgba(217, 240, 239, 0.3);
+  border-radius: 1rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  overflow: hidden;
+  padding: clamp(1rem, 2vw, 1.8rem) clamp(1rem, 2vw, 1.8rem) 0;
+}
+.sonus-home-showcase figcaption {
+  display: flex;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  justify-content: space-between;
+  letter-spacing: 0.16em;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.sonus-home-showcase figcaption span:first-child {
+  color: #c7e5e1;
+}
+.sonus-home-showcase figcaption span:last-child {
+  color: rgba(255, 255, 255, 0.6);
+}
+.sonus-home-showcase > div {
+  border: 1px solid rgba(223, 239, 237, 0.72);
+  border-bottom: 0;
+  border-radius: 0.75rem 0.75rem 0 0;
+  margin: 0 auto;
+  overflow: hidden;
+  width: min(86%, 68rem);
+}
+.sonus-home-showcase img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+.sonus-system {
+  background: var(--sonus-paper);
+}
+.sonus-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1.7rem 0 1.5rem;
+}
+.sonus-swatches span {
+  height: 6rem;
+  border-radius: var(--radius-control);
+  background: var(--sonus-ink);
+}
+.sonus-swatches span:nth-child(2) {
+  background: var(--sonus-blue);
+}
+.sonus-swatches span:nth-child(3) {
+  background: var(--sonus-teal);
+}
+.sonus-swatches span:nth-child(4) {
+  background: var(--sonus-rust);
+}
+.sonus-system-grid {
+  display: contents;
+}
+.sonus-type-sample,
+.sonus-component {
+  min-height: 16rem;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sonus-type-sample {
+  background: #eaf0f2;
+  grid-column: 1;
+  grid-row: 1;
+}
+.sonus-component {
+  background: var(--sonus-ink);
+}
+.sonus-type-sample strong {
+  color: var(--sonus-blue);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1;
+}
+.sonus-type-name {
+  color: var(--sonus-blue);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 0.7rem;
+}
+.sonus-type-role {
+  color: var(--sonus-muted);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 300;
+  margin-top: 0.15rem;
+}
+.sonus-type-line {
+  color: var(--sonus-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.45;
+}
+.sonus-type-sample span,
+.sonus-component > span {
+  color: var(--sonus-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.75rem;
+}
+.sonus-type-specimen {
+  margin: 1.4rem 0;
+}
+.sonus-type-roles {
+  display: grid;
+  gap: 0.45rem;
+  padding-top: 0.75rem;
+}
+.sonus-type-roles span {
+  color: var(--sonus-blue);
+  display: flex;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  justify-content: space-between;
+}
+.sonus-type-roles small {
+  color: var(--sonus-muted);
+  font-size: 0.68rem;
+}
+.sonus-type-roles .sonus-type-scale {
+  color: var(--sonus-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  margin-top: 0.2rem;
+}
+.sonus-component > span {
+  color: rgba(255, 255, 255, 0.72);
+}
+.sonus-component-library {
+  display: contents;
+}
+.sonus-resume-preview {
+  border-radius: 1rem;
+  color: #fff;
+  padding: 1.15rem;
+  text-align: center;
+  background:
+    linear-gradient(#202c3b, #202c3b) padding-box,
+    linear-gradient(135deg, #1bb8c8 0%, #8ae9ea 52%, #1bb8c8 100%) border-box;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+.sonus-resume-preview p {
+  color: #b9cad5;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.sonus-resume-preview strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0.3rem 0 0.1rem;
+}
+.sonus-resume-preview > span {
+  color: #d5e0e5;
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.sonus-resume-preview b,
+.sonus-travel-preview > b {
+  background: #415870;
+  border: 1px solid #8fa7bd;
+  border-radius: var(--radius-card);
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  margin-top: 0.9rem;
+  padding: 0.65rem;
+}
+.sonus-resume-preview em,
+.sonus-travel-preview em {
+  font-style: normal;
+  margin-left: 0.4rem;
+}
+.sonus-component--resume > span,
+.sonus-component--travel > span {
+  color: var(--sonus-muted);
+}
+.sonus-outcome {
+  background: var(--sonus-blue);
+  color: #fff;
+}
+.sonus-outcome .sonus-kicker {
+  color: #c5e0ef;
+}
+.sonus-outcome > .container > p:not(.sonus-kicker) {
+  color: #deedf4;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 1.8rem 0 2.5rem;
+  max-width: 62ch;
+}
+.sonus-outcome a {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.sonus-outcome a span {
+  font-size: 1.6em;
+  line-height: 0.8;
+}
+.sonus-footer {
+  background: var(--sonus-paper);
+  color: var(--sonus-ink);
+}
+/* Travel Sprint feature state: spacious, centered, and ready for the next trip. */
+.sonus-travel-feature-preview {
+  border-radius: 1rem;
+  color: #fff;
+  overflow: hidden;
+  background:
+    linear-gradient(var(--sonus-blue), var(--sonus-blue)) padding-box,
+    linear-gradient(135deg, #e56b2f 0%, #f18a45 52%, #e56b2f 100%) border-box;
+  border: 1px solid transparent;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  flex: 1;
+}
+.sonus-travel-feature-head {
+  gap: 0.75rem;
+  align-items: center;
+  border-bottom: 1px solid rgba(225, 239, 245, 0.52);
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+.sonus-travel-feature-head b {
+  display: none;
+}
+.sonus-travel-feature-head span {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.sonus-travel-feature-body {
+  padding: 1.15rem 1.15rem 0.8rem;
+  text-align: center;
+}
+.sonus-travel-feature-body > p:first-child {
+  color: #e1edf2;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  align-items: center;
+  display: inline-flex;
+  gap: 0.45rem;
+}
+.sonus-travel-feature-body > p:first-child svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  stroke-width: 1.8;
+}
+.sonus-travel-feature-body h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0.5rem 0 0.65rem;
+}
+.sonus-travel-feature-body > p:not(:first-child) {
+  color: #f3f7f9;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+.sonus-travel-feature-body strong {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  line-height: 1.4;
+  margin-top: 0.75rem;
+}
+.sonus-travel-feature-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  justify-content: center;
+  padding: 0 0.8rem 0.8rem;
+}
+.sonus-travel-feature-meta span {
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.sonus-travel-feature-scenarios {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 0 0.8rem 0.8rem;
+}
+.sonus-travel-feature-scenarios > div {
+  align-items: center;
+  border: 1px solid rgba(224, 240, 246, 0.8);
+  border-radius: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 6.2rem;
+  padding: 0.55rem;
+  text-align: center;
+}
+.sonus-travel-feature-scenarios > div > svg {
+  color: #f3f7f9;
+  height: 1.35rem;
+  margin-bottom: 0.45rem;
+  stroke-width: 1.8;
+  width: 1.35rem;
+}
+.sonus-travel-feature-scenarios strong {
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+.sonus-travel-feature-scenarios small {
+  color: #f3f7f9;
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+}
+.sonus-component--travel-feature > span {
+  color: rgba(255, 255, 255, 0.72);
+}
+/* Travel Sprint dashboard card */
+.sonus-travel-preview {
+  border-radius: 1rem;
+  color: var(--sonus-ink);
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem 1.1rem 1.05rem;
+  text-align: center;
+  width: 100%;
+  background: #fff;
+  border: 0;
+  box-shadow: none;
+  max-width: none;
+  display: block;
+  flex: initial;
+  height: auto;
+}
+.sonus-travel-preview h3 {
+  line-height: 1;
+  color: var(--sonus-blue);
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 400;
+}
+.sonus-travel-preview p {
+  font-family: var(--font-body);
+  line-height: 1.45;
+  color: #607286;
+  font-size: 0.76rem;
+  margin: 0.55rem auto 0.85rem;
+  max-width: 22rem;
+}
+.sonus-travel-preview > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+}
+.sonus-travel-preview > div span {
+  border: 1px solid #c9d8df;
+  border-radius: var(--radius-round);
+  color: var(--sonus-blue);
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0;
+  text-transform: none;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.72);
+  border-color: #e1e7eb;
+  display: inline-flex;
+  gap: 0.32rem;
+  padding: 0.38rem 0.55rem;
+}
+.sonus-travel-preview > div span svg {
+  height: 0.8rem;
+  stroke-width: 1.8;
+  width: 0.8rem;
+}
+.sonus-travel-preview > b {
+  background: var(--sonus-blue);
+  border-color: var(--sonus-blue);
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-top: 0.9rem;
+  padding: 0.65rem 0.9rem;
+}
+.sonus-component--travel,
+.sonus-component--travel-feature {
+  min-height: 14rem;
+  display: flex;
+  flex-direction: column;
+}
+.sonus-showcase-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1.5rem;
+}
+.sonus-component--travel {
+  grid-column: 2;
+  grid-row: 2;
+  background: #fff;
+}
+.sonus-component--travel-feature {
+  grid-column: 2;
+  grid-row: 1;
+  background: transparent;
+  padding: 0;
+}
+.sonus-travel-feature-preview::before {
+  background: url("../assets/Topographic_Transparent.png") center / cover
+    no-repeat;
+  content: "";
+  inset: 0;
+  mix-blend-mode: screen;
+  opacity: 0.52;
+  pointer-events: none;
+  position: absolute;
+}
+.sonus-travel-feature-preview > * {
+  position: relative;
+  z-index: 1;
+}
+.sonus-resume-after-travel {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 0;
+  background: transparent;
+  padding: 0;
+}
+@media (max-width: 700px) {
+  .sonus-hero-spec,
+  .sonus-hero-meta {
+    gap: 1rem;
+  }
+  .sonus-hero-spec {
+    flex-direction: column;
+  }
+  .sonus-paths {
+    grid-template-columns: 1fr;
+  }
+  .sonus-paths article {
+    min-height: 0;
+  }
+  .sonus-phone-frame {
+    max-width: 15rem;
+    width: min(78%, 15rem);
+  }
+  .sonus-home-showcase figcaption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .sonus-swatches {
+    gap: 0.45rem;
+  }
+  .sonus-swatches span {
+    height: 3.6rem;
+  }
+  .sonus-type-sample,
+  .sonus-component {
+    min-height: 9rem;
+  }
+  .sonus-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+  .sonus-type-sample,
+  .sonus-component--travel-feature,
+  .sonus-resume-after-travel,
+  .sonus-component--travel {
+    grid-column: 1;
+  }
+  .sonus-type-sample {
+    grid-row: 1;
+  }
+  .sonus-component--travel-feature {
+    grid-row: 2;
+  }
+  .sonus-resume-after-travel {
+    grid-row: 3;
+  }
+  .sonus-component--travel {
+    grid-row: 4;
+  }
+}

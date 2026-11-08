@@ -1,3 +1,4 @@
+import '../styles/footer.css'
 import { footerContent } from '../content/footer'
 
 export default function Footer() {

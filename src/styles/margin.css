@@ -50,11 +50,11 @@
   align-items: center;
   color: inherit;
   display: inline-flex;
-  font-size: .85rem;
-  gap: .65rem;
+  font-size: 0.85rem;
+  gap: 0.65rem;
   min-height: 44px;
   text-decoration-thickness: 1px;
-  text-underline-offset: .3em;
+  text-underline-offset: 0.3em;
 }
 .margin-back {
   text-decoration: none;
@@ -62,7 +62,7 @@
 .margin-project-links {
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem 1.5rem;
+  gap: 0.5rem 1.5rem;
 }
 .margin-case-study :is(a svg) {
   height: 1rem;
@@ -78,7 +78,7 @@
 .margin-case-study .margin-wordmark {
   color: var(--margin-cinnamon);
   font-size: clamp(4rem, 8vw, 7.5rem);
-  letter-spacing: -.055em;
+  letter-spacing: -0.055em;
   line-height: 1.15;
   margin-bottom: 1.75rem;
 }
@@ -104,29 +104,29 @@
 }
 .margin-meta dt {
   color: #c5c4b8;
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 .margin-meta dd {
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 .margin-page-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem 2rem;
+  gap: 0.5rem 2rem;
   padding-block: 1.3rem;
 }
 .margin-page-nav a {
   align-items: center;
   color: #eeede7;
   display: inline-flex;
-  font-size: .8rem;
+  font-size: 0.8rem;
   min-height: 44px;
-  padding-block: .3rem;
+  padding-block: 0.3rem;
   text-decoration: none;
 }
 .margin-page-nav a:hover {
   text-decoration: underline;
-  text-underline-offset: .3em;
+  text-underline-offset: 0.3em;
 }
 .margin-section,
 .margin-experience,
@@ -186,7 +186,7 @@
 }
 .margin-screen-controls {
   display: grid;
-  gap: .6rem;
+  gap: 0.6rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-content: start;
   margin-bottom: 1.5rem;
@@ -194,13 +194,13 @@
 .margin-screen-controls button {
   background: transparent;
   border: 1px solid #c7c6bc;
-  border-radius: 999px;
+  border-radius: var(--radius-round);
   color: var(--margin-ink);
   cursor: pointer;
   font-family: var(--margin-body);
-  font-size: .85rem;
+  font-size: 0.85rem;
   min-height: 44px;
-  padding: .6rem 1.3rem;
+  padding: 0.6rem 1.3rem;
 }
 .margin-screen-controls button[aria-pressed="true"] {
   background: var(--margin-ink);
@@ -214,13 +214,13 @@
 }
 .margin-type-specimen {
   background: var(--margin-ink);
-  border-radius: .5rem;
+  border-radius: var(--radius-control);
   color: #faf9f6;
   padding: clamp(1.5rem, 3vw, 3rem);
 }
 .margin-type-specimen > span,
 .margin-icon-specimen > span {
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 .margin-type-specimen > p {
   color: var(--margin-cinnamon);
@@ -239,7 +239,7 @@
 .margin-type-specimen small {
   color: #c5c4b8;
   display: block;
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1.7;
 }
 .margin-design-details {
@@ -265,31 +265,31 @@
   width: 2.5rem;
 }
 .margin-icon-specimen figcaption {
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1.5;
   margin-top: 1rem;
 }
 .margin-palette {
   display: grid;
-  gap: .75rem;
+  gap: 0.75rem;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .margin-palette i {
   border: 1px solid #c7c6bc;
-  border-radius: .35rem;
+  border-radius: 0.35rem;
   display: block;
   height: clamp(4rem, 7vw, 6rem);
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 .margin-palette span,
 .margin-palette small {
   display: block;
-  font-size: .75rem;
+  font-size: 0.75rem;
   line-height: 1.5;
 }
 .margin-palette small {
   color: #55554b;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 }
 .margin-build {
   background: #e1e0d5;
@@ -312,26 +312,26 @@
 .margin-build-columns ul {
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem 1rem;
+  gap: 0.5rem 1rem;
   list-style: none;
   margin-top: 1.5rem;
 }
 .margin-build-columns li {
   border-bottom: 1px solid #bcbbae;
-  font-size: .75rem;
-  padding-block: .3rem;
+  font-size: 0.75rem;
+  padding-block: 0.3rem;
 }
 .margin-demo-link {
   align-items: center;
   background: var(--margin-ink);
-  border-radius: .5rem;
+  border-radius: var(--radius-control);
   color: #faf9f6;
   display: inline-flex;
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  gap: .75rem;
+  gap: 0.75rem;
   min-height: 48px;
-  padding: .75rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   text-decoration: none;
 }
 .margin-demo-link:hover {
@@ -375,10 +375,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .margin-page-nav a {
-    font-size: .85rem;
+    font-size: 0.85rem;
   }
   .margin-screen-controls button {
-    padding-inline: .65rem;
+    padding-inline: 0.65rem;
   }
 }
 @media (max-width: 480px) {

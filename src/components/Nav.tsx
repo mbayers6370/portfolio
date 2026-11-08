@@ -1,3 +1,4 @@
+import "../styles/nav.css";
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { navContent } from "../content/nav";

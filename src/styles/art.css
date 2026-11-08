@@ -2,7 +2,7 @@
 .page-art {
   --art-bg: var(--olive);
   --art-text: #f8fbfd;
-  --art-muted: rgba(248, 251, 253, .75);
+  --art-muted: rgba(248, 251, 253, 0.75);
   background: var(--cream);
   color: var(--olive);
   min-height: 100vh;
@@ -68,7 +68,7 @@ body:has(.page-art) {
 .art-tile-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: .3rem 1rem;
+  gap: 0.3rem 1rem;
   justify-content: space-between;
 }
 .art-tile-title {
@@ -80,7 +80,7 @@ body:has(.page-art) {
 .art-tile-medium {
   align-self: center;
   color: var(--section-muted);
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 .art-interlude {
   max-width: 1200px;
@@ -91,13 +91,13 @@ body:has(.page-art) {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4.5vw, 3.5rem);
   font-weight: 500;
-  letter-spacing: -.035em;
+  letter-spacing: -0.035em;
   line-height: 1.2;
 }
 .art-interlude p {
   color: color-mix(in srgb, var(--olive) 80%, transparent);
-  font-size: .85rem;
-  margin-top: .75rem;
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
 }
 .art-enquire {
   background: var(--olive);
@@ -137,11 +137,11 @@ body:has(.art-modal[open]) {
   justify-content: center;
 }
 .art-modal::backdrop {
-  background: rgba(9, 15, 22, .9);
+  background: rgba(9, 15, 22, 0.9);
 }
 .art-modal-content {
   background: var(--art-bg);
-  border-radius: .5rem;
+  border-radius: var(--radius-control);
   max-height: 100%;
   max-width: min(74rem, 100%);
   overflow: auto;
@@ -159,9 +159,9 @@ body:has(.art-modal[open]) {
 .art-modal-caption {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem 1rem;
+  gap: 0.4rem 1rem;
   justify-content: space-between;
-  padding: 1rem .5rem .25rem;
+  padding: 1rem 0.5rem 0.25rem;
 }
 .art-modal-caption h2 {
   font-family: var(--font-display);
@@ -169,7 +169,7 @@ body:has(.art-modal[open]) {
   font-weight: 500;
 }
 .art-modal-caption p {
-  font-size: .85rem;
+  font-size: 0.85rem;
 }
 .art-modal-close {
   align-items: center;
@@ -181,13 +181,13 @@ body:has(.art-modal[open]) {
   height: 44px;
   justify-content: center;
   position: absolute;
-  right: .5rem;
-  top: .25rem;
+  right: 0.5rem;
+  top: 0.25rem;
   width: 44px;
 }
 .art-modal-close svg {
-  height: 24px;
-  width: 24px;
+  height: 1em;
+  width: 1em;
 }
 .art-modal-close:focus-visible {
   outline: 2px solid currentColor;
@@ -196,8 +196,11 @@ body:has(.art-modal[open]) {
 @media (max-width: 760px) {
   .art-grid {
     grid-template-columns: 1fr;
-  }
-  .art-grid {
     gap: 2.5rem;
+  }
+  .art-tile-meta {
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
   }
 }

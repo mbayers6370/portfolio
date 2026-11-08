@@ -1,0 +1,422 @@
+/* -------------------------------------------------------------------------- */
+/* Shared navigation                                                          */
+/* -------------------------------------------------------------------------- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--cream);
+  border-bottom: 1px solid var(--hairline);
+  padding: 0 var(--gutter);
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateY(0);
+  transition: transform 220ms ease;
+}
+
+.nav--hidden {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav {
+    transition: none;
+  }
+}
+
+.nav--scrolled {
+  background: color-mix(in srgb, var(--cream) 96%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--near-black);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.nav-home-label {
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--near-black);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links .nav-link--secondary {
+  opacity: 0.58;
+}
+
+.nav-links .nav-link--secondary:hover,
+.nav-links .nav-link--secondary:focus-visible {
+  opacity: 1;
+}
+
+.nav-links a[aria-current] {
+  font-weight: 500;
+  opacity: 1;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.6em;
+}
+.nav-mobile a[aria-current] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+.nav-links a:hover,
+.nav-linkedin:hover,
+.nav-mobile a:hover {
+  color: var(--forest);
+}
+
+.nav-linkedin {
+  display: flex;
+  align-items: center;
+  color: var(--near-black);
+  transition: color 0.2s;
+}
+
+.nav-socials {
+  align-items: center;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--near-black);
+  transition: all 0.3s;
+  transform-origin: center;
+}
+
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: 58px;
+  left: 0;
+  right: 0;
+  background: var(--cream);
+  border-bottom: 1px solid var(--hairline);
+  padding: 2rem var(--gutter);
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  z-index: 99;
+}
+
+.nav-mobile.open {
+  display: flex;
+}
+
+.nav-mobile a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--near-black);
+  text-decoration: none;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.nav-mobile-socials {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.nav-mobile-socials a {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.nav-mobile-socials svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Route-specific navigation themes */
+.nav--project,
+.nav--project.nav--scrolled,
+.nav-mobile--project {
+  background: #e0e1da;
+  border-color: rgba(40, 49, 19, 0.18);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav--project .nav-logo,
+.nav--project .nav-links a,
+.nav--project .nav-linkedin,
+.nav-mobile--project a {
+  color: #283113;
+}
+
+.nav--project .nav-hamburger span {
+  background: #283113;
+}
+
+.nav--nelaride,
+.nav--nelaride.nav--scrolled,
+.nav-mobile--nelaride {
+  background: var(--nela-gold, #e9d7a6);
+  border-color: var(--nela-rule, rgba(51, 51, 51, 0.2));
+}
+.nav--nelaride .nav-logo,
+.nav--nelaride .nav-links a,
+.nav--nelaride .nav-linkedin,
+.nav-mobile--nelaride a {
+  color: var(--nela-ink, #333333);
+}
+.nav--nelaride .nav-hamburger span {
+  background: var(--nela-ink, #333333);
+}
+
+/* The scheduler case study starts on a dark hero, so its fixed navigation
+   has an explicit route modifier rather than relying on page-content selectors. */
+.nav--scheduler,
+.nav--scheduler.nav--scrolled,
+.nav-mobile--scheduler {
+  background: #1e3037;
+  border-color: rgba(224, 225, 218, 0.23);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav--scheduler .nav-logo,
+.nav--scheduler .nav-links a,
+.nav--scheduler .nav-linkedin,
+.nav-mobile--scheduler a {
+  color: var(--on-dark);
+}
+
+.nav--scheduler .nav-hamburger span {
+  background: var(--on-dark);
+}
+
+.nav--design,
+.nav--design.nav--scrolled,
+.nav-mobile--design {
+  background: var(--olive);
+  border-color: rgba(195, 203, 132, 0.36);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav--design .nav-logo,
+.nav--design .nav-links a,
+.nav--design .nav-linkedin,
+.nav-mobile--design a {
+  color: var(--on-dark);
+}
+
+.nav--design .nav-logo,
+.nav--design .nav-linkedin,
+.nav-mobile--design .nav-mobile-socials a {
+  color: var(--secondary);
+}
+
+.nav--design .nav-hamburger span {
+  background: var(--on-dark);
+}
+
+.nav--art,
+.nav--art.nav--scrolled,
+.nav-mobile--art {
+  background: var(--cream);
+  border-color: rgba(30, 48, 55, 0.18);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav--art .nav-logo,
+.nav--art .nav-links a,
+.nav--art .nav-linkedin,
+.nav-mobile--art a {
+  color: var(--olive);
+}
+
+.nav--art .nav-hamburger span {
+  background: var(--olive);
+}
+
+.nav-mobile--art .nav-mobile-socials a {
+  color: var(--secondary);
+}
+
+.nav--books,
+.nav--books.nav--scrolled,
+.nav-mobile--books {
+  background: var(--forest);
+  border-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav--books .nav-logo,
+.nav--books .nav-links a,
+.nav--books .nav-linkedin,
+.nav-mobile--books a {
+  color: var(--white);
+}
+
+.nav--books .nav-hamburger span {
+  background: var(--white);
+}
+
+@media (min-width: 901px) {
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.45rem;
+  }
+
+  .nav--home,
+  .nav--home.nav--scrolled {
+    background: var(--olive);
+    border-color: rgba(195, 203, 132, 0.42);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nav--home .nav-logo,
+  .nav--home .nav-linkedin {
+    color: var(--secondary);
+  }
+
+  .nav--home .nav-links a {
+    color: var(--on-dark);
+  }
+
+  .nav--home .nav-links {
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  .nav--home .nav-links a:hover,
+  .nav--home .nav-links a:focus-visible {
+    text-decoration: underline;
+    text-decoration-color: var(--secondary);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.45rem;
+  }
+
+  .nav--home .nav-links a:hover,
+  .nav--home .nav-links a:focus-visible,
+  .nav--home .nav-linkedin:hover,
+  .nav--home .nav-linkedin:focus-visible {
+    color: var(--secondary);
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-socials {
+    display: none;
+  }
+
+  .nav--home,
+  .nav--home.nav--scrolled,
+  .nav-mobile--home {
+    background: var(--olive);
+    border-color: rgba(195, 203, 132, 0.42);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nav--home .nav-logo,
+  .nav-mobile--home .nav-mobile-socials a {
+    color: var(--secondary);
+  }
+
+  .nav--home .nav-hamburger span {
+    background: var(--secondary);
+  }
+
+  .nav-mobile--home > a {
+    color: var(--on-dark);
+  }
+
+  .nav-mobile--home > a:hover,
+  .nav-mobile--home > a:focus-visible {
+    color: var(--secondary);
+  }
+
+  .nav-mobile--home .nav-mobile-socials a {
+    border-color: var(--secondary);
+  }
+
+  .nav-mobile--home .nav-mobile-socials a:hover,
+  .nav-mobile--home .nav-mobile-socials a:focus-visible {
+    background: var(--secondary);
+    color: var(--olive);
+  }
+
+  .nav-mobile.open {
+    inset: 58px 0 0;
+    min-height: calc(100dvh - 58px);
+    justify-content: center;
+    overflow-y: auto;
+  }
+  .nav-links {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+}
