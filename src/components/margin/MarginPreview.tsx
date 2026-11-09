@@ -36,7 +36,7 @@ function PostSnippet() {
   }
 
   const front = (
-    <div className="margin-sample-post" aria-hidden={flipped || undefined}>
+    <div className="margin-sample-post">
       <header><Avatar name="Theo Marchetti" photo={theo} /><div><strong>Theo Marchetti</strong><span>Yesterday · 8:15 am</span></div></header>
       <p>Finished my book on the train home. If anyone needs something to read, you can borrow it.</p>
       <p>Need a new recommendation for the commute.</p>
@@ -50,7 +50,7 @@ function PostSnippet() {
   return (
     <div className="margin-sample-flip" data-side={flipped ? 'conversation' : 'post'} onKeyDown={(event) => { if (event.key === 'Escape' && flipped) turn(false) }}>
       <div className="margin-sample-flip-rotor">
-        <div className="margin-sample-flip-front">{front}</div>
+        <div className="margin-sample-flip-front" aria-hidden={flipped || undefined}>{front}</div>
         <section className="margin-sample-flip-back" aria-hidden={!flipped || undefined} aria-label="Conversation on Theo’s post">
           <header><button type="button" ref={postTrigger} tabIndex={flipped ? 0 : -1} aria-label="Back to post" onClick={() => turn(false)}><ChevronLeft className="link-chevron" aria-hidden="true" /> Post</button><span>Conversation</span><button type="button" tabIndex={flipped ? 0 : -1} aria-pressed={liked} onClick={() => setLiked(!liked)}><HeartAnimated key={String(liked)} animate={liked} fill={liked ? 'currentColor' : 'none'} />{liked ? 'Liked' : 'Like'}</button></header>
           <div className="margin-sample-discussion">
@@ -107,10 +107,14 @@ function ProfileSnippet({ paused }: { paused: boolean }) {
 }
 
 const sampleSpaces = [
-  { name: 'Japan 2027', location: 'Kyoto, Japan', date: '1 June 2027', body: 'I found a little place in Kyoto. What does everyone think about staying here for three nights?' },
-  { name: 'Saturday Dinner', location: 'At June’s', date: '9 January 2027', body: 'I’ll bring something for dessert. What are we cooking?' },
-  { name: 'The Reading Room', location: 'A private place for friends', date: '', body: 'What should we read next month?' },
+  { name: 'Japan 2027', location: 'Kyoto, Japan', date: '1 June 2027', body: 'I found a little place in Kyoto. What does everyone think about staying here for three nights?', members: [topFriends[0], topFriends[3], { name: 'Ines Alvarez', photo: ines }] },
+  { name: 'Saturday Dinner', location: 'At June’s', date: '9 January 2027', body: 'I’ll bring something for dessert. What are we cooking?', members: [topFriends[1], topFriends[2], { name: 'Ines Alvarez', photo: ines }, topFriends[3], topFriends[0]] },
+  { name: 'The Reading Room', location: 'A private place for friends', date: '', body: 'What should we read next month?', members: [topFriends[3], topFriends[0]] },
 ]
+
+function SpaceMembers({ members }: { members: (typeof sampleSpaces)[number]['members'] }) {
+  return <div className="margin-sample-space-portraits" aria-label={`${members.length} members`}>{members.map(person => <Avatar key={person.name} name={person.name} photo={person.photo} />)}<span>{members.length} members</span></div>
+}
 
 function SpacesSnippet() {
   const [selected, setSelected] = useState<number | null>(null)
@@ -120,7 +124,6 @@ function SpacesSnippet() {
     setSelected(index)
     window.requestAnimationFrame(() => heading.current?.focus({ preventScroll: true }))
   }
-  const portraits = <div className="margin-sample-space-portraits" aria-label="Four members"><Avatar name="Ines Alvarez" photo={ines} />{topFriends.slice(0, 3).map((person) => <Avatar key={person.name} name={person.name} photo={person.photo} />)}<span>4 members</span></div>
 
   return (
     <div className="margin-sample-spaces">
@@ -129,12 +132,12 @@ function SpacesSnippet() {
         <p className="margin-sample-space-privacy">Space · Invitation-only</p>
         <h3 ref={heading} tabIndex={-1}>{space.name}</h3>
         <p className="margin-sample-space-context">{space.date && <span>{space.date} · </span>}{space.location}</p>
-        {portraits}
-        <div className="margin-sample-space-thought"><header><Avatar name="Theo Marchetti" photo={theo} /><span>Theo Marchetti</span></header><p>{space.body}</p></div>
+        <SpaceMembers members={space.members} />
+        <div className="margin-sample-space-thought"><header><Avatar name={space.members[0].name} photo={space.members[0].photo} /><span>{space.members[0].name}</span></header><p>{space.body}</p></div>
       </> : <>
         <h3 ref={heading} tabIndex={-1}><SpacesAnimated animate />Your spaces</h3>
         <p className="margin-sample-space-context">Little places for the people in your life.</p>
-        <ul className="margin-sample-space-directory">{sampleSpaces.map((item, index) => <li key={item.name}><button type="button" onClick={() => open(index)}><div><strong><SpacesAnimated />{item.name}</strong><p>{item.location}</p>{portraits}</div><span aria-hidden="true"><ChevronRight className="link-chevron" aria-hidden="true" /></span></button></li>)}</ul>
+        <ul className="margin-sample-space-directory">{sampleSpaces.map((item, index) => <li key={item.name}><button type="button" onClick={() => open(index)}><div><strong><SpacesAnimated />{item.name}</strong><p>{item.location}</p><SpaceMembers members={item.members} /></div><span aria-hidden="true"><ChevronRight className="link-chevron" aria-hidden="true" /></span></button></li>)}</ul>
         <p className="margin-sample-space-privacy">Spaces are invitation-only.</p>
       </>}
     </div>

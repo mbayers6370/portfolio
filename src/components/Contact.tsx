@@ -1,4 +1,5 @@
 import ContactForm from './ContactForm'
+import ContactEmail from './ContactEmail'
 import { contactContent } from '../content/contact'
 
 export default function Contact() {
@@ -15,6 +16,7 @@ export default function Contact() {
           <ContactForm />
 
           <div className="contact-info">
+            <ContactEmail />
             <div className="contact-info-label">{contactContent.socialsLabel}</div>
             <div className="contact-socials">
               <a

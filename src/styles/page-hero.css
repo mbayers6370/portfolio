@@ -10,7 +10,7 @@
 .page-hero h1 {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 5.4vw, 4.5rem);
-  font-weight: 700;
+  font-weight: var(--hero-title-weight, 700);
   letter-spacing: -0.045em;
   line-height: 1.1;
 }

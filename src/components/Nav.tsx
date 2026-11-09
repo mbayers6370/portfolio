@@ -15,7 +15,8 @@ export default function Nav() {
   const isNelaRideCaseStudy = pathname === "/work/nelaride";
   const isArtPage = pathname === "/art";
   const isBooksPage = pathname === "/books";
-  const isDesignPage = pathname === "/design";
+  const isDesignPage = pathname === "/design" || pathname.startsWith("/design/");
+  const designCurrent = isDesignPage ? (pathname === "/design" ? "page" : "location") : undefined;
 
   useEffect(() => {
     let previousY = Math.max(0, window.scrollY);
@@ -96,7 +97,7 @@ export default function Nav() {
             </Link>
           </li>
           <li>
-            <Link to="/design" onClick={close} aria-current={isDesignPage ? "page" : undefined}>
+            <Link to="/design" onClick={close} aria-current={designCurrent}>
               {navContent.links.design}
             </Link>
           </li>
@@ -149,7 +150,7 @@ export default function Nav() {
         <a href={homeHref("#work")} onClick={close} aria-current={isHome && hash !== "#about" && hash !== "#contact" ? "page" : isProjectPage ? "location" : undefined}>
           {navContent.links.work}
         </a>
-        <Link to="/design" onClick={close} aria-current={isDesignPage ? "page" : undefined}>
+        <Link to="/design" onClick={close} aria-current={designCurrent}>
           {navContent.links.design}
         </Link>
         <a href={homeHref("#about")} onClick={close} aria-current={isHome && hash === "#about" ? "location" : undefined}>

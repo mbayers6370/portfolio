@@ -21,7 +21,7 @@
   --project-bg: var(--olive);
   --project-text: var(--on-dark);
   --project-mid: rgba(255, 255, 255, 0.72);
-  --project-faded: rgba(255, 255, 255, 0.44);
+  --project-faded: rgba(255, 255, 255, 0.6);
   --project-line: rgba(224, 225, 218, 0.22);
 
   background: var(--project-bg);

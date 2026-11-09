@@ -3,6 +3,7 @@ import { ChevronRight } from 'lucide-react'
 import ProjectTitle from './ProjectTitle'
 import projects from '../content/projects'
 import { workContent } from '../content/work'
+import MarginWorkPreview from './margin/MarginWorkPreview'
 
 const sortedProjects = [...projects].sort((a, b) => Number(a.num) - Number(b.num))
 
@@ -25,13 +26,13 @@ export default function Work() {
             aria-label={`View ${p.title} case study`}
             onClick={() => navigate(`/work/${p.slug}`)}
             onKeyDown={(event) => {
+              if (event.target !== event.currentTarget) return
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault()
                 navigate(`/work/${p.slug}`)
               }
             }}
           >
-            <div className="project-number-bg">{p.num}</div>
             <div className="project-meta">
               <span className="project-num">No. {p.num}</span>
               <span className="project-meta-divider">•</span>
@@ -41,6 +42,7 @@ export default function Work() {
               <ProjectTitle title={p.title} />
             </h3>
             {p.slug === 'margin' && <p className="project-margin-hook"><strong>{workContent.marginCard.hook}</strong></p>}
+            {p.slug === 'margin' && <div className="project-margin-preview margin-brand"><MarginWorkPreview /></div>}
             <p className="project-desc">{p.slug === 'margin' ? workContent.marginCard.description : p.desc}</p>
             <div className="project-tags">
               {p.tags.map((tag) => (
@@ -48,12 +50,12 @@ export default function Work() {
               ))}
             </div>
             <div className="project-actions">
-              <a href={p.link} target="_blank" rel="noopener noreferrer" className="project-link project-link--ghost" onClick={(event) => event.stopPropagation()}>
-                {p.linkLabel || workContent.liveSiteLabel} <ChevronRight className="link-chevron" aria-hidden="true" />
-              </a>
-              <Link to={`/work/${p.slug}`} className="project-link" onClick={(event) => event.stopPropagation()}>
+              <Link to={`/work/${p.slug}`} className="project-link project-link--primary" onClick={(event) => event.stopPropagation()}>
                 {workContent.caseStudyLabel} <ChevronRight className="link-chevron" aria-hidden="true" />
               </Link>
+              <a href={p.link} target="_blank" rel="noopener noreferrer" className="project-link" onClick={(event) => event.stopPropagation()}>
+                {p.linkLabel || workContent.liveSiteLabel} <ChevronRight className="link-chevron" aria-hidden="true" />
+              </a>
             </div>
           </div>
         ))}

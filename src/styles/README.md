@@ -8,12 +8,15 @@ Change the rule that owns a component. Before adding a selector, search `src/sty
 | --- | --- |
 | `globals.css` | Reset, site tokens, shared text/layout primitives, document motion preference |
 | `nav.css`, `footer.css` | Shared navigation and footer; navigation themes and breakpoints stay with navigation |
+| `contact-email.css` | Public email link, copy control, and clipboard feedback |
 | `contact-form.css` | Shared contact submission feedback and disabled controls; layout remains with the home variant |
 | `page-hero.css`, `project-navigation.css` | Shared page heroes and project navigation |
 | `home.css` | Mobile/tablet home sections |
 | `home-desktop.css` | Desktop shell, project showcases, about, contact |
 | `work-entrance.css` | Desktop intro/opening/expanded layout states and their motion preferences |
-| `art.css`, `books.css`, `design.css` | Respective collection pages |
+| `art.css`, `books.css`, `design.css` | Collection pages and shared design-study layouts |
+| `cayucos.css` | Cayucos burger-menu examples |
+| `fuji-study.css` | Fuji itinerary overview and day schedule |
 | `project.css` | Shared case-study scaffold |
 | `project-scheduler.css`, `project-sonus.css`, `project-nela.css`, `margin.css` | Individual case-study components and responsive variants |
 | `*-brand.css` | Scoped project fonts, brand tokens, and brand primitives |

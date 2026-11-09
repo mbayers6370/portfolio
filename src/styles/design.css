@@ -17,6 +17,128 @@
   gap: 1.25rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.design-collection {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+  list-style: none;
+}
+.design-study-preview {
+  background: var(--study-paper);
+  border-radius: var(--radius-card);
+  color: var(--study-ink);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  text-decoration: none;
+}
+.design-study-preview-visual {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.design-study-preview-visual > img {
+  aspect-ratio: 4 / 3;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  object-position: center 58%;
+  width: 100%;
+}
+.design-study-preview-palette {
+  display: flex;
+  min-height: 2.5rem;
+}
+.design-study-preview-palette > span {
+  flex: 1;
+}
+.design-study-preview-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  justify-content: center;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+.design-study-preview-copy h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+.design-study-preview-copy p {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 65ch;
+}
+.design-study-preview-action,
+.design-study-back {
+  align-items: center;
+  display: inline-flex;
+  font-size: 0.9rem;
+  gap: 0.5rem;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+.design-study-back {
+  color: inherit;
+  margin-bottom: 1.25rem;
+}
+.design-study-preview:focus-visible,
+.design-study-back:focus-visible {
+  outline: 2px solid var(--study-ink);
+  outline-offset: 6px;
+}
+@media (min-width: 761px) {
+  .design-collection {
+    grid-template-columns: 1fr;
+    max-width: 68rem;
+  }
+  .design-study-preview {
+    display: grid;
+    grid-template-areas:
+      "photo copy"
+      "photo palette";
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.55fr);
+    grid-template-rows: 1fr auto;
+  }
+  .design-study-preview-visual {
+    grid-area: photo;
+    position: relative;
+  }
+  .design-study-preview-visual > img {
+    aspect-ratio: auto;
+    height: 100%;
+    inset: 0;
+    position: absolute;
+  }
+  .design-study-preview-palette {
+    grid-area: palette;
+    min-height: 3rem;
+  }
+  .design-study-preview-copy {
+    background: var(--preview-surface);
+    color: var(--preview-text);
+    gap: 0.625rem;
+    grid-area: copy;
+    min-height: 12rem;
+    padding: 1.25rem 1.75rem;
+  }
+  .design-study-preview-copy h2 {
+    color: var(--preview-accent);
+    font-size: clamp(1.5rem, 2.25vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .design-study-preview-copy p {
+    font-weight: 400;
+  }
+  .design-study-preview-summary {
+    display: none;
+  }
+}
 .curiosity-card {
   border-radius: 1rem;
   min-width: 0;
@@ -29,7 +151,7 @@
 }
 .color-study-swatches {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(var(--palette-columns, 3), minmax(0, 1fr));
   min-height: 19rem;
 }
 .palette-swatch {
@@ -95,8 +217,8 @@
 }
 .type-study {
   grid-column: 1 / -1;
-  background: #3d5060;
-  color: var(--study-paper);
+  background: var(--type-surface, #3d5060);
+  color: var(--type-text, var(--study-paper));
   padding: clamp(1.5rem, 3vw, 2.5rem);
 }
 .type-study-heading {
@@ -109,13 +231,13 @@
   margin-top: 0.5rem;
 }
 .type-study-letter {
-  color: #d3ad36;
-  font-family: "Caudex", Georgia, serif;
+  color: var(--type-accent, #d3ad36);
+  font-family: var(--type-display, "Caudex", Georgia, serif);
   font-size: clamp(4rem, 6vw, 5.5rem);
   line-height: 0.8;
 }
 .type-study h2 {
-  font-family: "Caudex", Georgia, serif;
+  font-family: var(--type-display, "Caudex", Georgia, serif);
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
   line-height: 0.9;
@@ -135,7 +257,7 @@
 
 .type-guidelines span,
 .type-guidelines small {
-  color: var(--study-paper);
+  color: var(--type-text, var(--study-paper));
   font-size: 0.8rem;
   letter-spacing: 0.04em;
 }
@@ -399,7 +521,8 @@
   .curiosities-intro {
     animation: study-arrive 500ms ease-out both;
   }
-  .curiosities-grid {
+  .curiosities-grid,
+  .design-collection {
     animation: study-arrive 600ms 100ms ease-out both;
   }
   .palette-copy,

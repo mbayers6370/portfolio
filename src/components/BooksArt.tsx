@@ -14,7 +14,7 @@ export default function BooksArt() {
           </div>
           <div className="beyond-cards">
             {booksArtContent.cards.map((card) => (
-              <Link to={card.to} className={`beyond-card beyond-card--${card.theme}`} key={card.to}>
+              <Link to={card.to} className={`beyond-card beyond-card--${card.theme}`} key={card.to} aria-label={`Explore ${card.title.replace(/\.$/, '')}`}>
                 <div className="beyond-card-meta">
                   <span>{card.number}</span>
                   <span>{card.label}</span>

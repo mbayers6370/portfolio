@@ -2,6 +2,7 @@ import React, { act, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { MemoryRouter } from "react-router-dom";
 import Nav from "../src/components/Nav";
+import App from "../src/App";
 import Hero from "../src/components/Hero";
 import "../src/styles/design.css";
 import useWorkEntrance from "../src/hooks/useWorkEntrance";
@@ -17,6 +18,7 @@ import "../src/styles/work-entrance.css";
 const h = React.createElement;
 const frameMode = new URLSearchParams(location.search).has("frame");
 const channel = "portfolio-behavior-checks";
+const only = new URLSearchParams(location.search).get("only");
 
 if (!frameMode) {
   const frame = document.createElement("iframe");
@@ -25,7 +27,9 @@ if (!frameMode) {
   frame.style.display = "block";
   frame.width = "1440";
   frame.height = "900";
-  frame.src = "/checks/browser.html?frame";
+  const frameQuery = new URLSearchParams({ frame: "" });
+  if (only) frameQuery.set("only", only);
+  frame.src = `/checks/browser.html?${frameQuery}`;
   document.getElementById("fixture").append(frame);
   document.getElementById("fixture").after(document.getElementById("results"));
   window.addEventListener("message", (event) => {
@@ -94,6 +98,7 @@ if (!frameMode) {
     assert(predicate(), message);
   };
   const test = async (name, run) => {
+    if (only && !name.toLowerCase().includes(only.toLowerCase())) return;
     total++;
     try {
       await run();
@@ -555,6 +560,150 @@ if (!frameMode) {
     assert(button("Pause motion"), "Resume failed");
   });
 
+  await test("Design collection: study navigation, direct links, and existing interactions", async () => {
+    await resize(1200);
+    await mount(h(MemoryRouter, { initialEntries: ["/design"] }, h(App)));
+    assert(
+      fixture.querySelector("h1").textContent === "Collected Curiosities",
+      "Collection hero was renamed",
+    );
+    const preview = fixture.querySelector(
+      'a[href="/design/an-overcast-afternoon"]',
+    );
+    assert(preview, "Study preview link missing");
+    await click(preview);
+    assert(
+      fixture.querySelector("h1").textContent === "An Overcast Afternoon",
+      "Study hero missing",
+    );
+    assert(
+      fixture
+        .querySelector('.nav--design a[href="/design"]')
+        .getAttribute("aria-current") === "location",
+      "Design navigation lost its section state",
+    );
+    assert(
+      fixture.querySelectorAll(".palette-copy").length === 3,
+      "Study palette missing",
+    );
+    const save = fixture.querySelector('[aria-label="Save note"]');
+    await click(save);
+    assert(
+      save.getAttribute("aria-pressed") === "true",
+      "Save interaction stopped working",
+    );
+    const more = fixture.querySelector(".concept-read-more");
+    await click(more);
+    assert(
+      more.getAttribute("aria-expanded") === "true",
+      "Excerpt did not expand",
+    );
+    await click(fixture.querySelector(".design-study-back"));
+    assert(
+      fixture.querySelector("h1").textContent === "Collected Curiosities",
+      "Back link did not return to the collection",
+    );
+    await resize(390, 844);
+    await mount(
+      h(
+        MemoryRouter,
+        { initialEntries: ["/design/an-overcast-afternoon"] },
+        h(App),
+      ),
+    );
+    assert(
+      fixture.querySelector("h1").textContent === "An Overcast Afternoon",
+      "Direct study route failed",
+    );
+    assert(
+      fixture.querySelectorAll(".interface-variation").length === 2,
+      "Interface variations missing",
+    );
+  });
+  await test("Design Cayucos: four-color study, featured burger selection, and full-menu navigation", async () => {
+    await resize(1200);
+    await mount(h(MemoryRouter, { initialEntries: ["/design"] }, h(App)));
+    assert(
+      fixture.querySelectorAll(".design-study-preview").length === 3,
+      "Expected all three collection previews",
+    );
+    await click(fixture.querySelector('a[href="/design/cayucos"]'));
+    assert(
+      fixture.querySelector("h1").textContent === "Cayucos",
+      "Cayucos route failed",
+    );
+    const colors = [...fixture.querySelectorAll(".palette-copy code")].map(
+      (element) => element.textContent,
+    );
+    assert(
+      colors.join(",") === "#b04d01,#020914,#052b41,#d4c7a5",
+      "Palette differs from the supplied colors",
+    );
+    assert(
+      fixture.querySelectorAll(".burger-board li").length === 4,
+      "Full menu missing items",
+    );
+    assert(
+      !fixture.querySelector(".burger-menu-example .interface-variation-label"),
+      "Old menu labels remain",
+    );
+    const featured = fixture.querySelector(".burger-feature");
+    assert(
+      featured.querySelector("h3").textContent === "The Night Shift",
+      "Initial burger missing",
+    );
+    await click(featured.querySelector('[aria-label="Next menu item"]'));
+    assert(
+      featured.querySelector("h3").textContent === "The 101",
+      "Next burger failed",
+    );
+    for (let i = 0; i < 3; i++)
+      await click(featured.querySelector('[aria-label="Next menu item"]'));
+    assert(
+      featured.querySelector("h3").textContent === "The Night Shift",
+      "Burger selection did not wrap",
+    );
+    await click(featured.querySelector('[aria-label="Previous menu item"]'));
+    assert(
+      featured.querySelector("h3").textContent === "Blue Hour",
+      "Previous burger failed",
+    );
+    await click(featured.querySelector(".burger-feature-nav > button"));
+    assert(
+      document.activeElement === fixture.querySelector("#cayucos-menu h3"),
+      "Menu button did not return focus to the counter menu",
+    );
+    await click(fixture.querySelectorAll(".burger-categories button")[1]);
+    assert(
+      featured.querySelector("h3").textContent === "Window fries" &&
+        fixture.querySelectorAll(".burger-board li").length === 4,
+      "Category and featured item are out of sync",
+    );
+    await click(featured.querySelector(".burger-add-order"));
+    assert(
+      featured
+        .querySelector('[role="status"]')
+        .textContent.includes("1 item · $4.00"),
+      "Sample order did not acknowledge the selected item",
+    );
+    await resize(320, 844);
+    await mount(
+      h(MemoryRouter, { initialEntries: ["/design/cayucos"] }, h(App)),
+    );
+    assert(
+      fixture.querySelector(".burger-feature"),
+      "Direct mobile study route failed",
+    );
+    assert(
+      document.documentElement.scrollWidth <= innerWidth,
+      "New study overflows the mobile viewport",
+    );
+    await click(fixture.querySelector(".design-study-back"));
+    assert(
+      fixture.querySelector("h1").textContent === "Collected Curiosities",
+      "Collection return link failed",
+    );
+  });
   const realFetch = window.fetch.bind(window);
   let requests = [];
   const useResponse = (result) => {

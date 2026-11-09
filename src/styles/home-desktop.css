@@ -40,9 +40,8 @@
     line-height: 0.9;
   }
   .desktop-profile-copy p {
-    font-family: var(--font-mono);
-    font-size: clamp(0.62rem, 0.8vw, 0.78rem);
-    letter-spacing: 0.08em;
+    font-family: var(--font-body);
+    font-size: clamp(0.875rem, 0.8vw, 1rem);
     margin-top: 0.75rem;
     text-transform: uppercase;
   }
@@ -844,23 +843,21 @@
     min-height: 9rem;
     resize: none;
   }
-  .desktop-contact button {
+  .desktop-contact form button {
     border: 1px solid var(--secondary);
     border-radius: var(--radius-control);
     cursor: pointer;
-    font: 0.64rem/1 var(--font-mono);
+    font: 1rem/1 var(--font-body);
     grid-column: 1 / -1;
     padding: 0.9rem;
     background: var(--olive);
     border-color: var(--olive);
     color: var(--cream);
-    font-family: var(--font-body);
-    font-size: 1rem;
     letter-spacing: 0;
     min-height: 52px;
     text-transform: none;
   }
-  .desktop-contact button:enabled:hover {
+  .desktop-contact form button:enabled:hover {
     border-color: var(--cream);
     background: var(--cream);
     color: var(--olive);

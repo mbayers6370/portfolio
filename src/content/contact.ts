@@ -1,6 +1,7 @@
 export const contactContent = {
   sectionTitle: 'Contact',
-  heading: "Let's Work Together",
+  heading: "Let's work together.",
+  email: 'matthew.bayers@gmail.com',
   success: {
     title: 'Message received.',
     subtitle: "I'll be in touch shortly.",

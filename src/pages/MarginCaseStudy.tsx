@@ -14,6 +14,7 @@ import closeFriends from '../assets/margin/icons/close-friends.svg'
 import reading from '../assets/margin/icons/reading.svg'
 import '../styles/margin-brand.css'
 import '../styles/margin.css'
+import { workContent } from '../content/work'
 
 const identityIcons: { src: string; label: string; desktopOnly?: boolean }[] = [
   { src: endOfFeed, label: 'End of feed' },
@@ -38,7 +39,7 @@ export default function MarginCaseStudy({ project }: { project: Project }) {
           <div className="margin-hero-grid">
             <div>
               <h1 className="margin-wordmark">margin</h1>
-              <p className="margin-hero-statement">A little more room<br />for friends.</p>
+              <p className="margin-hero-statement">{workContent.marginCard.hook}</p>
             </div>
             <div className="margin-hero-summary">
               <p>{project.desc}</p>

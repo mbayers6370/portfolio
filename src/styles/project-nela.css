@@ -33,7 +33,7 @@ body:has(.nela-case-study) {
 .nela-case-study .project-page-header {
   --project-text: var(--nela-ink);
   --project-mid: rgba(51, 51, 51, 0.72);
-  --project-faded: rgba(51, 51, 51, 0.58);
+  --project-faded: rgba(51, 51, 51, 0.76);
   --project-line: rgba(51, 51, 51, 0.22);
   background: var(--nela-gold);
   color: var(--project-text);

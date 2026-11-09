@@ -1,11 +1,14 @@
 import { useLayoutEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Books from "./pages/Books";
 import Art from "./pages/Art";
 import Design from "./pages/Design";
+import OvercastAfternoon from "./pages/OvercastAfternoon";
+import Cayucos from "./pages/Cayucos";
+import KyotoToTokyo from "./pages/KyotoToTokyo";
 import Project from "./pages/Project";
 
 function ScrollToRoutePosition() {
@@ -38,6 +41,11 @@ export default function App() {
           <Route path="/books" element={<Books />} />
           <Route path="/art" element={<Art />} />
           <Route path="/design" element={<Design />} />
+          <Route path="/design/an-overcast-afternoon" element={<OvercastAfternoon />} />
+          <Route path="/design/cayucos" element={<Cayucos />} />
+          <Route path="/design/after-dark" element={<Navigate to="/design/cayucos" replace />} />
+          <Route path="/design/kyoto-to-tokyo" element={<KyotoToTokyo />} />
+          <Route path="/design/fuji-in-the-distance" element={<Navigate to="/design/kyoto-to-tokyo" replace />} />
           <Route path="/work/:slug" element={<Project />} />
         </Routes>
       </main>

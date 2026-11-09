@@ -61,10 +61,9 @@
 
 .hero-copy p {
   color: var(--olive);
-  font-family: var(--font-mono);
-  font-size: clamp(0.62rem, 0.9vw, 1rem);
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 0.9vw, 1rem);
   font-weight: 400;
-  letter-spacing: 0.04em;
   margin-top: clamp(1rem, 1.8vw, 2rem);
   text-transform: uppercase;
 }
@@ -75,7 +74,6 @@
 
 .work {
   padding: var(--section-pad) 0;
-  border-top: 1px solid var(--hairline);
 }
 
 .work-header {
@@ -106,28 +104,6 @@
   margin-top: clamp(1.5rem, 3vw, 2rem);
 }
 
-.project-number-bg {
-  position: absolute;
-  right: 2rem;
-  top: 1.25rem;
-  font-family: var(--font-display);
-  font-size: clamp(5rem, 8vw, 8rem);
-  color: transparent;
-  -webkit-text-stroke: 1px var(--hairline);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  transition:
-    -webkit-text-stroke-color 0.35s,
-    transform 0.5s ease;
-  transform-origin: top right;
-}
-
-.project-feature:hover .project-number-bg {
-  -webkit-text-stroke-color: var(--hairline-dark);
-  transform: scale(6);
-}
-
 .project-meta {
   display: flex;
   align-items: center;
@@ -150,6 +126,8 @@
 
 .project-num {
   letter-spacing: 0.15em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .project-type {
@@ -193,6 +171,7 @@
 .project-tags {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
   margin-bottom: 2rem;
   position: relative;
   z-index: 2;
@@ -206,26 +185,21 @@
   color: var(--near-black);
 }
 
-.project-feature .project-tag:not(:last-child)::after {
-  content: "/";
-  margin: 0 0.8rem;
-  color: var(--sage);
-}
-
 .project-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1rem;
   position: relative;
   z-index: 2;
 }
 
 .project-link {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  min-height: 44px;
   color: var(--forest);
   text-decoration: none;
   display: inline-flex;
@@ -257,37 +231,34 @@
   background: transparent;
 }
 
-.project-feature:is(:hover, :focus-within)
-  .project-tag:not(:last-child)::after {
+.project-link--primary {
+  background: var(--olive);
   color: var(--on-dark);
-}
-
-.project-link--ghost {
-  background: transparent;
-  color: var(--mid);
-  border: 1px solid var(--hairline);
+  border: 1px solid var(--olive);
   border-radius: var(--radius-control);
   padding: 0.6rem 1.2rem;
-  transition:
-    color 0.35s,
-    border-color 0.35s,
-    background-color 0.35s;
 }
 
-.project-link--ghost:hover {
-  color: var(--near-black);
-  border-color: var(--near-black);
-  background: transparent;
+.project-feature:is(:hover, :focus-within) .project-link--primary {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: var(--olive);
 }
 
-.project-feature:is(:hover, :focus-within) .project-link--ghost {
-  color: var(--on-dark);
-  border-color: var(--white);
+.project-feature:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.project-link:focus-visible {
+  outline: 2px solid var(--on-dark);
+  outline-offset: 4px;
 }
 
-.project-feature:hover .project-link:not(.project-link--ghost),
-.project-feature:focus-within .project-link:not(.project-link--ghost) {
-  color: var(--secondary);
+.project-margin-preview {
+  background: var(--margin-paper);
+  border-radius: var(--radius-card);
+  margin-block: 1.5rem;
+  padding-block: 1rem;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -360,8 +331,8 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.5rem, 3vw, 3.5rem);
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
 }
 
 .skill-group h3 {
@@ -373,6 +344,9 @@
 }
 
 .skill-group ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
   list-style: none;
 }
 
@@ -576,10 +550,8 @@
 
 .form-group label {
   display: block;
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
   color: var(--on-dark-mid);
   margin-bottom: 0.75rem;
 }
@@ -604,7 +576,8 @@
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: var(--on-dark-dim);
+  color: color-mix(in srgb, var(--on-dark) 65%, transparent);
+  opacity: 1;
 }
 
 .form-group input:focus,
@@ -623,10 +596,9 @@
   border: 1px solid var(--secondary);
   border-radius: var(--radius-control);
   color: var(--olive);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
   padding: 1rem 2.5rem;
   cursor: pointer;
   transition:
@@ -907,19 +879,21 @@
 
 /* Small-screen refinements */
 @media (max-width: 600px) {
-  .project-feature {
-    padding-top: 5rem;
+  .hero-inner {
+    height: min(calc(74svh - 58px), 34rem);
+    min-height: 24rem;
   }
 
-  .project-number-bg {
-    top: 1rem;
-    right: 1.25rem;
-    font-size: 4rem;
+  .home-mobile .work {
+    padding-top: 3rem;
   }
 
-  .skills-grid {
-    gap: 1.5rem 1rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .work-header {
+    margin-bottom: 2rem;
+  }
+
+  .beyond {
+    background-image: none;
   }
 }
 
