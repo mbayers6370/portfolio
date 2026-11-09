@@ -3,7 +3,6 @@ import { ChevronRight } from 'lucide-react'
 import ProjectTitle from './ProjectTitle'
 import projects from '../content/projects'
 import { workContent } from '../content/work'
-import MarginWorkPreview from './margin/MarginWorkPreview'
 
 const sortedProjects = [...projects].sort((a, b) => Number(a.num) - Number(b.num))
 
@@ -42,7 +41,6 @@ export default function Work() {
               <ProjectTitle title={p.title} />
             </h3>
             {p.slug === 'margin' && <p className="project-margin-hook"><strong>{workContent.marginCard.hook}</strong></p>}
-            {p.slug === 'margin' && <div className="project-margin-preview margin-brand"><MarginWorkPreview /></div>}
             <p className="project-desc">{p.slug === 'margin' ? workContent.marginCard.description : p.desc}</p>
             <div className="project-tags">
               {p.tags.map((tag) => (

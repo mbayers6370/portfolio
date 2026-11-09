@@ -94,6 +94,7 @@
 @media (min-width: 761px) {
   .design-collection {
     grid-template-columns: 1fr;
+    margin-inline: auto;
     max-width: 68rem;
   }
   .design-study-preview {
@@ -244,8 +245,8 @@
 }
 .type-guidelines {
   display: grid;
-  gap: clamp(1.5rem, 3vw, 3rem);
-  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
   margin-top: 1.8rem;
 }
 .type-guidelines > div {
@@ -268,6 +269,48 @@
 }
 .type-guidelines small {
   align-self: end;
+}
+@media (min-width: 1001px) {
+  .type-study {
+    align-items: start;
+    column-gap: clamp(2rem, 4vw, 4rem);
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.65fr) minmax(0, 2fr);
+  }
+  .type-study-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3rem;
+    min-width: 0;
+    padding-top: 1rem;
+  }
+  .type-study-letter {
+    font-size: clamp(6rem, 8vw, 8rem);
+    line-height: 1.15;
+  }
+  .type-study h2 {
+    font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+    line-height: 1.15;
+  }
+  .type-guidelines {
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    margin-top: 0;
+    min-width: 0;
+    row-gap: 1rem;
+  }
+  .type-guideline-row--body {
+    grid-column: 1 / -1;
+  }
+  .type-guidelines > div {
+    grid-template-rows: auto 1fr auto;
+    min-width: 0;
+  }
+  .type-guidelines small {
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    line-height: 1.6;
+  }
 }
 .interaction-study {
   grid-column: 1 / -1;
@@ -504,12 +547,6 @@
   }
 }
 
-@media (max-width: 1000px) {
-  .type-guidelines {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
-}
 @media (max-width: 900px) {
   .interface-variations {
     grid-template-columns: 1fr;

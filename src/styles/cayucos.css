@@ -69,7 +69,7 @@
   position: relative;
 }
 .burger-categories::before {
-  background: var(--menu-blue);
+  background: var(--menu-sand);
   border-radius: var(--radius-round);
   bottom: 0.2rem;
   content: "";
@@ -92,7 +92,7 @@
   position: relative;
 }
 .burger-categories button[aria-pressed="true"] {
-  color: var(--menu-sand);
+  color: var(--menu-midnight);
 }
 .burger-board-items {
   display: grid;
@@ -130,12 +130,22 @@
 .burger-board-item-name {
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 400;
+  font-weight: 700;
   overflow-wrap: anywhere;
+}
+.burger-board-item-description {
+  color: color-mix(in srgb, currentColor 80%, transparent);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 .burger-board-price {
   font-variant-numeric: tabular-nums;
-  font-weight: 700;
+  font-weight: 400;
+  margin-top: auto;
   white-space: nowrap;
 }
 .burger-board svg,
@@ -288,8 +298,9 @@
   grid-template-columns: auto minmax(0, 1fr);
   padding-top: 0.25rem;
 }
-.burger-feature-footer button {
+.burger-feature-footer .burger-customize-toggle {
   background: var(--menu-blue);
+  color: var(--menu-sand);
 }
 .burger-feature-footer .burger-add-order {
   background: var(--menu-orange);

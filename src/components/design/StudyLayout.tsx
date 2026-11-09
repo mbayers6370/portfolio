@@ -97,7 +97,7 @@ export function TypographyStudy({ name, specimens }: { name: string; specimens: 
       </header>
       <div className="type-guidelines">
         {specimens.map(specimen => (
-          <div className="type-guideline-row" key={specimen.role}>
+          <div className={`type-guideline-row${specimen.role === 'Body & interface' ? ' type-guideline-row--body' : ''}`} key={specimen.role}>
             <span className="type-guideline-role">{specimen.role}</span>
             <p className="type-guideline-specimen" style={{ fontFamily: specimen.family, fontStyle: specimen.style, fontWeight: specimen.weight ?? 400, fontSize: specimen.size, lineHeight: `${specimen.leading}px` }}>{specimen.text}</p>
             <small>{specimen.name} · {specimen.size}px / {specimen.leading}px</small>

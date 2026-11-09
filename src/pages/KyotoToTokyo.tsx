@@ -11,7 +11,7 @@ const studyTheme = {
   '--trip-blue': blue.hex,
   '--trip-sage': sage.hex,
   '--trip-brown': brown.hex,
-  '--trip-ink': brown.hex,
+  '--trip-ink': 'var(--study-ink)',
   '--hero-title-weight': 400,
   '--type-surface': sage.hex,
   '--type-text': blue.ink,

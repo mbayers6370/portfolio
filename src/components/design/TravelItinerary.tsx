@@ -99,6 +99,9 @@ export default function TravelItinerary() {
   const active = activeStops[selected]
   const done = completed[selected]
   const allDone = done.length === day.stops.length
+  const nextStop =
+    day.stops.find((_, index) => index > active && !done.includes(index)) ??
+    day.stops.find((_, index) => index !== active && !done.includes(index))
 
   function chooseStop(index: number) {
     setActiveStops((current) =>
@@ -282,6 +285,7 @@ export default function TravelItinerary() {
                         aria-label={`Mark ${stop.title} done`}
                         onChange={markDone}
                       />
+                      <Check aria-hidden="true" />
                     </label>
                     <div className="fuji-stop-detail">
                       <p>{stop.note}</p>
@@ -292,13 +296,26 @@ export default function TravelItinerary() {
             )
           })}
         </ol>
-        {done.length > 0 && (
-          <footer className="fuji-day-footer">
+        <footer className="fuji-day-footer">
+          <p className="fuji-next-up" role="status">
+            {allDone ? (
+              'Day complete.'
+            ) : nextStop ? (
+              <>
+                Next up: <strong>{nextStop.title}</strong> · {nextStop.time}
+              </>
+            ) : (
+              <>
+                Last stop: <strong>{day.stops[active].title}</strong>
+              </>
+            )}
+          </p>
+          {done.length > 0 && (
             <button type="button" ref={resetButton} onClick={resetDay}>
               Reset day
             </button>
-          </footer>
-        )}
+          )}
+        </footer>
       </section>
     </>
   )

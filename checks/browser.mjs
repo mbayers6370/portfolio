@@ -665,7 +665,7 @@ if (!frameMode) {
     );
     await click(featured.querySelector('[aria-label="Previous menu item"]'));
     assert(
-      featured.querySelector("h3").textContent === "Blue Hour",
+      featured.querySelector("h3").textContent === "Last Call",
       "Previous burger failed",
     );
     await click(featured.querySelector(".burger-feature-nav > button"));

@@ -5,6 +5,7 @@ type MenuItem = {
   id: string
   name: string
   price: number
+  summary: string
   description: string
   facts: [string, string, string]
 }
@@ -17,6 +18,7 @@ const menu: Record<Category, MenuItems> = {
       id: 'night-shift',
       name: 'The Night Shift',
       price: 11.5,
+      summary: 'Two patties, cheddar, onion jam',
       description:
         'Two smashed patties with sharp cheddar and a slow-cooked onion jam on a toasted bun. The one the night crew orders.',
       facts: ['Two, smashed', 'Sharp cheddar', '8 minutes'],
@@ -25,6 +27,7 @@ const menu: Record<Category, MenuItems> = {
       id: '101',
       name: 'The 101',
       price: 9.75,
+      summary: 'Single patty, pickles, house sauce',
       description:
         'A single smashed patty, crisp pickles, and house sauce. A simple burger for the long way home.',
       facts: ['One, smashed', 'American', '6 minutes'],
@@ -33,17 +36,19 @@ const menu: Record<Category, MenuItems> = {
       id: 'porch-light',
       name: 'Porch Light',
       price: 12,
+      summary: 'Fried egg, bacon, hot honey',
       description:
         'A beef patty with smoky bacon, a fried egg, and a little hot honey. Breakfast keeps its own hours.',
       facts: ['One, grilled', 'American', '9 minutes'],
     },
     {
-      id: 'blue-hour',
-      name: 'Blue Hour',
-      price: 12.5,
+      id: 'last-call',
+      name: 'Last Call',
+      price: 10.25,
+      summary: 'Grilled onions, American, mustard',
       description:
-        'A grilled patty with blue cheese, buttery mushrooms, and cracked black pepper on a toasted bun.',
-      facts: ['One, grilled', 'Blue cheese', '8 minutes'],
+        'Grilled onions, melted American cheese, and mustard. Something good before you call it a night.',
+      facts: ['One, smashed', 'American', '7 minutes'],
     },
   ],
   Sides: [
@@ -51,6 +56,7 @@ const menu: Record<Category, MenuItems> = {
       id: 'fries',
       name: 'Window fries',
       price: 4,
+      summary: 'Sea salt, cracked pepper',
       description:
         'Hot, crisp fries with sea salt and cracked black pepper. Made for the middle of the table.',
       facts: ['Potato', 'Sea salt', '4 minutes'],
@@ -59,6 +65,7 @@ const menu: Record<Category, MenuItems> = {
       id: 'rings',
       name: 'Onion rings',
       price: 5,
+      summary: 'Crisp batter, house sauce',
       description:
         'Thick-cut onion rings in a crisp seasoned batter, with house sauce on the side.',
       facts: ['Onion', 'House sauce', '5 minutes'],
@@ -67,6 +74,7 @@ const menu: Record<Category, MenuItems> = {
       id: 'slaw',
       name: 'Late-night slaw',
       price: 3.5,
+      summary: 'Cabbage, apple, cider dressing',
       description:
         'Cabbage and apple with a bright cider dressing. A fresh bite between the rich ones.',
       facts: ['Cabbage', 'Cider dressing', '2 minutes'],
@@ -75,6 +83,7 @@ const menu: Record<Category, MenuItems> = {
       id: 'cheese-fries',
       name: 'Cheddar fries',
       price: 5.5,
+      summary: 'Cheddar sauce, chopped chives',
       description: 'Crisp fries with sharp cheddar sauce and a handful of chopped chives.',
       facts: ['Potato', 'Cheddar sauce', '5 minutes'],
     },
@@ -84,6 +93,7 @@ const menu: Record<Category, MenuItems> = {
       id: 'vanilla',
       name: 'Vanilla after hours',
       price: 6,
+      summary: 'Vanilla bean, whipped cream',
       description:
         'Vanilla bean ice cream, cold milk, and a soft cap of whipped cream. Keep it classic.',
       facts: ['Vanilla bean', 'Whipped cream', '3 minutes'],
@@ -92,6 +102,7 @@ const menu: Record<Category, MenuItems> = {
       id: 'chocolate',
       name: 'Midnight chocolate',
       price: 6.5,
+      summary: 'Dark chocolate, extra cocoa',
       description:
         'A thick dark-chocolate shake with a little extra cocoa. Something for the ride home.',
       facts: ['Dark chocolate', 'Cocoa', '3 minutes'],
@@ -100,6 +111,7 @@ const menu: Record<Category, MenuItems> = {
       id: 'strawberry',
       name: 'Strawberry moon',
       price: 6.5,
+      summary: 'Strawberries, vanilla, whipped cream',
       description:
         'Strawberries and vanilla ice cream, blended thick and finished with whipped cream.',
       facts: ['Strawberry', 'Whipped cream', '3 minutes'],
@@ -108,6 +120,7 @@ const menu: Record<Category, MenuItems> = {
       id: 'caramel',
       name: 'Salted caramel',
       price: 6.75,
+      summary: 'Salted caramel, whipped cream',
       description: 'Vanilla ice cream and salted caramel, finished with a little whipped cream.',
       facts: ['Salted caramel', 'Whipped cream', '3 minutes'],
     },
@@ -165,7 +178,7 @@ function CounterMenu({ category, selected, onCategory, onSelect, headingRef }: C
             <button
               type="button"
               aria-pressed={selected === index}
-              aria-label={`View ${item.name}, ${money(item.price)}`}
+              aria-label={`View ${item.name}: ${item.summary}, ${money(item.price)}`}
               onClick={() => onSelect(index, true)}
               onKeyDown={(event) => {
                 const directions: Record<string, number> = {
@@ -183,6 +196,9 @@ function CounterMenu({ category, selected, onCategory, onSelect, headingRef }: C
               }}
             >
               <span className="burger-board-item-name">{item.name}</span>
+              <span className="burger-board-item-description" title={item.summary}>
+                {item.summary}
+              </span>
               <span className="burger-board-price">{money(item.price)}</span>
               <ChevronRight className="burger-board-item-chevron" aria-hidden="true" />
             </button>
@@ -303,6 +319,7 @@ function FeaturedBurgerMenu({
       )}
       <footer className="burger-feature-footer">
         <button
+          className="burger-customize-toggle"
           type="button"
           aria-expanded={customizing}
           aria-controls={customId}

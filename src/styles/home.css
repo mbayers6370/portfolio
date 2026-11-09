@@ -254,13 +254,6 @@
   outline-offset: 4px;
 }
 
-.project-margin-preview {
-  background: var(--margin-paper);
-  border-radius: var(--radius-card);
-  margin-block: 1.5rem;
-  padding-block: 1rem;
-}
-
 /* -------------------------------------------------------------------------- */
 /* About                                                                      */
 /* -------------------------------------------------------------------------- */
