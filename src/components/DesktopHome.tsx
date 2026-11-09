@@ -149,7 +149,7 @@ export default function DesktopHome() {
                   </div>
                   <div className="desktop-project-spec desktop-sonus-spec">
                     <span>Independent project</span>
-                    <span>Product design / engineering</span>
+                    <span>{sonusProject.role}</span>
                     <span>React · TypeScript · PostgreSQL</span>
                   </div>
                 </div>

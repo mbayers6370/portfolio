@@ -52,6 +52,8 @@ if (!frameMode) {
   });
 } else {
   globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+  // Stand in for the owned title in index.html when mounting the full app.
+  document.querySelector("title")?.setAttribute("data-seo", "");
   const fixture = document.getElementById("fixture");
   // Keep diagnostic text outside the component's hit-test area.
   document.querySelector("h1").remove();
@@ -871,6 +873,91 @@ if (!frameMode) {
           `Static field ${field} missing`,
         );
     }
+  });
+  await test("SEO: navigation updates metadata without duplicate tags", async () => {
+    await mount(h(MemoryRouter, { initialEntries: ["/"] }, h(App)));
+    assert(
+      document.title === "Matthew Bayers | Frontend Developer",
+      "Homepage title missing",
+    );
+    const clickLink = async (href) => {
+      const link = fixture.querySelector(`a[href="${href}"]`);
+      assert(link, `Missing link ${href}`);
+      await click(link);
+      await paint();
+    };
+    await clickLink("/books");
+    assert(
+      document.title === "The Shape Sequence | Books by Matthew Bayers",
+      "Books title did not update",
+    );
+    assert(
+      document.querySelector('link[rel="canonical"]').href ===
+        "https://matthewbayers.com/books",
+      "Books canonical did not update",
+    );
+    await clickLink("/art");
+    assert(
+      document.title === "Oil & Acrylic Paintings | Matthew Bayers",
+      "Escaped title was not decoded correctly",
+    );
+    for (const selector of [
+      "title",
+      'meta[name="description"]',
+      'link[rel="canonical"]',
+      'meta[property="og:url"]',
+      'script[type="application/ld+json"]',
+    ]) {
+      assert(
+        document.head.querySelectorAll(selector).length === 1,
+        `Duplicate or missing ${selector}`,
+      );
+    }
+    await clickLink("/");
+    assert(
+      document.title === "Matthew Bayers | Frontend Developer",
+      "Home title did not restore",
+    );
+  });
+  await test("SEO: unknown routes are noindex and recover on navigation", async () => {
+    await mount(h(MemoryRouter, { initialEntries: ["/missing-page"] }, h(App)));
+    assert(
+      fixture.querySelector("h1")?.textContent === "Page not found.",
+      "404 content missing",
+    );
+    assert(
+      document.querySelector('meta[name="robots"]').content.includes("noindex"),
+      "404 is indexable",
+    );
+    assert(
+      !document.querySelector('link[rel="canonical"]'),
+      "404 has a canonical URL",
+    );
+    await click(fixture.querySelector('a[href="/"]'));
+    await paint();
+    assert(
+      !document
+        .querySelector('meta[name="robots"]')
+        .content.includes("noindex"),
+      "noindex leaked to homepage",
+    );
+    assert(
+      document.querySelector('link[rel="canonical"]').href ===
+        "https://matthewbayers.com/",
+      "Homepage canonical missing",
+    );
+  });
+  await test("SEO: renamed studies resolve to their canonical page", async () => {
+    await mount(
+      h(MemoryRouter, { initialEntries: ["/design/after-dark"] }, h(App)),
+    );
+    await paint();
+    assert(
+      document.querySelector('link[rel="canonical"]').href ===
+        "https://matthewbayers.com/design/cayucos",
+      "Alias canonical mismatch",
+    );
+    assert(document.title.startsWith("Cayucos |"), "Alias title mismatch");
   });
   send({ type: "complete", passed, total, agent: navigator.userAgent });
 }

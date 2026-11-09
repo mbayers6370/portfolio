@@ -27,6 +27,18 @@ The production-ready files are generated in `dist/`. To preview that build local
 npm run preview
 ```
 
+## Search and sharing metadata
+
+`src/content/seo.ts` owns the public domain (`https://matthewbayers.com`), page metadata, and renamed-route aliases. Keep new public pages in this list and add their React routes in `src/App.tsx`.
+
+`npm run build` generates HTML with complete page content and metadata for every listed route, along with `sitemap.xml`, `robots.txt`, permanent redirects, and a noindex 404 page. It also checks the generated SEO output. Netlify serves the `.html` files at extensionless URLs and returns HTTP 404 for unknown paths. Client navigation updates metadata using the same renderer as the static build.
+
+After deployment, submit `https://matthewbayers.com/sitemap.xml` in Google Search Console and inspect the homepage and a case study. Search Console verification and indexing requests require access to the site's property.
+
+Run `npm run check:deployed:seo -- https://matthewbayers.com` after building and deploying. This reads the HTTP responses directly, checks every sitemap page for embedded JSON-LD, content, and matching metadata, and verifies that unknown paths (including `/api-keys`) return HTTP 404. It does not execute browser JavaScript. This is a separate check because a correct local build does not establish what Netlify is currently serving.
+
+The build also generates `/llms.txt`, `/profile.md`, and Markdown versions of the four project case studies at `/work/<slug>.md`. These are public summaries for readers and agents, derived from the existing About, Contact, and project content. `src/content/profile.ts` composes the candidate facts used by the text profile and Person structured data. HTML metadata links to the relevant text files. Keep employment preferences and project contributions accurate in their existing content sources; the next build updates these representations. The optional `llms.txt` convention does not guarantee indexing or recommendations. The default robots policy permits crawling without requiring separate rules for each AI crawler.
+
 ## Main project files
 
 - `src/pages/` contains the top-level pages.

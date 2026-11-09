@@ -2,7 +2,5 @@
   command = "npm run build"
   publish = "dist"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# The build generates route HTML, permanent redirects in dist/_redirects,
+# and 404.html. Unknown URLs return an actual 404 instead of the homepage.

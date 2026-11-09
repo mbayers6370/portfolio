@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 type WorkEntrancePhase = 'intro' | 'opening' | 'expanded'
+const useBrowserLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
 export default function useWorkEntrance(skipIntro = false) {
   const shellRef = useRef<HTMLDivElement>(null)
   const previousRects = useRef<Map<HTMLElement, DOMRect> | null>(null)
   const animations = useRef<Animation[]>([])
   const [phase, setPhase] = useState<WorkEntrancePhase>(() => (
-    !skipIntro && !document.hidden &&
+    typeof document !== 'undefined' && !skipIntro && !document.hidden &&
     window.matchMedia('(min-width: 901px)').matches &&
     !window.matchMedia('(prefers-reduced-motion: reduce)').matches
       ? 'intro'
@@ -71,7 +72,7 @@ export default function useWorkEntrance(skipIntro = false) {
     return () => clearTimeout(timer)
   }, [skipIntro, phase])
 
-  useLayoutEffect(() => {
+  useBrowserLayoutEffect(() => {
     if (skipIntro || phase !== 'expanded' || !previousRects.current) return
     const startingRects = previousRects.current
     previousRects.current = null

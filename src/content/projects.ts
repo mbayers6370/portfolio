@@ -34,7 +34,7 @@ const projects: Project[] = [
       },
     ],
     year: '2026',
-    role: 'Full-Stack Developer',
+    role: 'Frontend Developer',
   },
   {
     slug: 'cs499-eportfolio',

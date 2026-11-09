@@ -227,7 +227,7 @@ function SonusCaseStudy({ project }: { project: Project }) {
             <h1>Sonus</h1>
             <p>A learning experience built around focus, not distraction.</p>
           </div>
-          <div className="sonus-hero-spec"><span>Product design / engineering</span><span>React · TypeScript · PostgreSQL</span></div>
+          <div className="sonus-hero-spec"><span>{project.role}</span><span>React · TypeScript · PostgreSQL</span></div>
         </div>
       </header>
 

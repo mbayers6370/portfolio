@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
@@ -10,11 +10,16 @@ import OvercastAfternoon from "./pages/OvercastAfternoon";
 import Cayucos from "./pages/Cayucos";
 import KyotoToTokyo from "./pages/KyotoToTokyo";
 import Project from "./pages/Project";
+import NotFound from "./pages/NotFound";
+import Seo from "./components/Seo";
+import { routeAliases } from "./content/seo";
+
+const useBrowserLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 function ScrollToRoutePosition() {
   const { pathname, hash, key } = useLocation();
 
-  useLayoutEffect(() => {
+  useBrowserLayoutEffect(() => {
     if (hash) {
       const sectionId = decodeURIComponent(hash.slice(1));
       const desktopSection = window.matchMedia("(min-width: 901px)").matches
@@ -33,6 +38,7 @@ function ScrollToRoutePosition() {
 export default function App() {
   return (
     <>
+      <Seo />
       <ScrollToRoutePosition />
       <Nav />
       <main>
@@ -43,10 +49,10 @@ export default function App() {
           <Route path="/design" element={<Design />} />
           <Route path="/design/an-overcast-afternoon" element={<OvercastAfternoon />} />
           <Route path="/design/cayucos" element={<Cayucos />} />
-          <Route path="/design/after-dark" element={<Navigate to="/design/cayucos" replace />} />
           <Route path="/design/kyoto-to-tokyo" element={<KyotoToTokyo />} />
-          <Route path="/design/fuji-in-the-distance" element={<Navigate to="/design/kyoto-to-tokyo" replace />} />
+          {Object.entries(routeAliases).map(([from, to]) => <Route key={from} path={from} element={<Navigate to={to} replace />} />)}
           <Route path="/work/:slug" element={<Project />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

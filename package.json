@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "npm run dev:clean",
     "dev:clean": "for p in 5173 5174 5175 5176 5177 5178 5179 5180; do lsof -ti tcp:$p | xargs kill -9 2>/dev/null || true; done && vite",
-    "build": "vite build",
+    "build": "node scripts/build.mjs && node --test scripts/seo-checks.test.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
+    "check:deployed:seo": "node scripts/check-deployed-seo.mjs",
     "format:css": "prettier --write \"src/styles/**/*.css\" stylelint.config.mjs \"scripts/*.mjs\" \"checks/**/*.{mjs,html}\"",
     "format:check": "prettier --check \"src/styles/**/*.css\" stylelint.config.mjs \"scripts/*.mjs\" \"checks/**/*.{mjs,html}\"",
     "lint:css": "stylelint \"src/styles/**/*.css\" && node scripts/check-css-ownership.mjs",

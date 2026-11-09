@@ -7,7 +7,7 @@ export const booksPageContent = {
   subtitle: 'A series about the architecture of a world meant to make you forget.',
   authorQuote: 'I am interested in what makes us human. And what happens when we start changing the definition.',
   authorBio:
-    "Matthew Bayers is a self-published author, frontend developer, and painter. His fiction explores queer identity, memory, and the architecture of worlds that feel just slightly out of reach, built for anyone who has ever felt like they didn't quite fit.",
+    "Matthew Bayers is a self-published author, Frontend Developer, and painter. His fiction explores queer identity, memory, and the architecture of worlds that feel just slightly out of reach, built for anyone who has ever felt like they didn't quite fit.",
   backLabel: 'Back to portfolio',
 }
 
