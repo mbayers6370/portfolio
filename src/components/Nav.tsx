@@ -1,7 +1,8 @@
 import "../styles/nav.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type CSSProperties } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { navContent } from "../content/nav";
+import { designStudyBarThemes } from "../content/design-studies";
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +17,12 @@ export default function Nav() {
   const isArtPage = pathname === "/art";
   const isBooksPage = pathname === "/books";
   const isDesignPage = pathname === "/design" || pathname.startsWith("/design/");
+  const barTheme = designStudyBarThemes[pathname];
+  const navTheme = barTheme ? {
+    '--design-nav-background': barTheme.background,
+    '--design-nav-text': barTheme.text,
+    '--design-nav-accent': barTheme.text,
+  } as CSSProperties : undefined;
   const designCurrent = isDesignPage ? (pathname === "/design" ? "page" : "location") : undefined;
 
   useEffect(() => {
@@ -76,6 +83,7 @@ export default function Nav() {
     <>
       <nav
         ref={navRef}
+        style={navTheme}
         aria-label="Main navigation"
         onFocusCapture={(event) => {
           if (event.target.matches(":focus-visible")) setHidden(false);
@@ -141,6 +149,7 @@ export default function Nav() {
 
       <div
         id="mobile-navigation"
+        style={navTheme}
         className={`nav-mobile${menuOpen ? " open" : ""}${
           isSchedulerCaseStudy ? " nav-mobile--scheduler" : ""
         }${isArtPage ? " nav-mobile--art" : ""}${isBooksPage ? " nav-mobile--books" : ""}${

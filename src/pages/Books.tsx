@@ -12,25 +12,25 @@ export default function Books() {
       <div className="container books-content">
         <div className="books-list">
           {books.map((book) => (
-            <article className="book-entry" key={book.number}>
-              <a className="book-entry-cover-group" href={book.link} target="_blank" rel="noopener noreferrer" aria-label={`View ${book.title.replace('\n', ' ')} on Amazon`}>
-                <img src={book.cover} alt={`${book.title.replace('\n', ' ')} book cover`} loading="lazy" />
-              </a>
+            <article className="book-entry" key={book.number} aria-labelledby={`book-${book.number}-title`}>
+              <span className="book-entry-number">Book {book.number}</span>
+              <span className={`book-status book-status--${book.statusClass}`}>{book.status}</span>
+              <header className="book-entry-heading">
+                <h2 className="book-entry-title" id={`book-${book.number}-title`}>{book.title}</h2>
+              </header>
               <div className="book-entry-body">
-                <div className="book-entry-meta">
-                  <span className="book-entry-number">Book {book.number}</span>
-                  <span className={`book-status book-status--${book.statusClass}`}>{book.status}</span>
-                </div>
-                <h2 className="book-entry-title">{book.title}</h2>
                 <p className="book-entry-desc">{book.description}</p>
-                <a
-                  className="book-entry-link"
-                  href={book.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {book.linkLabel} <ChevronRight className="link-chevron" aria-hidden="true" />
-                </a>
+                {book.statusClass === 'available' && (
+                  <a
+                    className="book-entry-link"
+                    href={book.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Buy ${book.title.replace('\n', ' ')} on Amazon`}
+                  >
+                    {book.linkLabel} <ChevronRight className="link-chevron" aria-hidden="true" />
+                  </a>
+                )}
               </div>
             </article>
           ))}

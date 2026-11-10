@@ -10,7 +10,10 @@
   padding-top: 0;
 }
 .curiosities-intro {
-  --hero-description-color: #637477;
+  --hero-description-color: var(--study-description-color, #637477);
+}
+.curiosities-intro--study {
+  --hero-padding-bottom: 0.5rem;
 }
 .curiosities-grid {
   display: grid;
@@ -83,12 +86,12 @@
   text-underline-offset: 0.25em;
 }
 .design-study-back {
-  color: inherit;
+  color: var(--study-back-color, inherit);
   margin-bottom: 1.25rem;
 }
 .design-study-preview:focus-visible,
 .design-study-back:focus-visible {
-  outline: 2px solid var(--study-ink);
+  outline: 2px solid var(--study-back-color, var(--study-ink));
   outline-offset: 6px;
 }
 @media (min-width: 761px) {
@@ -141,19 +144,23 @@
   }
 }
 .curiosity-card {
+  border: var(--study-card-border, 0);
   border-radius: 1rem;
   min-width: 0;
   overflow: hidden;
 }
 .color-study {
   background: var(--study-paper);
-  display: grid;
-  grid-template-rows: 1fr auto;
+  display: flex;
+  flex-direction: column;
 }
 .color-study-swatches {
+  aspect-ratio: 4 / 3;
   display: grid;
+  flex-shrink: 0;
   grid-template-columns: repeat(var(--palette-columns, 3), minmax(0, 1fr));
-  min-height: 19rem;
+  min-height: 0;
+  width: 100%;
 }
 .palette-swatch {
   align-items: end;
@@ -200,6 +207,7 @@
 }
 .curiosity-card-caption {
   padding: clamp(1.4rem, 3vw, 2.5rem);
+  padding-top: 1.5rem;
 }
 .curiosity-card-caption h2 {
   font-family: var(--font-display);
@@ -234,13 +242,14 @@
 .type-study-letter {
   color: var(--type-accent, #d3ad36);
   font-family: var(--type-display, "Caudex", Georgia, serif);
+  font-weight: var(--type-display-weight, 400);
   font-size: clamp(4rem, 6vw, 5.5rem);
   line-height: 0.8;
 }
 .type-study h2 {
   font-family: var(--type-display, "Caudex", Georgia, serif);
   font-size: clamp(2rem, 3vw, 3rem);
-  font-weight: 400;
+  font-weight: var(--type-display-weight, 400);
   line-height: 0.9;
 }
 .type-guidelines {
@@ -276,6 +285,7 @@
     column-gap: clamp(2rem, 4vw, 4rem);
     display: grid;
     grid-template-columns: minmax(10rem, 0.65fr) minmax(0, 2fr);
+    padding-inline: clamp(1.5rem, 6vw, 6rem);
   }
   .type-study-heading {
     align-items: flex-start;
@@ -294,7 +304,7 @@
   }
   .type-guidelines {
     column-gap: clamp(1.5rem, 3vw, 3rem);
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) max-content;
     margin-top: 0;
     min-width: 0;
     row-gap: 1rem;
@@ -330,7 +340,6 @@
   font-size: 1rem;
   line-height: 1.6;
   margin-top: 1rem;
-  max-width: 65ch;
 }
 .interface-variations {
   display: grid;
@@ -350,7 +359,7 @@
 .interaction-sample {
   --concept-surface: #3d5060;
   --concept-text: var(--study-paper);
-  background: #b5b4a9;
+  background: var(--overcast-gray);
   border: 0;
   border-radius: 1rem;
   color: #3d5060;
@@ -367,9 +376,6 @@
   font-size: 1.15rem;
   font-weight: 700;
 }
-.concept-header strong span {
-  margin-left: 0.08em;
-}
 .interaction-sample button {
   align-items: center;
   cursor: pointer;
@@ -382,13 +388,17 @@
   outline-offset: 3px;
 }
 .concept-bookmark {
-  background: transparent;
+  background: var(--bookmark-fill, transparent);
   border: 1px solid #3d5060;
   border-radius: 50%;
-  color: #3d5060;
+  color: var(--bookmark-ink, #3d5060);
   height: 2.75rem;
   width: 2.75rem;
   margin-left: auto;
+}
+.interaction-sample:not(.interaction-sample--mustard) .concept-bookmark {
+  --bookmark-fill: #d3ad36;
+  --bookmark-ink: #3d5060;
 }
 .concept-bookmark svg {
   height: 0.9rem;
@@ -399,8 +409,8 @@
   opacity: 0.4;
 }
 .concept-bookmark[aria-pressed="true"] {
-  background: #3d5060;
-  color: var(--study-paper);
+  background: var(--bookmark-fill, #3d5060);
+  color: var(--bookmark-ink, var(--study-paper));
 }
 .interaction-sample--mustard .concept-bookmark[aria-pressed="true"] {
   background: transparent;
@@ -535,15 +545,9 @@
   object-fit: cover;
   object-position: center 58%;
 }
-.photo-study .curiosity-card-caption {
-  padding-top: 1.5rem;
-}
 @media (max-width: 760px) {
   .curiosities-grid {
     grid-template-columns: 1fr;
-  }
-  .color-study-swatches {
-    min-height: 15rem;
   }
 }
 
@@ -589,8 +593,8 @@
     text-underline-offset: 0.25rem;
   }
   .concept-bookmark:not(:disabled):hover {
-    background: #3d5060;
-    color: var(--study-paper);
+    background: var(--bookmark-ink, #3d5060);
+    color: var(--bookmark-fill, var(--study-paper));
   }
   .concept-read-more:hover {
     text-decoration-thickness: 2px;

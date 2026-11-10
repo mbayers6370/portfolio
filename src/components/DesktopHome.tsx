@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ContactForm from './ContactForm'
-import ContactEmail from './ContactEmail'
+import ContactSocials from './ContactSocials'
 import { Link, useLocation } from 'react-router-dom'
 import { ChevronRight, Plane, TrainFront, Volume2 } from 'lucide-react'
 import headshot from '../assets/headshot-cutout.png'
@@ -179,11 +179,7 @@ export default function DesktopHome() {
               <div className="desktop-home-contact-intro">
                 <h2 id="desktop-contact-title">{contactContent.heading}</h2>
                 <p>{contactContent.availability}</p>
-                <ContactEmail />
-                <div className="desktop-home-contact-links">
-                  <a href="https://www.linkedin.com/in/matthew-bayers" target="_blank" rel="noopener noreferrer">LinkedIn <ChevronRight className="link-chevron" aria-hidden="true" /></a>
-                  <a href="https://github.com/mbayers6370" target="_blank" rel="noopener noreferrer">GitHub <ChevronRight className="link-chevron" aria-hidden="true" /></a>
-                </div>
+                <ContactSocials desktop />
               </div>
               <ContactForm desktop />
             </div>

@@ -1,5 +1,6 @@
 .page-hero {
-  padding-block: calc(58px + clamp(2rem, 4vw, 3.5rem)) clamp(2rem, 4vw, 3.5rem);
+  padding-block: calc(58px + clamp(2rem, 4vw, 3.5rem))
+    var(--hero-padding-bottom, clamp(2rem, 4vw, 3.5rem));
 }
 
 .page-hero-inner {
@@ -8,6 +9,7 @@
 }
 
 .page-hero h1 {
+  color: var(--hero-title-color, inherit);
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 5.4vw, 4.5rem);
   font-weight: var(--hero-title-weight, 700);

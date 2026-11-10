@@ -37,9 +37,8 @@ export type Book = {
   number: string
   title: string
   status: string
-  statusClass: 'available' | 'upcoming'
   description: string
-  link: string
-  linkLabel: string
-  cover: string
-}
+} & (
+  | { statusClass: 'available'; link: string; linkLabel: string; cover: string }
+  | { statusClass: 'upcoming'; link?: never; linkLabel?: never; cover?: never }
+)

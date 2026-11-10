@@ -3,119 +3,243 @@
   font-family: var(--font-body);
   font-synthesis: none;
 }
+.fuji-study .type-study-heading :is(h2, p) {
+  color: var(--white);
+}
+.fuji-study .interface-variations {
+  margin-inline: auto;
+  max-width: 64rem;
+}
 .fuji-trip-overview,
 .fuji-day-schedule {
   border-radius: 1rem;
-  box-shadow: 0 0.5rem 1.5rem
-    color-mix(in srgb, var(--trip-ink) 12%, transparent);
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   font-size: 0.875rem;
   font-weight: 400;
   min-width: 0;
-  padding: 1.25rem 1.5rem;
+  padding: clamp(1rem, 1.75vw, 1.5rem);
   scroll-margin-top: 5.5rem;
 }
 .fuji-trip-overview {
   background: var(--trip-sage);
   color: var(--trip-ink);
-  container-type: inline-size;
+  overflow: hidden;
+  padding: 0;
 }
-.fuji-trip-meta,
-.fuji-day-nav {
-  align-items: center;
-  display: flex;
-  gap: 0.75rem;
-}
-.fuji-trip-meta {
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-.fuji-trip-meta > span {
-  align-items: center;
-  display: inline-flex;
-  font-weight: 700;
-  gap: 0.4rem;
-}
-.fuji-trip-overview svg,
-.fuji-day-schedule svg {
+.fuji-day-schedule svg,
+.fuji-map-navigation svg {
   flex-shrink: 0;
   height: 1rem;
   width: 1rem;
 }
-.fuji-trip-overview h3 {
-  color: var(--trip-brown);
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 7.5cqi, 2.5rem);
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
-  text-align: center;
-}
-.fuji-trip-stats {
-  display: grid;
-  font-family: var(--font-body);
-  gap: 0.5rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-block: 1.25rem 1.5rem;
-  text-align: center;
-}
-.fuji-trip-stats > div {
-  background: color-mix(in srgb, var(--white) 25%, transparent);
-  border-radius: var(--radius-control);
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 0.25rem;
-  min-width: 0;
-  padding: 0.75rem 0.25rem;
-}
-.fuji-trip-stats dt {
-  font-size: 0.75rem;
-}
-.fuji-trip-stats dd {
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.3;
-}
 .fuji-trip-days {
-  background: color-mix(in srgb, var(--trip-ink) 12%, transparent);
-  border-radius: var(--radius-round);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  padding: 0.2rem;
-  position: relative;
-}
-.fuji-trip-days::before {
-  background: var(--white);
-  border-radius: var(--radius-round);
-  bottom: 0.2rem;
-  content: "";
-  left: 0.2rem;
-  pointer-events: none;
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+  left: 1rem;
   position: absolute;
-  top: 0.2rem;
-  transform: translateX(calc(var(--trip-day-index, 0) * 100%));
-  width: calc((100% - 0.4rem) / 2);
+  top: 0;
+  z-index: 1;
 }
 .fuji-trip-days button {
+  align-items: center;
+  appearance: none;
   background: transparent;
   border: 0;
-  border-radius: var(--radius-round);
-  color: inherit;
+  border-radius: 0;
+  color: var(--trip-ink);
   cursor: pointer;
+  display: inline-flex;
   font: 700 0.875rem/1.4 var(--font-body);
+  justify-content: flex-start;
   min-height: 44px;
-  padding: 0.5rem;
+  opacity: 0.5;
+  padding: 0.5rem 0;
+  text-align: left;
+  text-underline-offset: 0.35em;
+}
+.fuji-trip-days button[aria-pressed="true"] {
+  opacity: 1;
+}
+.fuji-map-overview {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.fuji-route-map {
+  background: color-mix(in srgb, var(--trip-sage) 60%, var(--white));
+  margin: 0;
+  overflow: hidden;
+  padding-top: 44px;
+  position: relative;
+  flex-shrink: 0;
+}
+.fuji-map-canvas {
+  aspect-ratio: 15 / 8;
   position: relative;
 }
-.fuji-trip-stops,
-.fuji-day-stops {
-  list-style: none;
-  margin-block: 0.75rem 1.5rem;
+.fuji-map-artwork {
+  display: block;
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
 }
-.fuji-trip-stops button,
+.fuji-map-region {
+  color: var(--trip-blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.65;
+  pointer-events: none;
+  position: absolute;
+  right: 1rem;
+  top: 0.75rem;
+}
+.fuji-map-water {
+  fill: var(--trip-blue);
+}
+.fuji-map-route {
+  fill: none;
+  opacity: 0.55;
+  stroke: var(--trip-rust);
+  stroke-dasharray: 5 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.fuji-map-label {
+  fill: var(--trip-ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: color-mix(in srgb, var(--trip-sage) 60%, var(--white));
+  stroke-width: 3px;
+  text-anchor: middle;
+}
+.fuji-map-leader {
+  stroke: var(--trip-rust);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.fuji-map-anchor {
+  fill: var(--trip-rust);
+}
+.fuji-map-marker {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 44px;
+}
+.fuji-map-marker span {
+  align-items: center;
+  background: var(--trip-ink);
+  border-radius: 50%;
+  color: var(--white);
+  display: flex;
+  font: 700 0.8125rem/1 var(--font-body);
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+.fuji-map-marker[aria-pressed="true"] span {
+  background: var(--trip-rust);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--trip-rust) 18%, transparent);
+  height: 34px;
+  width: 34px;
+}
+.fuji-map-marker:focus {
+  outline: none;
+}
+.fuji-map-marker:focus-visible span {
+  outline: 2px solid var(--trip-rust);
+  outline-offset: 3px;
+}
+.fuji-map-credit {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.6875rem;
+  gap: 0.375rem 1rem;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+}
+.fuji-map-credit a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+.fuji-map-stop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  row-gap: 0.25rem;
+}
+.fuji-map-stop-heading {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  grid-column: 1;
+}
+.fuji-map-stop-heading time {
+  color: inherit;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  opacity: 0.65;
+}
+.fuji-map-stop h4 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 4.5cqi, 1.5rem);
+  font-weight: 400;
+  line-height: 1.3;
+}
+.fuji-map-stop p {
+  grid-column: 1;
+  line-height: 1.5;
+}
+.fuji-map-navigation {
+  align-items: center;
+  display: grid;
+  flex: 1;
+  gap: 0.25rem;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  padding: 0.75rem 0.5rem;
+}
+.fuji-map-navigation button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+  width: 44px;
+}
+.fuji-map-navigation button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+.fuji-day-stops {
+  display: grid;
+  gap: 0.25rem;
+  list-style: none;
+  margin-block: 1rem 0;
+}
 .fuji-stop-select {
-  align-items: baseline;
+  align-items: center;
   background: transparent;
   border: 0;
   color: inherit;
@@ -125,94 +249,27 @@
   gap: 0.75rem;
   grid-template-columns: 3.1rem minmax(0, 1fr) auto;
   min-height: 44px;
+  padding: 0.75rem 1rem;
   text-align: left;
   width: 100%;
-}
-.fuji-trip-stops button {
-  border-radius: var(--radius-round);
-  padding: 0.65rem 1.25rem;
-}
-.fuji-trip-stops button[aria-pressed="true"] {
-  background: color-mix(in srgb, var(--trip-sage) 60%, var(--white));
-}
-.fuji-trip-stops button > span:nth-child(2),
-.fuji-stop-select > span:nth-child(2) {
-  font-weight: 700;
-}
-.fuji-stop-duration {
-  font-size: 0.75rem;
-  text-align: right;
-}
-.fuji-trip-stop-end {
-  align-items: center;
-  display: grid;
-  justify-items: end;
-}
-.fuji-trip-stop-end > span,
-.fuji-trip-stop-end > svg {
-  grid-area: 1 / 1;
-}
-.fuji-trip-stop-chevron {
-  opacity: 0;
-  transform: translateX(-3px);
-}
-.fuji-trip-stops button:focus-visible .fuji-stop-duration {
-  opacity: 0;
-}
-.fuji-trip-stops button:focus-visible .fuji-trip-stop-chevron {
-  opacity: 1;
-  transform: translateX(0);
-}
-.fuji-open-day {
-  align-items: center;
-  background: var(--trip-detail-surface);
-  border: 0;
-  border-radius: var(--radius-round);
-  color: var(--white);
-  cursor: pointer;
-  display: flex;
-  font: 700 0.9rem/1.4 var(--font-body);
-  gap: 0.5rem;
-  justify-content: center;
-  margin-top: auto;
-  min-height: 44px;
-  padding: 0.75rem;
 }
 .fuji-day-schedule {
   background: var(--trip-detail-surface);
   color: var(--white);
 }
-.fuji-day-nav {
-  font-size: 0.75rem;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-}
-.fuji-day-nav button {
-  align-items: center;
-  background: transparent;
-  border: 0;
-  border-radius: var(--radius-round);
-  color: inherit;
-  cursor: pointer;
-  display: inline-flex;
-  flex-shrink: 0;
-  font: 700 0.8rem/1.4 var(--font-body);
-  gap: 0.4rem;
-  min-height: 44px;
-  padding: 0.5rem 0.75rem;
-}
 .fuji-day-schedule h3 {
   color: var(--white);
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 2.7vw, 2.5rem);
+  font-size: clamp(1.5rem, 5.5cqi, 2.125rem);
   font-weight: 400;
+  letter-spacing: -0.025em;
   line-height: 1.15;
-  text-align: center;
+  max-width: 20ch;
 }
 .fuji-day-progress {
   align-items: center;
   display: flex;
-  gap: 0.25rem;
+  gap: 0.375rem;
   margin: 1rem auto 0;
   width: 100%;
 }
@@ -220,9 +277,11 @@
   background: color-mix(in srgb, var(--white) 25%, transparent);
   border-radius: var(--radius-round);
   flex: 1;
-  height: 4px;
+  height: 5px;
 }
-.fuji-day-progress [data-complete],
+.fuji-day-progress [data-complete] {
+  background: var(--trip-rust);
+}
 .fuji-day-progress [data-current] {
   background: var(--white);
 }
@@ -234,8 +293,18 @@
   background: color-mix(in srgb, var(--trip-sage) 60%, var(--white));
   color: var(--trip-ink);
 }
-.fuji-stop-select {
-  padding: 0.65rem 1rem;
+.fuji-day-stops > li[data-current] time {
+  color: var(--trip-rust);
+}
+.fuji-stop-copy {
+  min-width: 0;
+}
+.fuji-stop-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.35;
 }
 .fuji-day-stops > li[data-current] .fuji-stop-select {
   padding-right: 3.5rem;
@@ -247,13 +316,14 @@
   place-items: center;
   position: absolute;
   right: 0.5rem;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 44px;
 }
 .fuji-stop-complete input {
   appearance: none;
   background: var(--white);
-  border: 2px solid var(--trip-blue);
+  border: 2px solid var(--trip-rust);
   border-radius: 0.25rem;
   cursor: pointer;
   grid-area: 1 / 1;
@@ -262,7 +332,7 @@
   width: 20px;
 }
 .fuji-stop-complete input:checked {
-  background: var(--trip-blue);
+  background: var(--trip-rust);
 }
 .fuji-stop-complete svg {
   color: var(--white);
@@ -273,53 +343,62 @@
 .fuji-stop-complete input:checked + svg {
   opacity: 1;
 }
-.fuji-day-schedule time,
-.fuji-day-schedule .fuji-stop-duration {
+.fuji-day-schedule time {
   font-weight: 700;
+}
+.fuji-day-stops time {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
 }
 .fuji-day-stops [data-complete] .fuji-stop-select {
   color: color-mix(in srgb, var(--white) 70%, transparent);
   cursor: default;
 }
-.fuji-day-stops [data-complete] .fuji-stop-select > span {
+.fuji-day-stops [data-complete] .fuji-stop-title {
   text-decoration: line-through;
 }
 .fuji-stop-detail {
-  padding: 0 1rem 0.75rem 4.85rem;
-}
-.fuji-stop-detail p {
+  display: block;
+  font-weight: 400;
   line-height: 1.5;
+  margin-top: 0.375rem;
 }
 .fuji-day-footer {
   align-items: center;
   display: flex;
-  flex-direction: column;
-  font-size: 0.75rem;
-  justify-content: center;
-  margin-top: auto;
-  padding-top: 1rem;
+  flex-wrap: nowrap;
+  font-size: 0.8125rem;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-top: 0;
 }
 .fuji-next-up {
+  flex: 1;
   line-height: 1.6;
-  text-align: center;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .fuji-day-footer button {
   background: transparent;
-  border: 0;
-  color: inherit;
+  border: 1px solid var(--trip-rust);
+  border-radius: var(--radius-round);
+  color: var(--trip-rust);
   cursor: pointer;
+  flex-shrink: 0;
   font: inherit;
+  font-weight: 700;
   min-height: 44px;
-  text-decoration: underline;
-  text-underline-offset: 0.25em;
+  padding: 0.5rem 1rem;
 }
-.fuji-trip-overview:focus-visible,
-.fuji-trip-overview :is(a, button):focus-visible {
+.fuji-trip-days button:focus-visible,
+.fuji-map-credit a:focus-visible,
+.fuji-map-navigation button:focus-visible {
   outline: 2px solid var(--trip-ink);
   outline-offset: 3px;
 }
-.fuji-day-schedule:focus-visible,
-.fuji-day-nav button:focus-visible,
 .fuji-day-footer button:focus-visible {
   outline: 2px solid var(--white);
   outline-offset: 3px;
@@ -333,62 +412,32 @@
   outline-offset: 3px;
 }
 @media (hover: hover) and (pointer: fine) {
-  .fuji-day-schedule :is(a, button:not(:disabled)):hover {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
+  .fuji-map-navigation button:not(:disabled):hover {
+    color: var(--trip-rust);
   }
-  .fuji-trip-stops button:hover {
-    background: color-mix(in srgb, var(--trip-sage) 45%, var(--white));
-  }
-  .fuji-trip-stops button:hover .fuji-stop-duration {
-    opacity: 0;
-  }
-  .fuji-trip-stops button:hover .fuji-trip-stop-chevron {
-    opacity: 1;
-    transform: translateX(0);
+  .fuji-stop-select:not(:disabled):not([aria-expanded="true"]):hover {
+    background: color-mix(in srgb, var(--trip-sage) 18%, transparent);
+    border-radius: var(--radius-card);
   }
   .fuji-trip-days button:hover {
-    background: color-mix(in srgb, var(--white) 15%, transparent);
+    text-decoration: underline;
   }
-  .fuji-open-day:hover {
-    background: color-mix(in srgb, var(--trip-blue) 90%, var(--white));
+  .fuji-day-footer button:hover {
+    background: color-mix(in srgb, var(--trip-rust) 10%, transparent);
   }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .fuji-trip-stop-end > span,
-  .fuji-trip-stop-chevron {
-    transition:
-      opacity 160ms ease,
-      transform 160ms ease;
-  }
-  .fuji-trip-overview button {
-    transition: background-color 160ms ease;
-  }
-  .fuji-trip-days::before {
-    transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+@media (max-width: 600px) {
+  .fuji-stop-title {
+    font-size: 0.9375rem;
   }
 }
 @media (max-width: 420px) {
-  .fuji-trip-overview,
   .fuji-day-schedule {
     padding: 1rem 1.125rem;
   }
-  .fuji-day-nav {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .fuji-trip-stops button,
   .fuji-stop-select {
     gap: 0.5rem;
     grid-template-columns: 2.65rem minmax(0, 1fr) auto;
-  }
-  .fuji-trip-stops button {
-    padding-inline: 1rem;
-  }
-  .fuji-stop-select {
     padding-left: 0.75rem;
-  }
-  .fuji-stop-detail {
-    padding-left: 3.9rem;
   }
 }

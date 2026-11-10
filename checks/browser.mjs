@@ -7,6 +7,7 @@ import Hero from "../src/components/Hero";
 import "../src/styles/design.css";
 import useWorkEntrance from "../src/hooks/useWorkEntrance";
 import ContactForm from "../src/components/ContactForm";
+import TravelItinerary from "../src/components/design/TravelItinerary";
 import NelaWorkPreview from "../src/components/NelaWorkPreview";
 import MarginPreview from "../src/components/margin/MarginPreview";
 import MarginWorkPreview from "../src/components/margin/MarginWorkPreview";
@@ -638,7 +639,7 @@ if (!frameMode) {
       (element) => element.textContent,
     );
     assert(
-      colors.join(",") === "#b04d01,#020914,#052b41,#d4c7a5",
+      colors.join(",") === "#b04d01,#020914,#052b41,#e8dfc9",
       "Palette differs from the supplied colors",
     );
     assert(
@@ -654,26 +655,43 @@ if (!frameMode) {
       featured.querySelector("h3").textContent === "The Night Shift",
       "Initial burger missing",
     );
-    await click(featured.querySelector('[aria-label="Next menu item"]'));
+    await click(fixture.querySelectorAll(".burger-board-items button")[1]);
     assert(
       featured.querySelector("h3").textContent === "The 101",
-      "Next burger failed",
+      "Counter selection did not update the featured burger",
     );
-    for (let i = 0; i < 3; i++)
-      await click(featured.querySelector('[aria-label="Next menu item"]'));
-    assert(
-      featured.querySelector("h3").textContent === "The Night Shift",
-      "Burger selection did not wrap",
-    );
-    await click(featured.querySelector('[aria-label="Previous menu item"]'));
+    await click(fixture.querySelectorAll(".burger-board-items button")[3]);
     assert(
       featured.querySelector("h3").textContent === "Last Call",
-      "Previous burger failed",
+      "Counter selection did not show Last Call",
     );
-    await click(featured.querySelector(".burger-feature-nav > button"));
     assert(
-      document.activeElement === fixture.querySelector("#cayucos-menu h3"),
-      "Menu button did not return focus to the counter menu",
+      document.activeElement === featured.querySelector("h3"),
+      "Counter selection did not focus the featured item",
+    );
+    const featureHeight = featured.getBoundingClientRect().height;
+    const copy = featured.querySelector(".burger-feature-copy");
+    const title = featured.querySelector("h3");
+    assert(
+      Math.abs(
+        title.getBoundingClientRect().top -
+          copy.getBoundingClientRect().top -
+          parseFloat(getComputedStyle(copy).paddingTop),
+      ) < 1,
+      "Closed Customize should not reserve space above the title",
+    );
+    const customize = featured.querySelector(".burger-customize-toggle");
+    await click(customize);
+    assert(
+      customize.getAttribute("aria-expanded") === "true" &&
+        Math.abs(featured.getBoundingClientRect().height - featureHeight) < 1,
+      "Customize should open without changing the card height",
+    );
+    await click(customize);
+    assert(
+      customize.getAttribute("aria-expanded") === "false" &&
+        Math.abs(featured.getBoundingClientRect().height - featureHeight) < 1,
+      "Closing Customize should preserve the card height",
     );
     await click(fixture.querySelectorAll(".burger-categories button")[1]);
     assert(
@@ -704,6 +722,158 @@ if (!frameMode) {
     assert(
       fixture.querySelector("h1").textContent === "Collected Curiosities",
       "Collection return link failed",
+    );
+  });
+  await test("Kyoto map: stops and route reveal progressively without moving existing markers", async () => {
+    await mount(h(TravelItinerary));
+    const overview = fixture.querySelector(".fuji-trip-overview");
+    const first = overview.querySelector(".fuji-map-marker");
+    const position = first.getAttribute("style");
+    for (let index = 0; index < 5; index++) {
+      assert(
+        overview.querySelectorAll(".fuji-map-marker").length === index + 1,
+        "Map revealed future markers",
+      );
+      assert(
+        overview.querySelectorAll(".fuji-map-anchor").length === index + 1 &&
+          overview.querySelectorAll(".fuji-map-leader").length === index + 1,
+        "Map revealed future location anchors or callout lines",
+      );
+      const route = overview.querySelector(".fuji-map-route");
+      assert(
+        index === 0
+          ? !route
+          : route.getAttribute("points").trim().split(/\s+/).length ===
+              index + 1,
+        "Map revealed future route segments",
+      );
+      assert(
+        first.getAttribute("style") === position,
+        "Existing marker moved when advancing",
+      );
+      if (index < 4)
+        await click(overview.querySelector('[aria-label="Next map stop"]'));
+    }
+    await click(overview.querySelector('[aria-label="Previous map stop"]'));
+    assert(
+      overview.querySelectorAll(".fuji-map-marker").length === 4,
+      "Returning to a previous stop did not hide later markers",
+    );
+    await click(first);
+    assert(
+      overview.querySelectorAll(".fuji-map-marker").length === 1 &&
+        !overview.querySelector(".fuji-map-route"),
+      "Selecting the first stop did not return to the initial map",
+    );
+  });
+  await test("Kyoto itinerary: map and schedule browse independently", async () => {
+    await mount(h(TravelItinerary));
+    const overview = fixture.querySelector(".fuji-trip-overview");
+    const schedule = fixture.querySelector(".fuji-day-schedule");
+    const overviewDays = overview.querySelectorAll(".fuji-trip-days button");
+    assert(
+      !overview.querySelector("dl") && !overview.querySelector("h3"),
+      "Removed stats or introductory heading remain",
+    );
+    assert(
+      overview.querySelector(".fuji-route-map .fuji-map-region")
+        ?.textContent === "Fuji Five Lakes",
+      "Region label is missing from the map",
+    );
+    assert(
+      overview.querySelector(".fuji-route-map .fuji-trip-days"),
+      "Day controls are not inside the map",
+    );
+    await click(overviewDays[1]);
+    assert(
+      overview.querySelector(".fuji-map-canvas").getAttribute("aria-label") ===
+        "Sunday route map" &&
+        schedule.querySelector("h3").textContent === "The lake & the mountain",
+      "Map day changed the schedule",
+    );
+    await click(overview.querySelector('[aria-label="Next map stop"]'));
+    await click(overview.querySelectorAll(".fuji-map-marker")[1]);
+    assert(
+      overview.querySelector(".fuji-map-stop h4").textContent ===
+        "Honcho Street",
+      "Map marker did not reveal its stop",
+    );
+    assert(
+      schedule.querySelector("[data-current] time").textContent === "9:30",
+      "Map selection changed the active schedule stop",
+    );
+    await click(schedule.querySelectorAll(".fuji-stop-select")[2]);
+    assert(
+      overviewDays[1].getAttribute("aria-pressed") === "true" &&
+        overview.querySelector(".fuji-map-stop h4").textContent ===
+          "Honcho Street",
+      "Schedule navigation changed the map",
+    );
+    await click(overviewDays[0]);
+    assert(
+      schedule.querySelector("h3").textContent === "The lake & the mountain" &&
+        schedule.querySelector("[data-current] time").textContent === "12:15",
+      "Map day changed the schedule",
+    );
+    await click(overviewDays[1]);
+    assert(
+      overview
+        .querySelectorAll(".fuji-map-marker")[1]
+        .getAttribute("aria-pressed") === "true",
+      "Map lost its selected stop when switching days",
+    );
+    await click(overview.querySelector('[aria-label="Previous map stop"]'));
+    assert(
+      overview.querySelector(".fuji-map-stop h4").textContent ===
+        "Coffee in Yoshida",
+      "Map previous-stop control failed",
+    );
+  });
+  await test("Kyoto itinerary: schedule completion and reset stay independent of the map", async () => {
+    await mount(h(TravelItinerary));
+    const overview = fixture.querySelector(".fuji-trip-overview");
+    const schedule = fixture.querySelector(".fuji-day-schedule");
+    const overviewStop = overview.querySelector('[aria-label="Next map stop"]');
+    await click(overviewStop);
+    const overviewBefore = overview.innerHTML;
+    for (let completed = 1; completed < 5; completed++) {
+      await click(schedule.querySelector('input[type="checkbox"]'));
+      await paint();
+      assert(
+        schedule
+          .querySelector('[role="progressbar"]')
+          .getAttribute("aria-valuenow") === String(completed + 1),
+        "Schedule progress did not advance",
+      );
+    }
+    assert(
+      schedule.querySelector('[role="status"]').textContent === "Day complete.",
+      "Completion message missing",
+    );
+    assert(
+      !schedule.querySelector('input[type="checkbox"]'),
+      "Completed schedule still has an active stop",
+    );
+    assert(
+      schedule.querySelector(".fuji-day-footer button").textContent === "Reset",
+      "Reset label did not update",
+    );
+    await click(schedule.querySelector(".fuji-day-footer button"));
+    await paint();
+    assert(
+      schedule
+        .querySelector('[role="progressbar"]')
+        .getAttribute("aria-valuenow") === "0",
+      "Reset did not clear the selected schedule day",
+    );
+    assert(
+      document.activeElement ===
+        schedule.querySelector('input[type="checkbox"]'),
+      "Reset did not focus the first completion control",
+    );
+    assert(
+      overview.innerHTML === overviewBefore,
+      "Schedule completion or reset changed the overview",
     );
   });
   const realFetch = window.fetch.bind(window);

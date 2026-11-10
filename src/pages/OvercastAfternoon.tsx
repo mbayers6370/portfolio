@@ -1,7 +1,14 @@
 import { Bookmark } from "lucide-react";
 import StudyLayout, { InspirationStudy, PaletteStudy, TypographyStudy } from "../components/design/StudyLayout";
 import { overcastStudy } from "../content/design-studies";
-import { useId, useState } from "react";
+import { useId, useState, type CSSProperties } from "react";
+
+const pageTheme = {
+  backgroundColor: overcastStudy.palette[2].hex,
+  '--overcast-gray': overcastStudy.palette[2].hex,
+  '--hero-title-color': overcastStudy.palette[1].hex,
+  '--study-card-border': `1px solid ${overcastStudy.palette[1].hex}`,
+} as CSSProperties;
 
 const typeSpecimens = [
   { role: "Display", family: '"Caudex", Georgia, serif', style: "normal", name: "Caudex Regular", text: "Look closer.", size: 48, leading: 48 },
@@ -21,19 +28,19 @@ function InterfaceConcept({ mustard = false }: { mustard?: boolean }) {
       <h3 className="interface-variation-label">{mustard ? "Mustard" : "Slate"}</h3>
       <div className={`interaction-sample${mustard ? " interaction-sample--mustard" : ""}`}>
         <header className="concept-header">
-          <strong>Field notes<span aria-hidden="true">.</span></strong>
+          <strong>Notes</strong>
           <button className="concept-bookmark" disabled={!showNote} type="button" aria-label={saved ? "Unsave note" : "Save note"} aria-pressed={saved} onClick={() => setSaved(!saved)}>
-            <Bookmark aria-hidden="true" fill={saved ? "currentColor" : "none"} />
+            <Bookmark aria-hidden="true" fill={saved || !mustard ? "currentColor" : "none"} />
           </button>
         </header>
         <div className="concept-body">
           <div className="concept-feature">
             <div className="interface-copy">
-              <h4>{showNote ? "Small observations, properly held." : "Nothing saved yet."}</h4>
-              <p>{showNote ? "Three things worth returning to." : "Return to Journal and bookmark a note to keep it here."}</p>
+              <h4>{showNote ? "Drive home" : "Nothing saved yet."}</h4>
+              <p>{showNote ? "Stopped for groceries after work." : "Open Journal and save a note with the bookmark."}</p>
             </div>
           </div>
-          <p id={excerptId} className="concept-excerpt" hidden={!open || !showNote}>The color of the road after rain. A line of trees against the sky. The small details that stay with us on the way home.</p>
+          <p id={excerptId} className="concept-excerpt" hidden={!open || !showNote}>Need to get gas and return a package tomorrow.</p>
           <div className="concept-bottom">
             {showNote ? <button className="concept-read-more" type="button" aria-expanded={open} aria-controls={excerptId} onClick={() => setOpen(!open)}>{open ? "Read less" : "Read more"}</button> : <span>No saved notes</span>}
           </div>
@@ -49,7 +56,7 @@ function InterfaceConcept({ mustard = false }: { mustard?: boolean }) {
 
 export default function OvercastAfternoon() {
   return (
-    <StudyLayout study={overcastStudy}>
+    <StudyLayout study={overcastStudy} style={pageTheme}>
       <InspirationStudy study={overcastStudy}>
         A wet road, a gray sky, a line of yellow. The starting point
         for this collection of color, type, and interface studies.

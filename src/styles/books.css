@@ -1,4 +1,4 @@
-/* Books: covers and reading details share one clear, responsive shelf. */
+/* Typography-led book sections with reading details and purchase links. */
 .page-books {
   background: var(--bg);
   color: var(--olive);
@@ -14,66 +14,70 @@
 }
 .books-list {
   display: grid;
-  gap: clamp(3rem, 7vw, 6rem);
-  padding-block: clamp(3rem, 6vw, 5rem);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  padding-block: clamp(2rem, 5vw, 4rem);
 }
 .book-entry {
   align-items: center;
+  background: color-mix(in srgb, var(--cream) 45%, var(--white));
+  border-radius: 1.25rem;
+  column-gap: clamp(2rem, 5vw, 4rem);
   display: grid;
-  gap: clamp(2rem, 6vw, 6rem);
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  grid-template-areas:
+    "number number"
+    "heading body";
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   min-width: 0;
+  padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.5rem, 4vw, 3.5rem);
+  position: relative;
+  row-gap: 0.75rem;
 }
-.book-entry-cover-group {
-  display: grid;
-  justify-self: center;
-  max-width: 16rem;
-  place-items: center;
-  text-decoration: none;
-  width: 100%;
-}
-.book-entry-cover-group img {
-  border-radius: 0.15rem;
-  display: block;
-  height: auto;
-  max-width: 16rem;
-  width: 100%;
+.book-entry-heading {
+  grid-area: heading;
+  min-width: 0;
 }
 .book-entry-body {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  grid-area: body;
   min-width: 0;
 }
-.book-entry-meta {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
-  margin-bottom: 1.5rem;
-}
 .book-entry-number {
-  color: var(--olive);
+  color: color-mix(in srgb, var(--olive) 75%, transparent);
   font-size: 0.8rem;
+  grid-area: number;
+  padding-right: 7rem;
 }
 .book-status {
   background: var(--secondary);
   border-radius: var(--radius-round);
   color: var(--olive);
-  font-size: 0.75rem;
-  padding: 0.3rem 0.8rem;
+  font-size: 0.65rem;
+  line-height: 1.4;
+  padding: 0.2rem 0.6rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  white-space: nowrap;
+}
+.book-status--upcoming {
+  background: color-mix(in srgb, var(--olive) 8%, transparent);
 }
 .book-entry-title {
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 4.4vw, 3.75rem);
+  font-size: clamp(2.75rem, 5.4vw, 4.5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
   white-space: pre-line;
 }
 .book-entry-desc {
   color: color-mix(in srgb, var(--olive) 82%, transparent);
   font-size: 1.05rem;
-  line-height: 1.8;
-  margin-bottom: 1.75rem;
+  line-height: 1.65;
   max-width: 46ch;
 }
 .book-entry-link {
@@ -84,6 +88,7 @@
   font-size: 0.9rem;
   font-weight: 700;
   min-height: 44px;
+  text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.4rem;
 }
@@ -121,14 +126,15 @@
 }
 @media (max-width: 760px) {
   .book-entry {
-    gap: 2rem;
-    grid-template-columns: 1fr;
-  }
-  .book-entry-cover-group {
-    max-width: 14rem;
+    gap: 1.25rem;
+    grid-template-areas:
+      "number"
+      "heading"
+      "body";
+    grid-template-columns: minmax(0, 1fr);
   }
   .book-entry-title {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(2.5rem, 10vw, 4rem);
   }
   .books-author-note {
     grid-template-columns: 1fr;

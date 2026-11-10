@@ -770,21 +770,6 @@
     margin-top: 1.5rem;
     max-width: 28ch;
   }
-  .desktop-home-contact-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
-    margin-top: 1rem;
-  }
-  .desktop-home-contact-links a {
-    align-items: center;
-    color: inherit;
-    display: inline-flex;
-    font-size: 0.9rem;
-    gap: 0.5rem;
-    min-height: 44px;
-    text-underline-offset: 0.3em;
-  }
   .desktop-contact form {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -1,0 +1,35 @@
+.contact-socials {
+  --contact-icon-color: var(--secondary);
+  --contact-icon-hover-color: var(--olive);
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.contact-socials--desktop {
+  --contact-icon-color: var(--olive);
+  --contact-icon-hover-color: var(--secondary);
+  margin-top: 1rem;
+}
+
+.contact-social-icon {
+  display: inline-flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--contact-icon-color) 12%, transparent);
+  border-radius: 50%;
+  color: var(--contact-icon-color);
+  height: 2.75rem;
+  justify-content: center;
+  text-decoration: none;
+  width: 2.75rem;
+}
+
+.contact-social-icon:hover {
+  background: var(--contact-icon-color);
+  color: var(--contact-icon-hover-color);
+}
+
+.contact-social-icon:focus-visible {
+  outline: 2px solid var(--contact-icon-color);
+  outline-offset: 4px;
+}

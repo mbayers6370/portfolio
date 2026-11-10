@@ -5,7 +5,7 @@ import fujiImage from '../assets/Japan.jpeg'
 const overcastPalette = [
   { hex: '#D3AD36', ink: '#20323A' },
   { hex: '#3D5060', ink: '#F7F6F1' },
-  { hex: '#B5B4A9', ink: '#20323A' },
+  { hex: '#AFB5B8', ink: '#20323A' },
 ] as const
 
 export const overcastStudy = {
@@ -25,9 +25,9 @@ export const overcastStudy = {
 
 const cayucosPalette = [
   { hex: '#b04d01', ink: '#ffffff' },
-  { hex: '#020914', ink: '#d4c7a5' },
-  { hex: '#052b41', ink: '#d4c7a5' },
-  { hex: '#d4c7a5', ink: '#020914' },
+  { hex: '#020914', ink: '#e8dfc9' },
+  { hex: '#052b41', ink: '#e8dfc9' },
+  { hex: '#e8dfc9', ink: '#020914' },
 ] as const
 
 export const cayucosStudy = {
@@ -48,7 +48,7 @@ export const cayucosStudy = {
 const fujiPalette = [
   { hex: '#6D8B8B', ink: '#020914' },
   { hex: '#A1AD9A', ink: '#20323A' },
-  { hex: '#574B30', ink: '#ffffff' },
+  { hex: '#6E3E2D', ink: '#ffffff' },
 ] as const
 
 export const kyotoTokyoStudy = {
@@ -67,6 +67,21 @@ export const kyotoTokyoStudy = {
 } as const satisfies DesignStudyMetadata
 
 export const designStudies: readonly DesignStudyMetadata[] = [overcastStudy, cayucosStudy, kyotoTokyoStudy]
+
+export const designStudyBarThemes: Record<string, { background: string; text: string }> = {
+  [`/design/${overcastStudy.slug}`]: {
+    background: overcastStudy.palette[0].hex,
+    text: overcastStudy.palette[1].hex,
+  },
+  [`/design/${cayucosStudy.slug}`]: {
+    background: cayucosStudy.palette[1].hex,
+    text: cayucosStudy.palette[3].hex,
+  },
+  [`/design/${kyotoTokyoStudy.slug}`]: {
+    background: kyotoTokyoStudy.palette[0].hex,
+    text: kyotoTokyoStudy.palette[0].ink,
+  },
+}
 
 export type DesignStudyMetadata = {
   slug: string

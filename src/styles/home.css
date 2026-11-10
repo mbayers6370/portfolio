@@ -624,35 +624,6 @@
   margin-bottom: 1.75rem;
 }
 
-.contact-socials {
-  display: flex;
-  gap: 1.25rem;
-  margin-bottom: 1.75rem;
-}
-
-.contact-social-icon {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(195, 203, 132, 0.12);
-  border-radius: 50%;
-  color: var(--secondary);
-  height: 2.75rem;
-  justify-content: center;
-  text-decoration: none;
-  width: 2.75rem;
-}
-
-.contact-social-icon:hover {
-  background: var(--secondary);
-  color: var(--olive);
-}
-
-.contact-social-icon:focus-visible {
-  color: var(--secondary);
-  outline: 1px solid var(--sage);
-  outline-offset: 0.4rem;
-}
-
 .contact-availability {
   font-size: 0.82rem;
   color: var(--on-dark);

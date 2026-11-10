@@ -16,7 +16,7 @@ export default function StudyLayout({ study, children, className = '', style }: 
   return (
     <div className={`curiosities-page ${className}`} style={style}>
       <div className="curiosities-main">
-        <PageHero className="curiosities-intro" title={study.title} description={study.description} />
+        <PageHero className="curiosities-intro curiosities-intro--study" title={study.title} description={study.description} />
         <div className="container">
           <Link className="design-study-back" to="/design"><ChevronLeft className="link-chevron" aria-hidden="true" />Collected Curiosities</Link>
         </div>

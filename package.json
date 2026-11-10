@@ -14,7 +14,8 @@
     "lint:css": "stylelint \"src/styles/**/*.css\" && node scripts/check-css-ownership.mjs",
     "lint": "npm run lint:css",
     "test:css": "node --test scripts/css-checks.test.mjs",
-    "check": "npm run format:check && npm run lint && npm run test:css && npm run typecheck && npm run build",
+    "test:map": "node --test scripts/fuji-map-checks.test.mjs",
+    "check": "npm run format:check && npm run lint && npm run test:css && npm run test:map && npm run typecheck && npm run build",
     "test:browser": "node scripts/serve-browser-checks.mjs"
   },
   "dependencies": {

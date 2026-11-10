@@ -5,13 +5,13 @@ import type { Book } from '../types/content'
 export const booksPageContent = {
   title: 'The Shape Sequence',
   subtitle: 'A series about the architecture of a world meant to make you forget.',
-  authorQuote: 'I am interested in what makes us human. And what happens when we start changing the definition.',
+  authorQuote: 'I am interested in what makes us human. And what happens to us without memory, who are we?',
   authorBio:
     "Matthew Bayers is a self-published author, Frontend Developer, and painter. His fiction explores queer identity, memory, and the architecture of worlds that feel just slightly out of reach, built for anyone who has ever felt like they didn't quite fit.",
   backLabel: 'Back to portfolio',
 }
 
-export const books: Book[] = [
+export const books = [
   {
     number: '01',
     title: 'The Shape\nIn The Echo',
@@ -34,4 +34,11 @@ export const books: Book[] = [
     linkLabel: 'Buy on Amazon',
     cover: cover02,
   },
-]
+  {
+    number: '03',
+    title: 'The Shape\nof Loss',
+    status: 'Currently writing',
+    statusClass: 'upcoming',
+    description: 'The next book in The Shape Sequence. More details to come.',
+  },
+] as const satisfies readonly Book[]
